@@ -1,19 +1,19 @@
+import { Button, Card, CardBody, CardHeader, Col } from 'reactstrap';
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import Slider from 'react-slick/lib';
-import { Col, Button, Card, CardHeader, CardBody } from 'reactstrap';
-import PageHeader from '../common/PageHeader';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import FalconEditor from '../common/FalconEditor';
 import Flex from '../common/Flex';
-import uuid from 'uuid/v1';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PageHeader from '../common/PageHeader';
+import PropTypes from 'prop-types';
+import Slider from 'react-slick/lib';
 import product1 from '../../../assets/images/products/1.jpg';
 import product12 from '../../../assets/images/products/1-2.jpg';
 import product13 from '../../../assets/images/products/1-3.jpg';
 import product14 from '../../../assets/images/products/1-4.jpg';
 import product15 from '../../../assets/images/products/1-5.jpg';
 import product16 from '../../../assets/images/products/1-6.jpg';
+import { v1 as uuid } from 'uuid';
 
 const slickSlider = `function slickSlider  ()  {
   const sliderSettings = {

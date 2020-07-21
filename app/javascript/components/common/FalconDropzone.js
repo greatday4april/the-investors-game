@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import Dropzone from 'react-dropzone';
-import uuid from 'uuid/v1';
-import classNames from 'classnames';
-import { isIterableArray } from '../../helpers/utils';
 import { DropdownItem, DropdownMenu, DropdownToggle, Media, UncontrolledDropdown } from 'reactstrap';
+import React, { Fragment } from 'react';
+
+import Dropzone from 'react-dropzone';
 import Flex from './Flex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import cloudUpload from '../../../assets/images/icons/cloud-upload.svg';
+import { isIterableArray } from '../../helpers/utils';
+import { v1 as uuid } from 'uuid';
 
 const getSize = size => {
   if (size < 1024) {

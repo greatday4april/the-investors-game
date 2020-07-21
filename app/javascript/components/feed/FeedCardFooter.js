@@ -1,15 +1,16 @@
-import React, { useContext, useState } from 'react';
-import PropTypes from 'prop-types';
-import LikeComentShareCount from './LikeComentShareCount';
-import IconStatus from './IconStatus';
 import { CardFooter, Form, Input } from 'reactstrap';
-import Flex from '../common/Flex';
+import React, { useContext, useState } from 'react';
+
 import Avatar from '../common/Avatar';
 import Comments from './Comments';
 import { FeedContext } from '../../context/Context';
-import { isIterableArray } from '../../helpers/utils';
-import uuid from 'uuid/v1';
+import Flex from '../common/Flex';
+import IconStatus from './IconStatus';
+import LikeComentShareCount from './LikeComentShareCount';
+import PropTypes from 'prop-types';
 import av3 from '../../../assets/images/team/3.jpg';
+import { isIterableArray } from '../../helpers/utils';
+import { v1 as uuid } from 'uuid';
 
 const FeedCardFooter = ({ id, countLCS, comments, otherComments }) => {
   const { feeds, feedDispatch } = useContext(FeedContext);

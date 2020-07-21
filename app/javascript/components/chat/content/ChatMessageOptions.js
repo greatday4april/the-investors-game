@@ -1,8 +1,8 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { UncontrolledTooltip } from 'reactstrap';
-import uuid from 'uuid/v1';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { UncontrolledTooltip } from 'reactstrap';
+import { v1 as uuid } from 'uuid';
 
 const ChatMessageOptions = ({ id = uuid() }) => (
   <ul className="hover-actions position-relative list-inline mb-0 text-400 mx-2">

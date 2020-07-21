@@ -1,15 +1,16 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Button, Card, CardBody, Col, Form, Row } from 'reactstrap';
-import FalconCardHeader from '../common/FalconCardHeader';
-import FalconInput from '../common/FalconInput';
-import { ProductContext } from '../../context/Context';
-import uuid from 'uuid/v1';
-import { isIterableArray } from '../../helpers/utils';
-import Flex from '../common/Flex';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+
 import ContentWithAsideLayout from '../../layouts/ContentWithAsideLayout';
-import ProductGrid from './product/ProductGrid';
-import FalconDropzone from '../common/FalconDropzone';
 import FalconCardFooterLink from '../common/FalconCardFooterLink';
+import FalconCardHeader from '../common/FalconCardHeader';
+import FalconDropzone from '../common/FalconDropzone';
+import FalconInput from '../common/FalconInput';
+import Flex from '../common/Flex';
+import { ProductContext } from '../../context/Context';
+import ProductGrid from './product/ProductGrid';
+import { isIterableArray } from '../../helpers/utils';
+import { v1 as uuid } from 'uuid';
 
 const sliderSettings = {
   infinite: true,

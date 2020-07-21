@@ -1,31 +1,31 @@
-import React, { useState, useContext, Fragment } from 'react';
-import classNames from 'classnames';
 import {
+  Button,
   Card,
   CardBody,
   Col,
-  Row,
-  Media,
-  DropdownToggle,
-  DropdownMenu,
   DropdownItem,
-  UncontrolledDropdown,
-  Input,
+  DropdownMenu,
+  DropdownToggle,
   Form,
-  Button
+  Input,
+  Media,
+  Row,
+  UncontrolledDropdown
 } from 'reactstrap';
+import React, { Fragment, useContext, useState } from 'react';
+
 import Avatar from '../common/Avatar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Flex from '../common/Flex';
 import ButtonImgPostCreate from './ButtonImgPostCreate';
 import FalconCardHeader from '../common/FalconCardHeader';
 import { FeedContext } from '../../context/Context';
-import uuid from 'uuid/v1';
-
+import Flex from '../common/Flex';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import av3 from '../../../assets/images/team/3.jpg';
-import postLocation from '../../../assets/images/illustrations/location.svg';
+import classNames from 'classnames';
 import postCalendar from '../../../assets/images/illustrations/calendar.svg';
 import postImage from '../../../assets/images/illustrations/image.svg';
+import postLocation from '../../../assets/images/illustrations/location.svg';
+import { v1 as uuid } from 'uuid';
 
 const PostCreateForm = () => {
   const { feedDispatch } = useContext(FeedContext);

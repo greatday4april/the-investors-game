@@ -1,5 +1,3 @@
-import uuid from 'uuid/v1';
-
 import product1 from '../../../assets/images/products/1.jpg';
 import product12 from '../../../assets/images/products/1-2.jpg';
 import product13 from '../../../assets/images/products/1-3.jpg';
@@ -7,13 +5,14 @@ import product14 from '../../../assets/images/products/1-4.jpg';
 import product15 from '../../../assets/images/products/1-5.jpg';
 import product16 from '../../../assets/images/products/1-6.jpg';
 import product2 from '../../../assets/images/products/2.jpg';
-import product4 from '../../../assets/images/products/4.jpg';
 import product3 from '../../../assets/images/products/3.jpg';
-import product8 from '../../../assets/images/products/8.jpg';
+import product4 from '../../../assets/images/products/4.jpg';
+import product5 from '../../../assets/images/products/5.jpg';
 import product6 from '../../../assets/images/products/6.jpg';
 import product7 from '../../../assets/images/products/7.jpg';
-import product5 from '../../../assets/images/products/5.jpg';
+import product8 from '../../../assets/images/products/8.jpg';
 import product9 from '../../../assets/images/products/9.jpg';
+import { v1 as uuid } from 'uuid';
 
 export default [
   {

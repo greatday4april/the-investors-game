@@ -1,14 +1,14 @@
-import uuid from 'uuid/v1';
+import av4 from '../../../assets/images/team/4.jpg';
 import eventImg1 from '../../../assets/images/generic/13.jpg';
-import team15 from '../../../assets/images/team/15.jpg';
-import user1 from '../../../assets/images/team/17.jpg';
-import user4 from '../../../assets/images/team/4.jpg';
-import user13 from '../../../assets/images/team/13.jpg';
-import user10 from '../../../assets/images/team/10.jpg';
-import user8 from '../../../assets/images/team/8.jpg';
 import generic11 from '../../../assets/images/generic/11.jpg';
 import generic12 from '../../../assets/images/generic/12.jpg';
-import av4 from '../../../assets/images/team/4.jpg';
+import team15 from '../../../assets/images/team/15.jpg';
+import user1 from '../../../assets/images/team/17.jpg';
+import user10 from '../../../assets/images/team/10.jpg';
+import user13 from '../../../assets/images/team/13.jpg';
+import user4 from '../../../assets/images/team/4.jpg';
+import user8 from '../../../assets/images/team/8.jpg';
+import { v1 as uuid } from 'uuid';
 
 export default [
   {

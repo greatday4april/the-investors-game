@@ -8,8 +8,26 @@
 
 require 'csv'
 
+
+file_name = 'AAPL_2000_2009.csv'
+ticks = CSV.read(
+  File.expand_path(file_name, File.dirname(__FILE__) + '/raw')
+)
+symbol = file_name.split('_')[0]
+ticks = ticks.filter do |tick|
+  tick_time = Time.zone.parse(tick[0])
+  tick_time > Time.zone.parse('2009-01-01 12:00am') && tick_time < Time.zone.parse('2010-01-01 12:00am')
+end
+p ticks[0...3]
+
+CSV.open(File.expand_path("#{symbol}_2009_2010.csv", File.dirname(__FILE__)), 'wb') do |csv|
+  ticks.each do |tick|
+    csv << tick
+  end
+end
+
+file_name = 'AAPL_2009_2010.csv'
 Tick.delete_all # in case multiple seeds
-file_name = 'AAPL_2010_2019.csv'
 ticks = CSV.read(
   File.expand_path(file_name, File.dirname(__FILE__))
 )

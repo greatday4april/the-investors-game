@@ -1,12 +1,12 @@
-import uuid from 'uuid/v1';
+import team13 from '../../../assets/images/team/13.jpg';
+import team14 from '../../../assets/images/team/14.jpg';
 import team2 from '../../../assets/images/team/2.jpg';
 import team3 from '../../../assets/images/team/3.jpg';
 import team4 from '../../../assets/images/team/4.jpg';
-import team13 from '../../../assets/images/team/13.jpg';
-import team9 from '../../../assets/images/team/9.jpg';
-import team14 from '../../../assets/images/team/14.jpg';
 import team5 from '../../../assets/images/team/5.jpg';
 import team6 from '../../../assets/images/team/6.jpg';
+import team9 from '../../../assets/images/team/9.jpg';
+import { v1 as uuid } from 'uuid';
 
 export default [
   {
