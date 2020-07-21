@@ -7,40 +7,47 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'csv'
+Tick.delete_all # in case multiple seeds
 
+Dir.glob(File.dirname(__FILE__) + '/raw/*.csv') do |csv_filename|
+  symbol = csv_filename.split('/')[-1].split('_')[0]
+  p "symbol: #{symbol}"
+  # inspect if there's already a selected version
+  next unless Dir.glob(File.dirname(__FILE__) + "/selected/#{symbol}*.csv").empty?
 
-file_name = 'AAPL_2000_2009.csv'
-ticks = CSV.read(
-  File.expand_path(file_name, File.dirname(__FILE__) + '/raw')
-)
-symbol = file_name.split('_')[0]
-ticks = ticks.filter do |tick|
-  tick_time = Time.zone.parse(tick[0])
-  tick_time > Time.zone.parse('2009-01-01 12:00am') && tick_time < Time.zone.parse('2010-01-01 12:00am')
-end
-p ticks[0...3]
-
-CSV.open(File.expand_path("#{symbol}_2009_2010.csv", File.dirname(__FILE__)), 'wb') do |csv|
-  ticks.each do |tick|
-    csv << tick
+  ticks = CSV.read( # 2D array
+    File.expand_path(csv_filename, File.dirname(__FILE__) + '/raw')
+  )
+  start_time = Time.zone.parse('2009-01-01 12:00am')
+  end_time = Time.zone.parse('2010-01-01 12:00am')
+  ticks = ticks.select do |tick|
+    tick_time = Time.zone.parse(tick[0])
+    tick_time > start_time && tick_time < end_time
+  end
+  CSV.open(File.expand_path("#{symbol}_2009_2010.csv", File.dirname(__FILE__) + '/selected'), 'wb') do |csv|
+    ticks.each do |tick|
+      csv << tick
+    end
+    puts "selected #{csv.length} stock tick records"
   end
 end
 
-file_name = 'AAPL_2009_2010.csv'
-Tick.delete_all # in case multiple seeds
-ticks = CSV.read(
-  File.expand_path(file_name, File.dirname(__FILE__))
-)
-p ticks[0...3]
-symbol = file_name.split('_')[0]
-ticks.map! do |tick|
-  { symbol: symbol,
-    tick_time: Time.zone.parse(tick[0]),
-    open: tick[1].to_f,
-    high: tick[2].to_f,
-    low: tick[3].to_f,
-    close: tick[4].to_f,
-    volume: tick[5].to_i }
+Dir.glob(File.dirname(__FILE__) + '/selected/*.csv') do |csv_filename|
+  p "Reading & seeding Tick:#{csv_filename}"
+  ticks = CSV.read(
+    File.expand_path(csv_filename, File.dirname(__FILE__) + '/selected')
+  )
+  symbol = csv_filename.split('/')[6].split('_')[0]
+  p 'selected_symbol:'
+  p symbol
+  ticks.map! do |tick|
+    { symbol: symbol,
+      tick_time: Time.zone.parse(tick[0]),
+      open: tick[1].to_f,
+      high: tick[2].to_f,
+      low: tick[3].to_f,
+      close: tick[4].to_f,
+      volume: tick[5].to_i }
+  end
+  Tick.create!(ticks)
 end
-p ticks[0...3]
-Tick.create(ticks)
