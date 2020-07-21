@@ -32,6 +32,9 @@ default: &default
     - .ttf
     - .woff
     - .woff2
+    - .webm
+    - .mp4
+    - .ogv
 
   extensions:
     - .jsx
