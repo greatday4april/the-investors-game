@@ -1,26 +1,18 @@
-// Run this example by adding <%= javascript_pack_tag 'hello_react' %> to the head of your layout file,
-// like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
-// of the page.
+import 'react-app-polyfill/ie9';
+import 'react-app-polyfill/stable';
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import Main from './Main';
+import '../../../app/javascript/helpers/initFA';
 
-const Hello = props => (
-  <div>Hello {props.name}!</div>
-)
-
-Hello.defaultProps = {
-  name: 'David'
-}
-
-Hello.propTypes = {
-  name: PropTypes.string
-}
+const Root = () => (
+  <Main>
+    <App />
+  </Main>
+);
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <Hello name="React" />,
-    document.body.appendChild(document.createElement('div')),
-  )
-})
+  ReactDOM.render(<Root />, document.body.appendChild(document.createElement('div')));
+});
