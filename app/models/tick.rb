@@ -1,0 +1,2 @@
+class Tick < ApplicationRecord
+end
