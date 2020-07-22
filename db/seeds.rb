@@ -28,7 +28,7 @@ Dir.glob(File.dirname(__FILE__) + '/raw/*.csv') do |csv_filename|
     ticks.each do |tick|
       csv << tick
     end
-    puts "selected #{csv.length} stock tick records"
+    puts "selected #{ticks.length} stock tick records"
   end
 end
 
@@ -38,8 +38,6 @@ Dir.glob(File.dirname(__FILE__) + '/selected/*.csv') do |csv_filename|
     File.expand_path(csv_filename, File.dirname(__FILE__) + '/selected')
   )
   symbol = csv_filename.split('/')[6].split('_')[0]
-  p 'selected_symbol:'
-  p symbol
   ticks.map! do |tick|
     { symbol: symbol,
       tick_time: Time.zone.parse(tick[0]),

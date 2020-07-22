@@ -38,3 +38,30 @@ run `rails g model user && rails g scaffold_controller api/user --api` (for pure
 ## notes
 
 1. to actually upgrade the packages to latest we could do `yarn global add npm-check-updates && npm-check-updates -u && yarn upgrade`
+
+## Backend Routes
+
+### HTML
+
+- `GET /` `StaticPagesController#root`
+
+### API Endpoints
+
+#### `ticks`
+
+- `GET /api/ticks` - return all ticks matching conditions
+  - filtered by `start_time` and `period`
+
+## Postgres Database Schema
+
+### `ticks`
+
+| column name | data type | details |
+| ----------- | :-------: | ------: |
+| `id`        |  integer  |         |
+| `tick_time` | datetime  |         |
+| `open`      |   float   |         |
+| `close`     |   float   |         |
+| `low`       |   float   |         |
+| `high`      |   float   |         |
+| `volume`    |  integer  |         |
