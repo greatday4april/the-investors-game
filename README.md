@@ -26,9 +26,10 @@ run `rails g model user && rails g scaffold_controller api/user --api` (for pure
 
 ### Frontend implementation
 
+- some react code used react hooks, and you could read [this video](https://open.appacademy.io/learn/full-stack-online/react/react-hooks-demo) and [that cheatsheet](https://blog.engineering.publicissapient.fr/wp-content/uploads/2019/06/cheat-sheet-xebia.pdf)
 - run `rails g react:component Users users:array` based on react component name and props it takes. reference: https://github.com/reactjs/react-rails#component-generator
 - add `Route` to wherever your routes defined for your new top-level component
-- you may not need jquery as you could use [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) with a similar syntax
+- you should use [axios](https://www.npmjs.com/package/axios#note-commonjs-usage) with a similar syntax rather than `ajax`
 - `yarn add react-redux redux redux-logger redux-thunk` if you need redux, and add provider to `root.jsx`
 
 ### Run server
