@@ -1,13 +1,22 @@
-import React, { useState, useContext } from 'react';
-import { Row, Col, Card, CardBody, CustomInput } from 'reactstrap';
-import { Line } from 'react-chartjs-2';
+import { Card, CardBody, Col, CustomInput, Row } from 'reactstrap';
+import React, { useContext, useState } from 'react';
 import { hours, paymentByStatus } from '../../data/dashboard/payments';
 import { rgbaColor, themeColors } from '../../helpers/utils';
-import AppContext from '../../context/Context';
 
-const PaymentsLineChart = () => {
+import AppContext from '../../context/Context';
+import { Line } from 'react-chartjs-2';
+
+const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
+const PaymentsLineChart = ({warpedTime}) => {
   const [paymentStatus, setPaymentStatus] = useState('successful');
   const { isDark } = useContext(AppContext);
+  const elapsed = Math.floor(warpedTime / 1000);
+  const length = paymentByStatus.all.length;
+  const data = paymentByStatus.all.map(
+    (value, idx) => {
+      return paymentByStatus.all[(idx + elapsed) % length];
+    }
+  );
 
   const config = {
     data(canvas) {
@@ -23,7 +32,7 @@ const PaymentsLineChart = () => {
         datasets: [
           {
             borderWidth: 2,
-            data: paymentByStatus[paymentStatus].map(d => (d * 3.14).toFixed(2)),
+            data: data.map(d => (d * 3.14).toFixed(2)),
             borderColor: rgbaColor(isDark ? themeColors.primary : '#fff', 0.8),
             backgroundColor: gradientFill
           }

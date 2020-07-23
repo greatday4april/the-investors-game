@@ -1,19 +1,27 @@
+import { Button, Card, CardBody, Col, CustomInput, InputGroup, Row } from 'reactstrap';
 import React, { Fragment, useEffect, useState } from 'react';
-import { Row, Col, Card, CardBody, Button, InputGroup, CustomInput } from 'reactstrap';
-import CountUp from 'react-countup';
-import CardSummary from './CardSummary';
-import ActiveUsersBarChart from './ActiveUsersBarChart';
-import PaymentsLineChart from './PaymentsLineChart';
-import { toast } from 'react-toastify';
-import FalconCardHeader from '../common/FalconCardHeader';
-import ButtonIcon from '../common/ButtonIcon';
 
-import loadable from '@loadable/component';
+import ActiveUsersBarChart from './ActiveUsersBarChart';
+import ButtonIcon from '../common/ButtonIcon';
+import CardSummary from './CardSummary';
+import CountUp from 'react-countup';
 import DashBoardDepositStatus from './DashboardDepositStatus';
+import FalconCardHeader from '../common/FalconCardHeader';
+import PaymentsLineChart from './PaymentsLineChart';
+import { connect } from 'react-redux'
+import loadable from '@loadable/component';
+import { toast } from 'react-toastify';
+
 const PurchasesTable = loadable(() => import('./PurchasesTable'));
 const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
 
-const Dashboard = () => {
+const mapStateToProps = (state) => {
+  return {
+    currentTime: state.currentTime
+  };
+};
+
+const Dashboard = ({currentTime}) => {
   // State
   const [isSelected, setIsSelected] = useState(false);
 
@@ -28,7 +36,7 @@ const Dashboard = () => {
 
   return (
     <Fragment>
-      <PaymentsLineChart />
+      <PaymentsLineChart warpedTime={currentTime} />
       <DashBoardDepositStatus />
       <div className="card-deck">
         <CardSummary rate="-0.23%" title="Customers" color="warning" linkText="See all">
@@ -85,4 +93,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default connect(mapStateToProps, null)(Dashboard);
