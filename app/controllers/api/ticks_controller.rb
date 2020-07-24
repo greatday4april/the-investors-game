@@ -1,17 +1,43 @@
 class Api::TicksController < ApplicationController
-  # before_action :set_api_tick, only: [:show, :update, :destroy]
-
+  include Api::TicksHelper
+  before_action :validate_params, only: [:index]
   # GET /api/ticks
   # GET /api/ticks.json
   def index
-    start_time = Time.zone.parse(params[:start_time])
-    number = params[:period][0...-1]
-    unit = params[:period][-1] # eg:string: "y"
-    time_keys = { 'd' => :days, 'w' => :weeks, 'm' => :months, 'y' => :years }
-    end_time = start_time.advance(time_keys[unit] => number.to_i)
+    symbols = params[:symbols]
+    unit = params[:period][-1]
+    query = Tick.where(['tick_time >= ?', start_time])
+                .where(['tick_time <= ?', end_time])
 
-    @api_ticks = Tick.where(['tick_time >= ? and tick_time <= ?', start_time, end_time]).order('tick_time')
+    query = query.where(['symbol in (?)', symbols]) unless symbols.nil?
+    query = query.order('tick_time')
+    granularity = case unit
+                  when 'w'
+                    DAYS_PER_WEEK
+                  when 'm'
+                    DAYS_PER_MONTH
+                  when 'y'
+                    DAYS_PER_YEAR
+                  else
+                    DEFAULT
+                  end
+    @api_ticks = query.where(['id % ? = 0', granularity])
     render json: @api_ticks
+  end
+
+  def start_time
+    Time.zone.parse(params[:start_time])
+  end
+
+  def end_time
+    number = params[:period][0...-1]
+    unit = params[:period][-1] # string: "d"/"w"/"m"/"y"
+    time_keys = { 'd' => :days, 'w' => :weeks, 'm' => :months, 'y' => :years }
+    start_time.advance(time_keys[unit] => number.to_i)
+  end
+
+  def valid_params
+    !params[:start_time].nil? && !params[:period].nil?
   end
 
   # private
@@ -22,7 +48,8 @@ class Api::TicksController < ApplicationController
   # end
 
   # Only allow a list of trusted parameters through.
-  # def api_tick_params
-  #   params.require(:api_tick).permit(:start_time, :period)
-  # end
+  def validate_params
+    params.require(:start_time)
+    params.require(:period)
+  end
 end

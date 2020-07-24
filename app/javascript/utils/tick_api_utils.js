@@ -1,10 +1,10 @@
 import axios from 'axios';
-export const fetchAllTicks = (start_time, period) => {
-    console.log(start_time);
+export const fetchAllTicks = (start_time, period, symbols) => {
     return axios.get('/api/ticks', {
         params: {
             start_time: start_time,
-            period: period
+            period: period,
+            symbols: symbols // array of symbols
         }
     })
 }
