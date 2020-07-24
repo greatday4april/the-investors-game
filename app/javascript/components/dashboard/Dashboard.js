@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Row, Col, Card, CardBody, Button, InputGroup, CustomInput } from 'reactstrap';
+import { Row, Col, Card, CardBody, Button, InputGroup, CustomInput, CardColumns, Input } from 'reactstrap';
 import CountUp from 'react-countup';
 import CardSummary from './CardSummary';
 import ActiveUsersBarChart from './ActiveUsersBarChart';
@@ -16,6 +16,9 @@ const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
 const Dashboard = () => {
   // State
   const [isSelected, setIsSelected] = useState(false);
+  let currPrice = 2200;
+
+
 
   useEffect(() => {
     toast(
@@ -26,48 +29,73 @@ const Dashboard = () => {
     );
   }, []);
 
+
   return (
     <Fragment>
       <PaymentsLineChart />
       <DashBoardDepositStatus />
-      <div className="card-deck">
-        <CardSummary rate="-0.23%" title="Customers" color="warning" linkText="See all">
-          58.39k
-        </CardSummary>
-        <CardSummary rate="0.0%" title="Orders" color="info" linkText="All orders">
-          73.46k
-        </CardSummary>
-        <CardSummary content="43,594" rate="9.54%" title="Revenue" color="success" linkText="Statistics">
-          <CountUp end={43594} duration={5} prefix="$" separator="," decimal="." />
-        </CardSummary>
-      </div>
-      <Card className="mb-3">
-        <FalconCardHeader title="Recent Purchases" light={false}>
-          {isSelected ? (
-            <InputGroup size="sm" className="input-group input-group-sm">
-              <CustomInput type="select" id="bulk-select">
-                <option>Bulk actions</option>
-                <option value="Refund">Refund</option>
-                <option value="Delete">Delete</option>
-                <option value="Archive">Archive</option>
-              </CustomInput>
-              <Button color="falcon-default" size="sm" className="ml-2">
-                Apply
+      {/* <div className="card-deck">
+        <Card className="mb-4">
+          <FalconCardHeader title="Market Order" size="sm" light={false} />
+          <CardBody className="p-0 text-center">
+            <Row noGutters className="font-weight-bold px-4 ">
+              <Col xs={9} md={8} className="py-2 px-md-3 text-left text-900">
+                Shares
+              </Col>
+              <Col className="px-3">
+                <Input size="md" type="text" placeholder="0"/>
+              </Col>
+            </Row>
+            <Row noGutters className="font-weight-bold px-4">
+              <Col xs={9} md={8} className="py-2 px-md-3 text-left text-900">
+                Market Price
+              </Col>
+              <Col className="py-2 px-md-3 text-left"> ${currPrice}</Col>
+            </Row>
+            <Row noGutters className="font-weight-bold px-4">
+              <Col xs={9} md={8} className="py-2 px-md-3 text-left text-900">
+                Estimates Cost
+              </Col>
+              <Col className="px-md-3 py-2 text-left">$2200</Col>
+            </Row>
+            <Col xs="auto" className="pr-3 mt-3">
+              <Button color={'primary'} size="sm" className="px-4 mb-3">
+                Buy
               </Button>
-            </InputGroup>
-          ) : (
-            <Fragment>
-              <ButtonIcon icon="plus" transform="shrink-3 down-2" color="falcon-default" size="sm">
-                New
-              </ButtonIcon>
-              <ButtonIcon icon="filter" transform="shrink-3 down-2" color="falcon-default" size="sm" className="mx-2">
-                Filter
-              </ButtonIcon>
-              <ButtonIcon icon="external-link-alt" transform="shrink-3 down-2" color="falcon-default" size="sm">
-                Export
-              </ButtonIcon>
-            </Fragment>
-          )}
+              <Button color={'primary'} size="sm" className="px-4 ml-6 mb-3">
+                Sell
+              </Button>
+            </Col>
+          </CardBody>
+        </Card>
+        <Card className="mb-4">
+          <FalconCardHeader title="Position" size="sm" light={false} />
+          <CardBody className="p-0">
+            {/* <PurchasesTable setIsSelected={setIsSelected} /> */}
+            {/* <Col xs="auto" className="pr-3 text-center" />
+          </CardBody>
+        </Card>
+        <Card className="mb-4">
+          <FalconCardHeader title="Margin" size="sm" light={false} />
+          <CardBody className="p-0">
+            <Row noGutters className="font-weight-bold px-1" />
+          </CardBody>
+        </Card>
+      </div> */}
+
+      <Card className="mb-3">
+        <FalconCardHeader title="Order History" light={false}>
+          <Fragment>
+            <ButtonIcon icon="plus" transform="shrink-3 down-2" color="falcon-default" size="sm">
+              New
+            </ButtonIcon>
+            <ButtonIcon icon="filter" transform="shrink-3 down-2" color="falcon-default" size="sm" className="mx-2">
+              Filter
+            </ButtonIcon>
+            <ButtonIcon icon="external-link-alt" transform="shrink-3 down-2" color="falcon-default" size="sm">
+              Export
+            </ButtonIcon>
+          </Fragment>
         </FalconCardHeader>
         <CardBody className="p-0">
           <PurchasesTable setIsSelected={setIsSelected} />

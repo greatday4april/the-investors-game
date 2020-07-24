@@ -8,15 +8,15 @@ import NavbarVerticalMenuItem from './NavbarVerticalMenuItem';
 const NavbarVerticalMenu = ({ routes, location }) => {
   const [openedIndex, setOpenedIndex] = useState(null);
   const { setShowBurgerMenu } = useContext(AppContext);
-  useEffect(() => {
-    let openedDropdown = null;
-    routes.forEach((route, index) => {
-      if (location.pathname.indexOf(route.to) === 0) openedDropdown = index;
-    });
+  // useEffect(() => {
+  //   let openedDropdown = null;
+  //   routes.forEach((route, index) => {
+  //     if (location.pathname.indexOf(route.to) === 0) openedDropdown = index;
+  //   });
 
-    setOpenedIndex(openedDropdown);
-    // eslint-disable-next-line
-  }, []);
+  //   setOpenedIndex(openedDropdown);
+  //   // eslint-disable-next-line
+  // }, []);
 
   const toggleOpened = (e, index) => {
     e.preventDefault();

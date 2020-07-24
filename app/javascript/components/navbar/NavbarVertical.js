@@ -58,10 +58,10 @@ const NavbarVertical = ({ navbarStyle }) => {
       light
     >
       <Flex align="center">
-        <ToggleButton
+        {/* <ToggleButton
           isNavbarVerticalCollapsed={isNavbarVerticalCollapsed}
           setIsNavbarVerticalCollapsed={setIsNavbarVerticalCollapsed}
-        />
+        /> */}
         <Logo at="navbar-vertical" width={40} />
       </Flex>
 

@@ -1,13 +1,20 @@
-import React, { useState, useContext } from 'react';
-import { Row, Col, Card, CardBody, CustomInput } from 'reactstrap';
+import React, { useState, useContext, Fragment } from 'react';
+import { Row, Col, Card, CardBody, CustomInput, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 import { Line } from 'react-chartjs-2';
 import { hours, paymentByStatus } from '../../data/dashboard/payments';
 import { rgbaColor, themeColors } from '../../helpers/utils';
 import AppContext from '../../context/Context';
+import ButtonIcon from '../common/ButtonIcon';
+
+import Modals from '../bootstrap-components/Modals'
 
 const PaymentsLineChart = () => {
+
   const [paymentStatus, setPaymentStatus] = useState('successful');
   const { isDark } = useContext(AppContext);
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
+
 
   const config = {
     data(canvas) {
@@ -19,15 +26,15 @@ const PaymentsLineChart = () => {
       gradientFill.addColorStop(1, isDark ? 'transparent' : 'rgba(255, 255, 255, 0)');
 
       return {
-        labels: hours.map(hour => hour.substring(0, hour.length - 3)),
+        labels: hours.map((hour) => hour.substring(0, hour.length - 3)),
         datasets: [
           {
             borderWidth: 2,
-            data: paymentByStatus[paymentStatus].map(d => (d * 3.14).toFixed(2)),
+            data: paymentByStatus[paymentStatus].map((d) => (d * 3.14).toFixed(2)),
             borderColor: rgbaColor(isDark ? themeColors.primary : '#fff', 0.8),
-            backgroundColor: gradientFill
-          }
-        ]
+            backgroundColor: gradientFill,
+          },
+        ],
       };
     },
     options: {
@@ -38,9 +45,9 @@ const PaymentsLineChart = () => {
         yPadding: 10,
         displayColors: false,
         callbacks: {
-          label: tooltipItem => `${hours[tooltipItem.index]} - ${tooltipItem.yLabel} USD`,
-          title: () => null
-        }
+          label: (tooltipItem) => `${hours[tooltipItem.index]} - ${tooltipItem.yLabel} USD`,
+          title: () => null,
+        },
       },
       hover: { mode: 'label' },
       scales: {
@@ -48,29 +55,29 @@ const PaymentsLineChart = () => {
           {
             scaleLabel: {
               show: true,
-              labelString: 'Month'
+              labelString: 'Month',
             },
             ticks: {
               fontColor: rgbaColor('#fff', 0.7),
-              fontStyle: 600
+              fontStyle: 600,
             },
             gridLines: {
               color: rgbaColor('#fff', 0.1),
               zeroLineColor: rgbaColor('#fff', 0.1),
-              lineWidth: 1
-            }
-          }
+              lineWidth: 1,
+            },
+          },
         ],
         yAxes: [
           {
             display: false,
             gridLines: {
-              color: rgbaColor('#fff', 1)
-            }
-          }
-        ]
-      }
-    }
+              color: rgbaColor('#fff', 1),
+            },
+          },
+        ],
+      },
+    },
   };
 
   return (
@@ -83,20 +90,48 @@ const PaymentsLineChart = () => {
               Yesterday <span className="opacity-50">$684.87</span>
             </p>
           </Col>
-          <Col xs="auto" className="d-none d-sm-block">
-            <CustomInput
-              id="ddd"
-              type="select"
-              bsSize="sm"
-              className="mb-3 shadow"
-              value={paymentStatus}
-              onChange={({ target }) => setPaymentStatus(target.value)}
-            >
-              <option value="all">All Payments</option>
-              <option value="successful">Successful Payments</option>
-              <option value="failed">Failed Payments</option>
-            </CustomInput>
-          </Col>
+          <Button color={'light'} size="sm" className="px-4 ml-2" onClick={toggle}>
+            Start Trading
+          </Button>
+          <Modal isOpen={modal} toggle={toggle}>
+            <ModalHeader toggle={toggle}>Start Trading!</ModalHeader>
+            <ModalBody>
+              <Row noGutters className="font-weight-bold px-4 ">
+                <Col xs={9} md={8} className="py-2 px-md-3 text-left text-900">
+                  Shares
+                </Col>
+                <Col className="px-3">
+                  <Input size="md" type="text" placeholder="0" />
+                </Col>
+              </Row>
+              <Row noGutters className="font-weight-bold px-4">
+                <Col xs={9} md={8} className="py-2 px-md-3 text-left text-900">
+                  Market Price
+                </Col>
+                <Col className="py-2 px-md-3 text-left"> $2200 </Col>
+              </Row>
+              <Row noGutters className="font-weight-bold px-4">
+                <Col xs={9} md={8} className="py-2 px-md-3 text-left text-900">
+                  Estimate Cost
+                </Col>
+                <Col className="px-md-3 py-2 text-left">$2200</Col>
+              </Row>
+              <br />
+              <Col xs="auto" className="pr-3 text-center">
+                <Button color={'success'} size="md" className="px-4 mb-3">
+                  Buy
+                </Button>
+                <Button color={'success'} size="md" className="px-4 ml-4 mb-3">
+                  Sell
+                </Button>
+              </Col>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="secondary" onClick={toggle}>
+                Cancel
+              </Button>
+            </ModalFooter>
+          </Modal>
         </Row>
         <Line data={config.data} options={config.options} width={1618} height={375} />
       </CardBody>
