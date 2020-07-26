@@ -2,34 +2,29 @@ export const BUY_STOCK = "BUY_STOCK";
 export const SELL_STOCK = "SELL_STOCK";
 export const RECEIVE_TRANSACTION = "RECEIVE_TRANSACTION";
 
-export const buyStock = (symbol, share, price) => ({
+export const buyStock = stock => ({
     type: BUY_STOCK,
-    share: symbol,
-    symbol: share,
-    price: price
+    share: stock.symbol,
+    symbol: stock.share,
+    price: stock.price
 });
 
-export const sellStock = (symbol, share, price) => ({
+export const sellStock = stock => ({
     type: SELL_STOCK,
-    share: symbol,
-    symbol: share,
-    price: price
+    share: stock.symbol,
+    symbol: stock.share,
+    price: stock.price
 });
 
-export const receiveTransaction = (transaction) => ({
-    type: RECEIVE_TRANSACTION,
-    transaction,
-}) 
-
-export const buyingStock = (symbol, share, price) => dispatch => {
-    buyStock(symbol, share, price).then(
-        transaction => dispatch(receiveTransaction(transaction))
-    )
+export const buyingStock = (stock) => {
+    return (dispatch) => {
+        dispatch(buyStock(stock))
+    }
 }
 
-export const sellingStock = (symbol, share, price) => dispatch => {
-    sellStock(symbol, share, price).then(
-        transaction => dispatch(receiveTransaction(transaction))
-    )
+export const sellingStock = (stock) => {
+    return (dispatch) => {
+        dispatch(sellStock(stock))
+    }
 }
 
