@@ -1,6 +1,6 @@
 import 'react-app-polyfill/ie9';
 import 'react-app-polyfill/stable';
-
+import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -9,10 +9,12 @@ import '../../../app/javascript/helpers/initFA';
 import configureStore from '../store/store';
 import { fetchAllTicks } from '../actions/tick_actions';
 
-const Root = () => (
-  <Main>
-    <App />
-  </Main>
+const Root = ({ store }) => (
+  <Provider store={store}>
+    <Main>
+      <App />
+    </Main>
+  </Provider>
 );
 
 document.addEventListener('DOMContentLoaded', () => {

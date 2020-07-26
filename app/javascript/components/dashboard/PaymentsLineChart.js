@@ -1,21 +1,15 @@
-import React, { useState, useContext, Fragment } from 'react';
-import { Row, Col, Card, CardBody, CustomInput, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
+import React, { useState, useContext } from 'react';
+import { Row, Col, Card, CardBody, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 import { Line } from 'react-chartjs-2';
-import { hours, paymentByStatus } from '../../data/dashboard/payments';
+import { hours } from '../../data/dashboard/payments';
 import { rgbaColor, themeColors } from '../../helpers/utils';
 import AppContext from '../../context/Context';
-import ButtonIcon from '../common/ButtonIcon';
 
-import Modals from '../bootstrap-components/Modals'
-
-const PaymentsLineChart = () => {
-
-  const [paymentStatus, setPaymentStatus] = useState('successful');
+const PaymentsLineChart = ({ data }) => {
   const { isDark } = useContext(AppContext);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
-
-
+  const ticksData = data.map(tick => tick.close);
   const config = {
     data(canvas) {
       const ctx = canvas.getContext('2d');
@@ -24,15 +18,16 @@ const PaymentsLineChart = () => {
         : ctx.createLinearGradient(0, 0, 0, 250);
       gradientFill.addColorStop(0, isDark ? 'rgba(44,123,229, 0.5)' : 'rgba(255, 255, 255, 0.3)');
       gradientFill.addColorStop(1, isDark ? 'transparent' : 'rgba(255, 255, 255, 0)');
-
       return {
-        labels: hours.map((hour) => hour.substring(0, hour.length - 3)),
+        labels: new Array(ticksData.length).fill(''),
         datasets: [
           {
-            borderWidth: 2,
-            data: paymentByStatus[paymentStatus].map((d) => (d * 3.14).toFixed(2)),
+            borderWidth: 0,
+            data: ticksData,
             borderColor: rgbaColor(isDark ? themeColors.primary : '#fff', 0.8),
             backgroundColor: gradientFill,
+            pointBorderWidth: 0,
+            pointRadius: 0,
           },
         ],
       };
@@ -45,7 +40,7 @@ const PaymentsLineChart = () => {
         yPadding: 10,
         displayColors: false,
         callbacks: {
-          label: (tooltipItem) => `${hours[tooltipItem.index]} - ${tooltipItem.yLabel} USD`,
+          label: (tooltipItem) => `${data[tooltipItem.index].tick_time} - ${tooltipItem.yLabel} USD`,
           title: () => null,
         },
       },
