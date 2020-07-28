@@ -7,4 +7,4 @@ export const balanceSelector = ({transactions}) => {
         return accumulator + (currentValue.type === BUY_STOCK ? -currentValue.price : currentValue.price);
     }
     return transactions.reduce(reducer, INITIAL_BALANCE);
-}
+};

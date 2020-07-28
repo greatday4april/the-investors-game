@@ -14,12 +14,3 @@ export const sellStock = stock => ({
     share: stock.share,
     price: stock.price
 });
-
-export const buyingStock = (stock) => {
-    store.dispatch(buyStock(stock))
-}
-
-export const sellingStock = (stock) => {
-    store.dispatch(sellStock(stock))
-}
-
