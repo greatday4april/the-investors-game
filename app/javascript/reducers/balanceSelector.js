@@ -1,14 +1,10 @@
-import { BUY_STOCK } from '../actions/transactionAction';
+import { BUY_STOCK } from '../actions/transactionsAction';
 
-const currentBalance = 1000000;
+const INITIAL_BALANCE = 1000000;
 
-export const balanceSelector = ({transaction}) => {
-    transaction.forEach(record => {
-        if (record.type === BUY_STOCK) {
-            currentBalance -= (record.price * record.share);
-        } else {
-            currentBalance += (record.price * record.share);
-        }
-    })
-    return currentBalance;
+export const balanceSelector = ({transactions}) => {
+    const reducer = (accumulator, currentValue) => {
+        return accumulator + (currentValue.type === BUY_STOCK ? -currentValue.price : currentValue.price);
+    }
+    return transactions.reduce(reducer, INITIAL_BALANCE);
 }

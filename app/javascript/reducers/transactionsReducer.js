@@ -1,18 +1,16 @@
-import { BUY_STOCK, SELL_STOCK } from '../actions/transactionAction';
+import { BUY_STOCK, SELL_STOCK } from '../actions/transactionsAction';
 
 
-const transactionReducer = (state=[], action) => {
+const transactionsReducer = (state=[], action) => {
     Object.freeze(state);
     switch (action.type) {
         case BUY_STOCK:
             return [...state, action];
         case SELL_STOCK:
             return [...state, action];
-
         default:
             return state;
-
     }
 }
 
-export default transactionReducer;
+export default transactionsReducer;

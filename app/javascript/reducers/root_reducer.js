@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import TicksReducer from './ticks_reducer';
 import ErrorsReducer from './errors_reducer';
-import transactionReducer from './transactionReducer';
+import transactionsReducer from './transactionsReducer';
 
 const RootReducer = combineReducers({ 
     ticks: TicksReducer, 
-    transaction: transactionReducer,
+    transactions: transactionsReducer,
     errors: ErrorsReducer
  })
 
