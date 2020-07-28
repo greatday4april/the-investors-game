@@ -14,23 +14,23 @@ const AuthCardRoutes = loadable(() => import('../components/auth/card/AuthCardRo
 const AuthSplitRoutes = loadable(() => import('../components/auth/split/AuthSplitRoutes'));
 
 const Layout = () => {
-  useEffect(() => {
-    AuthBasicLayout.preload();
-    Landing.preload();
-    WizardLayout.preload();
-    AuthCardRoutes.preload();
-    AuthSplitRoutes.preload();
-  }, []);
+  // useEffect(() => {
+  //   AuthBasicLayout.preload();
+  //   Landing.preload();
+  //   WizardLayout.preload();
+  //   AuthCardRoutes.preload();
+  //   AuthSplitRoutes.preload();
+  // }, []);
 
   return (
     <Router fallback={<span />}>
       <Switch>
-        <Route path="/landing" exact component={Landing} />
+        {/* <Route path="/landing" exact component={Landing} />
         <Route path="/authentication/basic" component={AuthBasicLayout} />
         <Route path="/authentication/card" component={AuthCardRoutes} />
         <Route path="/authentication/split" component={AuthSplitRoutes} />
         <Route path="/authentication/wizard" component={WizardLayout} />
-        <Route path="/errors" component={ErrorLayout} />
+        <Route path="/errors" component={ErrorLayout} /> */}
         <Route component={DashboardLayout} />
       </Switch>
       <ToastContainer transition={Fade} closeButton={<CloseButton />} position={toast.POSITION.BOTTOM_LEFT} />

@@ -1,13 +1,40 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Row, Col, Card, CardBody, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
-import { Line } from 'react-chartjs-2';
-import { hours } from '../../data/dashboard/payments';
+import { Chart, Line } from 'react-chartjs-2';
+// import { hours } from '../../data/dashboard/payments';
 import { rgbaColor, themeColors } from '../../helpers/utils';
 import AppContext from '../../context/Context';
 
-const PaymentsLineChart = ({ data }) => {
+const PaymentsLineChart = ({ data, fetchAllTicks }) => {
   const { isDark } = useContext(AppContext);
   const [modal, setModal] = useState(false);
+  const [tickPrice, setTickPrice] = useState(0);
+  // ComponentDidMount()
+  useEffect(() => {
+    fetchAllTicks('2009-01-02 07:06:00', '1d', 'AAPL');
+
+    Chart.pluginService.register({
+      afterDraw: function (chart, _easing) {
+        if (chart.tooltip._active && chart.tooltip._active.length) {
+          const activePoint = chart.controller.tooltip._active[0];
+          const ctx = chart.ctx;
+          const x = activePoint.tooltipPosition().x;
+          const topY = chart.scales['y-axis-0'].top;
+          const bottomY = chart.scales['y-axis-0'].bottom;
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(x, topY);
+          ctx.lineTo(x, bottomY);
+          ctx.lineWidth = 0.5;
+          ctx.strokeStyle = '#c9ced1';
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+    });
+  }, [fetchAllTicks]);
+
   const toggle = () => setModal(!modal);
   const ticksData = data.map(tick => tick.close);
   const config = {
@@ -22,7 +49,7 @@ const PaymentsLineChart = ({ data }) => {
         labels: new Array(ticksData.length).fill(''),
         datasets: [
           {
-            borderWidth: 0,
+            borderWidth: 1,
             data: ticksData,
             borderColor: rgbaColor(isDark ? themeColors.primary : '#fff', 0.8),
             backgroundColor: gradientFill,
@@ -33,33 +60,29 @@ const PaymentsLineChart = ({ data }) => {
       };
     },
     options: {
-      legend: { display: false },
+      legend: {
+        display: false,
+      },
       tooltips: {
         mode: 'x-axis',
         xPadding: 20,
         yPadding: 10,
         displayColors: false,
+        backgroundColor: 'rgba(0, 0, 0, 0)',
         callbacks: {
-          label: (tooltipItem) => `${data[tooltipItem.index].tick_time} - ${tooltipItem.yLabel} USD`,
-          title: () => null,
+          label: (tooltipItem) => setTickPrice(tooltipItem.yLabel),
         },
       },
-      hover: { mode: 'label' },
       scales: {
         xAxes: [
           {
-            scaleLabel: {
-              show: true,
-              labelString: 'Month',
-            },
+            display: false,
             ticks: {
               fontColor: rgbaColor('#fff', 0.7),
               fontStyle: 600,
             },
             gridLines: {
-              color: rgbaColor('#fff', 0.1),
-              zeroLineColor: rgbaColor('#fff', 0.1),
-              lineWidth: 1,
+              drawOnChartArea: false
             },
           },
         ],
@@ -80,7 +103,7 @@ const PaymentsLineChart = ({ data }) => {
       <CardBody className="rounded-soft bg-gradient">
         <Row className="text-white align-items-center no-gutters">
           <Col>
-            <h4 className="text-white mb-0">Today $764.39</h4>
+            <h4 className="text-white mb-0">{`Today ${tickPrice} USD`}</h4>
             <p className="fs--1 font-weight-semi-bold">
               Yesterday <span className="opacity-50">$684.87</span>
             </p>

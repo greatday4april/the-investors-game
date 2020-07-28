@@ -5,6 +5,6 @@ const mapStateToProps = (state, _ownProps) => {
     return { data: Object.values(state.ticks) };
 }
 const mapDispatchToProps = (dispatch) => ({
-    fetchAllTicks: dispatch(fetchAllTicks)
+    fetchAllTicks: (start_time, period, symbols) => dispatch(fetchAllTicks(start_time, period, symbols))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentsLineChart);
