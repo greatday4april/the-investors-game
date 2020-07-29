@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Row, Col, Card, CardBody, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 import { Chart, Line } from 'react-chartjs-2';
-// import { hours } from '../../data/dashboard/payments';
 import { rgbaColor, themeColors } from '../../helpers/utils';
 import AppContext from '../../context/Context';
+import selectedData from '../../reducers/selectors'
 
 const PaymentsLineChart = ({ data, fetchAllTicks }) => {
   const { isDark } = useContext(AppContext);
@@ -36,7 +36,7 @@ const PaymentsLineChart = ({ data, fetchAllTicks }) => {
   }, [fetchAllTicks]);
 
   const toggle = () => setModal(!modal);
-  const ticksData = data.map(tick => tick.close);
+  const selectedDataSets = selectedData(data, "2009-01-02T08:47:00.000-05:00");
   const config = {
     data(canvas) {
       const ctx = canvas.getContext('2d');
@@ -46,11 +46,11 @@ const PaymentsLineChart = ({ data, fetchAllTicks }) => {
       gradientFill.addColorStop(0, isDark ? 'rgba(44,123,229, 0.5)' : 'rgba(255, 255, 255, 0.3)');
       gradientFill.addColorStop(1, isDark ? 'transparent' : 'rgba(255, 255, 255, 0)');
       return {
-        labels: new Array(ticksData.length).fill(''),
+        labels: new Array(data.length).fill(''),
         datasets: [
           {
             borderWidth: 1,
-            data: ticksData,
+            data: selectedDataSets.map(tick => tick.close),
             borderColor: rgbaColor(isDark ? themeColors.primary : '#fff', 0.8),
             backgroundColor: gradientFill,
             pointBorderWidth: 0,
