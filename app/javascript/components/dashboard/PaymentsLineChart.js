@@ -4,10 +4,12 @@ import { Chart, Line } from 'react-chartjs-2';
 import { rgbaColor, themeColors } from '../../helpers/utils';
 import AppContext from '../../context/Context';
 import selectedData from '../../reducers/selectors'
+import Dialog from './Dialog'
 
 const PaymentsLineChart = ({ data, fetchAllTicks }) => {
   const { isDark } = useContext(AppContext);
   const [modal, setModal] = useState(false);
+   const toggle = () => setModal(!modal);
   const [tickPrice, setTickPrice] = useState(0);
   // ComponentDidMount()
   useEffect(() => {
@@ -35,7 +37,7 @@ const PaymentsLineChart = ({ data, fetchAllTicks }) => {
     });
   }, [fetchAllTicks]);
 
-  const toggle = () => setModal(!modal);
+ 
   const selectedDataSets = selectedData(data, "2009-01-02T08:47:00.000-05:00");
   const config = {
     data(canvas) {
@@ -106,50 +108,13 @@ const PaymentsLineChart = ({ data, fetchAllTicks }) => {
             <h4 className="text-white mb-0">{`Today ${tickPrice} USD`}</h4>
             <p className="fs--1 font-weight-semi-bold">
               Yesterday <span className="opacity-50">$684.87</span>
-            </p>
+            </p>{' '}
+            <Dialog toggle={toggle} modal={modal} setModal={setModal} />
           </Col>
           <Button color={'light'} size="sm" className="px-4 ml-2" onClick={toggle}>
             Start Trading
           </Button>
-          <Modal isOpen={modal} toggle={toggle}>
-            <ModalHeader toggle={toggle}>Start Trading!</ModalHeader>
-            <ModalBody>
-              <Row noGutters className="font-weight-bold px-4 ">
-                <Col xs={9} md={8} className="py-2 px-md-3 text-left text-900">
-                  Shares
-                </Col>
-                <Col className="px-3">
-                  <Input size="md" type="text" placeholder="0" />
-                </Col>
-              </Row>
-              <Row noGutters className="font-weight-bold px-4">
-                <Col xs={9} md={8} className="py-2 px-md-3 text-left text-900">
-                  Market Price
-                </Col>
-                <Col className="py-2 px-md-3 text-left"> $2200 </Col>
-              </Row>
-              <Row noGutters className="font-weight-bold px-4">
-                <Col xs={9} md={8} className="py-2 px-md-3 text-left text-900">
-                  Estimate Cost
-                </Col>
-                <Col className="px-md-3 py-2 text-left">$2200</Col>
-              </Row>
-              <br />
-              <Col xs="auto" className="pr-3 text-center">
-                <Button color={'success'} size="md" className="px-4 mb-3">
-                  Buy
-                </Button>
-                <Button color={'success'} size="md" className="px-4 ml-4 mb-3">
-                  Sell
-                </Button>
-              </Col>
-            </ModalBody>
-            <ModalFooter>
-              <Button color="secondary" onClick={toggle}>
-                Cancel
-              </Button>
-            </ModalFooter>
-          </Modal>
+          <Dialog toggle={toggle} modal={modal} setModal={setModal} />
         </Row>
         <Line data={config.data} options={config.options} width={1618} height={375} />
       </CardBody>
