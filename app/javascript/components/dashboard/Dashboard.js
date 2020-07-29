@@ -1,20 +1,20 @@
+import { Card, CardBody, Col, Row } from 'reactstrap';
 import React, { Fragment, useEffect, useState } from 'react';
-import { Row, Col, Card, CardBody } from 'reactstrap';
-import ActiveUsersBarChart from './ActiveUsersBarChart';
-import PaymentsLineChartContainer from './PaymentsLineChartContainer';
-import { toast } from 'react-toastify';
-import FalconCardHeader from '../common/FalconCardHeader';
-import ButtonIcon from '../common/ButtonIcon';
 
-import loadable from '@loadable/component';
+import ActiveUsersBarChart from './ActiveUsersBarChart';
+import ButtonIcon from '../common/ButtonIcon';
 import DashBoardDepositStatus from './DashboardDepositStatus';
+import FalconCardHeader from '../common/FalconCardHeader';
+import PaymentsLineChartContainer from './PaymentsLineChartContainer';
+import loadable from '@loadable/component';
+import { toast } from 'react-toastify';
+
 const PurchasesTable = loadable(() => import('./PurchasesTable'));
 const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
 
 const Dashboard = () => {
   // State
   const [isSelected, setIsSelected] = useState(false);
-
   useEffect(() => {
     toast(
       <Fragment>
