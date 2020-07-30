@@ -1,8 +1,8 @@
-import logoG from '../../../assets/images/logos/g.png';
-import logoApple from '../../../assets/images/logos/apple.png';
-import logoNike from '../../../assets/images/logos/nike.png';
 import { getDuration } from '../../helpers/utils';
-import moment from 'moment';
+import logoApple from '../../../assets/images/logos/apple.png';
+import logoG from '../../../assets/images/logos/g.png';
+import logoNike from '../../../assets/images/logos/nike.png';
+import moment from 'moment-timezone';
 
 export default [
   {

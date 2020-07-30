@@ -22,7 +22,17 @@ class Api::TicksController < ApplicationController
                     DEFAULT
                   end
     @api_ticks = query.where(['id % ? = 0', granularity])
-    render json: @api_ticks
+
+    ticks_by_symbol = Hash.new {|h,k| h[k] = Array.new}
+    @api_ticks.each do |tick|
+      ticks_by_symbol[tick.symbol] << tick
+    end
+
+    ticks_by_symbol.each do |symbol, ticks|
+      ticks_by_symbol[symbol] = TickSegmentTree.new(ticks).json
+    end
+
+    render json: ticks_by_symbol
   end
 
   def start_time
