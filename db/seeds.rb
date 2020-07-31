@@ -37,7 +37,7 @@ Dir.glob(File.dirname(__FILE__) + '/selected/*.csv') do |csv_filename|
   ticks = CSV.read(
     File.expand_path(csv_filename, File.dirname(__FILE__) + '/selected')
   )
-  symbol = csv_filename.split('/')[6].split('_')[0]
+  symbol = csv_filename.split('/')[-1].split('_')[0]
   ticks.map! do |tick|
     { symbol: symbol,
       tick_time: Time.zone.parse(tick[0]),
