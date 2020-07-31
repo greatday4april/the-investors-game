@@ -17,6 +17,7 @@ export const getAllTicks = _.memoize((ticksTree) => {
 });
 
 export const getTicksByTimeAndSymbol = _.memoize(({ ticks }, startTime, endTime, symbol) => {
+    console.log('getTicksByTimeAndSymbol');
     ticks = ticks[symbol];
     if (!ticks) return [];
     startTime = startTime._isAMomentObject ? startTime : moment(startTime);

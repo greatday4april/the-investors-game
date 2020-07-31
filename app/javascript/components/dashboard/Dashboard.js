@@ -24,6 +24,7 @@ const Dashboard = () => {
         ReactJS Dashboard and WebApp Template
       </Fragment>
     );
+    // TODO clear cache and current price
   }, []);
 
   const warpedTime = moment("2009-03-02T08:47:00.000-05:00");

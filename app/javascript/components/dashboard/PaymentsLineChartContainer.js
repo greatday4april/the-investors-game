@@ -37,4 +37,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     },
     setCurrentTickPrice: (tickPrice) => dispatch(setCurrentTickPrice(tickPrice)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(PaymentsLineChart);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    null,
+    { areStatesEqual: (nextState, prevState) => nextState.ticks === prevState.ticks }
+)(PaymentsLineChart);
