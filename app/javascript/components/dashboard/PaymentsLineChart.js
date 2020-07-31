@@ -2,18 +2,20 @@ import { Button, Card, CardBody, Col, Row } from 'reactstrap';
 import { Chart, Line } from 'react-chartjs-2';
 import React, { useContext, useEffect, useState } from 'react';
 import { rgbaColor, themeColors } from '../../helpers/utils';
-
 import AppContext from '../../context/Context';
 import Dialog from './Dialog'
+import CurrentTickPriceContainer from './CurrentTickPriceContainer';
 
-const PaymentsLineChart = ({ ticks, length, fetchAllTicks }) => {
+
+const PaymentsLineChart = (props) => {
+  const { ticks, length, fetchAllTicks, setCurrentTickPrice } = props;
   const { isDark } = useContext(AppContext);
   const [modal, setModal] = useState(false);
-   const toggle = () => setModal(!modal);
-  const [tickPrice, setTickPrice] = useState(0);
+  const toggle = () => setModal(!modal);
+  // const [tickPrice, setTickPrice] = useState(0);
   // ComponentDidMount()
   useEffect(() => {
-    fetchAllTicks('2009-01-02 07:06:00', '1d', 'AAPL');
+    fetchAllTicks();
 
     Chart.pluginService.register({
       afterDraw: function (chart, _easing) {
@@ -37,6 +39,7 @@ const PaymentsLineChart = ({ ticks, length, fetchAllTicks }) => {
     });
   }, [fetchAllTicks]);
 
+  console.log('rerendering')
   const config = {
     data(canvas) {
       const ctx = canvas.getContext('2d');
@@ -70,7 +73,7 @@ const PaymentsLineChart = ({ ticks, length, fetchAllTicks }) => {
         displayColors: false,
         backgroundColor: 'rgba(0, 0, 0, 0)',
         callbacks: {
-          label: (tooltipItem) => setTickPrice(tooltipItem.yLabel),
+          label: (tooltipItem) => { setCurrentTickPrice(tooltipItem.yLabel); }
         },
       },
       scales: {
@@ -103,10 +106,10 @@ const PaymentsLineChart = ({ ticks, length, fetchAllTicks }) => {
       <CardBody className="rounded-soft bg-gradient">
         <Row className="text-white align-items-center no-gutters">
           <Col>
-            <h4 className="text-white mb-0">{`Today ${tickPrice} USD`}</h4>
-            <p className="fs--1 font-weight-semi-bold">
+            <CurrentTickPriceContainer />
+            {/* <p className="fs--1 font-weight-semi-bold">
               Yesterday <span className="opacity-50">$684.87</span>
-            </p>{' '}
+            </p>{' '} */}
             <Dialog toggle={toggle} modal={modal} setModal={setModal} />
           </Col>
           <Button color={'light'} size="sm" className="px-4 ml-2" onClick={toggle}>

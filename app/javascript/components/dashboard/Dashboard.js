@@ -8,6 +8,8 @@ import FalconCardHeader from '../common/FalconCardHeader';
 import PaymentsLineChartContainer from './PaymentsLineChartContainer';
 import loadable from '@loadable/component';
 import { toast } from 'react-toastify';
+import moment from "moment-timezone";
+import { ONE_WEEK_DURATION, ONE_DAY_DURATION } from "../../utils/constants";
 
 const PurchasesTable = loadable(() => import('./PurchasesTable'));
 const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
@@ -24,10 +26,11 @@ const Dashboard = () => {
     );
   }, []);
 
+  const warpedTime = moment("2009-03-02T08:47:00.000-05:00");
 
   return (
     <Fragment>
-      <PaymentsLineChartContainer />
+      <PaymentsLineChartContainer period={ONE_DAY_DURATION} symbol="AAPL" warpedTime={warpedTime} />
       <DashBoardDepositStatus />
       <Card className="mb-3">
         <FalconCardHeader title="Order History" light={false}>

@@ -1,6 +1,7 @@
 import * as TickApiUtil from '../utils/tick_api_utils'
 export const RECEIVE_ALL_TICKS = 'RECEIVE_ALL_TICKS';
 export const RECEIVE_ERROR = 'RECEIVE_ERROR';
+export const SET_CURRENT_TICK_PRICE = 'SET_CURRENT_TICK_PRICE';
 const receiveAllTicks = (ticks) => {
     return {
         type: RECEIVE_ALL_TICKS,
@@ -15,8 +16,15 @@ const receiveError = (error) => {
     }
 }
 
-export const fetchAllTicks = (start_time, period, symbols) => {
-    return (dispatch) => TickApiUtil.fetchAllTicks(start_time, period, symbols)
+export const fetchAllTicks = (startTime, endTime, symbols) => {
+    return (dispatch) => TickApiUtil.fetchAllTicks(startTime, endTime, symbols)
         .then((response) => dispatch(receiveAllTicks(response.data)))
         .catch((error) => dispatch(receiveError(error)))
+}
+
+export const setCurrentTickPrice = (tickPrice) => {
+    return {
+        type: SET_CURRENT_TICK_PRICE,
+        tickPrice
+    }
 }

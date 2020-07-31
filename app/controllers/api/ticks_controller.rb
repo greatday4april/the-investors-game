@@ -5,25 +5,25 @@ class Api::TicksController < ApplicationController
   # GET /api/ticks.json
   def index
     symbols = params[:symbols]
-    unit = params[:period][-1]
+    duration = end_time - start_time
     query = Tick.where(['tick_time >= ?', start_time])
                 .where(['tick_time <= ?', end_time])
-
     query = query.where(['symbol in (?)', symbols]) unless symbols.nil?
     query = query.order('tick_time')
-    granularity = case unit
-                  when 'w'
-                    DAYS_PER_WEEK
-                  when 'm'
-                    DAYS_PER_MONTH
-                  when 'y'
+
+    granularity = if duration / 1.year >= 1
                     DAYS_PER_YEAR
+                  elsif duration / 1.month >= 1
+                    DAYS_PER_MONTH
+                  elsif duration / 1.week >= 1
+                    DAYS_PER_WEEK
                   else
                     DEFAULT
                   end
+
     @api_ticks = query.where(['id % ? = 0', granularity])
 
-    ticks_by_symbol = Hash.new {|h,k| h[k] = Array.new}
+    ticks_by_symbol = Hash.new { |h, k| h[k] = [] }
     @api_ticks.each do |tick|
       ticks_by_symbol[tick.symbol] << tick
     end
@@ -40,14 +40,11 @@ class Api::TicksController < ApplicationController
   end
 
   def end_time
-    number = params[:period][0...-1]
-    unit = params[:period][-1] # string: "d"/"w"/"m"/"y"
-    time_keys = { 'd' => :days, 'w' => :weeks, 'm' => :months, 'y' => :years }
-    start_time.advance(time_keys[unit] => number.to_i)
+    Time.zone.parse(params[:end_time])
   end
 
   def valid_params
-    !params[:start_time].nil? && !params[:period].nil?
+    !params[:start_time].nil? && !params[:end_time].nil?
   end
 
   # private
@@ -60,6 +57,6 @@ class Api::TicksController < ApplicationController
   # Only allow a list of trusted parameters through.
   def validate_params
     params.require(:start_time)
-    params.require(:period)
+    params.require(:end_time)
   end
 end

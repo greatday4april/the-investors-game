@@ -16,8 +16,7 @@ export const getAllTicks = _.memoize((ticksTree) => {
     return ticksArr;
 });
 
-export const getTicksByTimeAndSymbol = ({ticks}, startTime, endTime, symbol) => {
-    console.log('getTicksByTimeAndSymbol');
+export const getTicksByTimeAndSymbol = _.memoize(({ ticks }, startTime, endTime, symbol) => {
     ticks = ticks[symbol];
     if (!ticks) return [];
     startTime = startTime._isAMomentObject ? startTime : moment(startTime);
@@ -38,7 +37,7 @@ export const getTicksByTimeAndSymbol = ({ticks}, startTime, endTime, symbol) => 
                 continue;
             }
 
-            startDate = month === startMonth? startTime.date() : 1;
+            startDate = month === startMonth ? startTime.date() : 1;
             endDate = month === endMonth ? endTime.date() : moment([year, month - 1]).daysInMonth();
             for (let date = startDate; date <= endDate; date++) {
                 if (!ticks[year][month][date]) continue;
@@ -51,16 +50,17 @@ export const getTicksByTimeAndSymbol = ({ticks}, startTime, endTime, symbol) => 
                 endHour = date === endDate ? endTime.hour() : HOURS_IN_DAY - 1;
                 for (let hour = startHour; hour <= endHour; hour++) {
                     startMin = hour === startHour ? startTime.minute() : 0;
-                    endMin = hour === endHour? endTime.minute() : MINUTES_IN_HOUR - 1;
+                    endMin = hour === endHour ? endTime.minute() : MINUTES_IN_HOUR - 1;
                     const hourData = ticks[year][month][date][hour];
                     if (!hourData) continue;
-                    ticksArr.push(...hourData.slice(startMin, endMin+1).filter(tick => !!tick))
+                    ticksArr.push(...hourData.slice(startMin, endMin + 1).filter(tick => !!tick))
                 }
             }
         }
     }
     return ticksArr;
-}
+}, ({ _ticks }, startTime, endTime, symbol) => (JSON.stringify({ startTime: startTime.unix(), endTime: endTime.unix(), symbol })
+));
 
 window.getTicks = getTicksByTimeAndSymbol;
 window.moment = moment;
