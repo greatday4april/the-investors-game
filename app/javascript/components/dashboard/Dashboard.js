@@ -31,7 +31,7 @@ const Dashboard = () => {
 
   return (
     <Fragment>
-      <PaymentsLineChartContainer period={ONE_DAY_DURATION} symbol="AAPL" />
+      <PaymentsLineChartContainer period={scale} symbol="AAPL" />
       <Button color={'light'} size="sm" className="ml-2 mb-2" onClick={()=> setScale(ONE_DAY_DURATION)}>
         1 Day
           </Button>
