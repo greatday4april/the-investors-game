@@ -4,6 +4,10 @@ import { fetchAllTicks, setCurrentTickPrice } from '../../../../app/javascript/a
 import { getTicksByTimeAndSymbol } from '../../reducers/ticksSelectors';
 import moment from "moment-timezone";
 import { ONE_DAY_DURATION } from '../../utils/constants'
+import { dailyTicksSelector, 
+        weeklyTicksSelector, 
+        monthlyTicksSelector
+} from '../../reducers/stocksSelector';
 
 const mapStateToProps = (state, ownProps) => {
     const warpedTime = ownProps.warpedTime;

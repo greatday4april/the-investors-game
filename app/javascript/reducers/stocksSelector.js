@@ -29,15 +29,15 @@ const get_start_time = (end_time, days) => {
 
 export const dailyTicksSelector = (state, end_time, symbol) => {
     const start_time = get_start_time(end_time, 1);
-    getTicksByTimeAndSymbol(state, start_time, end_time, symbol);
+    return getTicksByTimeAndSymbol(state, start_time, end_time, symbol);
 }
 
 export const weeklyTicksSelector = (state, end_time, symbol) => {
     const start_time = get_start_time(end_time, 7);
-    getTicksByTimeAndSymbol(state, start_time, end_time, symbol);
+    return getTicksByTimeAndSymbol(state, start_time, end_time, symbol);
 }
 
 export const monthlyTicksSelector = (state, end_time, symbol) => {
     const start_time = get_start_time(end_time, 30);
-    getTicksByTimeAndSymbol(state, start_time, end_time, symbol);
+    return getTicksByTimeAndSymbol(state, start_time, end_time, symbol);
 }
