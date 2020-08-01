@@ -113,13 +113,13 @@ const PaymentsLineChart = (props) => {
             <Dialog toggle={toggle} modal={modal} setModal={setModal} />
           </Col>
           <Button color={'light'} size="sm" className="ml-2" >
-            Daily
+            1 Day
           </Button>
           <Button color={'light'} size="sm" className="ml-2" >
-            Weekly
+            1 Week
           </Button>
           <Button color={'light'} size="sm" className="ml-2" >
-            Monthly
+            1 Month
           </Button>
           <Button color={'light'} size="sm" className="ml-2" onClick={toggle}>
             Start Trading
