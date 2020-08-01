@@ -112,7 +112,16 @@ const PaymentsLineChart = (props) => {
             </p>{' '} */}
             <Dialog toggle={toggle} modal={modal} setModal={setModal} />
           </Col>
-          <Button color={'light'} size="sm" className="px-4 ml-2" onClick={toggle}>
+          <Button color={'light'} size="sm" className="ml-2" >
+            Daily
+          </Button>
+          <Button color={'light'} size="sm" className="ml-2" >
+            Weekly
+          </Button>
+          <Button color={'light'} size="sm" className="ml-2" >
+            Monthly
+          </Button>
+          <Button color={'light'} size="sm" className="ml-2" onClick={toggle}>
             Start Trading
           </Button>
           <Dialog toggle={toggle} modal={modal} setModal={setModal} />
