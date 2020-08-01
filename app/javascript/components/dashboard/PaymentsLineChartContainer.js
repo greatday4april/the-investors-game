@@ -1,15 +1,14 @@
 import PaymentsLineChart from './PaymentsLineChart';
 import { connect } from 'react-redux';
-import { fetchAllTicks, setCurrentTickPrice } from '../../../../app/javascript/actions/tick_actions';
+import { fetchTicks, setCurrentTickPrice } from '../../../../app/javascript/actions/tick_actions';
 import { getTicksByTimeAndSymbol } from '../../reducers/ticksSelectors';
 import moment from "moment-timezone";
 import { ONE_DAY_DURATION } from '../../utils/constants'
 
 const mapStateToProps = (state, ownProps) => {
-    const warpedTime = ownProps.warpedTime;
+    const warpedTime = state.warpedTime;
     const startTime = moment(warpedTime).subtract(ownProps.period);
     let ticks = getTicksByTimeAndSymbol(state, startTime, warpedTime, ownProps.symbol);
-
     let length = ticks.length;
     if (ownProps.period === ONE_DAY_DURATION) {
         const dailyTicks = getTicksByTimeAndSymbol(
@@ -25,21 +24,20 @@ const mapStateToProps = (state, ownProps) => {
     return {
         ticks: ticks,
         length: length,
-        warpedTime: warpedTime,
     }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    fetchAllTicks: () => {
-        const startTime = moment(ownProps.warpedTime).subtract(ownProps.period);
-        const endTime = moment(ownProps.warpedTime).add(ownProps.period);
-        dispatch(fetchAllTicks(startTime, endTime, ownProps.symbol));
-    },
+    fetchTicks: () => dispatch(fetchTicks(ownProps.period, ownProps.symbol)),
     setCurrentTickPrice: (tickPrice) => dispatch(setCurrentTickPrice(tickPrice)),
 });
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
     null,
-    { areStatesEqual: (nextState, prevState) => nextState.ticks === prevState.ticks }
+    {
+        areStatesEqual: (nextState, prevState) =>
+            nextState.ticks === prevState.ticks && nextState.warpedTime === prevState.warpedTime
+    }
 )(PaymentsLineChart);

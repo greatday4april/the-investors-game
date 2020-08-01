@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from '../store/store';
-import { fetchAllTicks } from '../actions/tick_actions';
+import { fetchTicks } from '../actions/tick_actions';
 import moment from 'moment-timezone';
 import throttle from 'lodash/throttle';
 
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, 20000)
   );
-  window.fetchAllTicks = fetchAllTicks;
+  window.fetchTicks = fetchTicks;
   window.store = store;
   ReactDOM.render(<Root store={store} />, document.body.appendChild(document.createElement('div')));
 });

@@ -3,19 +3,19 @@ import { Chart, Line } from 'react-chartjs-2';
 import React, { useContext, useEffect, useState } from 'react';
 import { rgbaColor, themeColors } from '../../helpers/utils';
 import AppContext from '../../context/Context';
-import Dialog from './Dialog'
+import TradingDialog from './TradingDialog'
 import CurrentTickPriceContainer from './CurrentTickPriceContainer';
 
 
 const PaymentsLineChart = (props) => {
-  const { ticks, length, fetchAllTicks, setCurrentTickPrice } = props;
+  const { ticks, length, fetchTicks, setCurrentTickPrice } = props;
   const { isDark } = useContext(AppContext);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   // const [tickPrice, setTickPrice] = useState(0);
   // ComponentDidMount()
   useEffect(() => {
-    fetchAllTicks();
+    fetchTicks();
 
     Chart.pluginService.register({
       afterDraw: function (chart, _easing) {
@@ -37,9 +37,8 @@ const PaymentsLineChart = (props) => {
         }
       }
     });
-  }, [fetchAllTicks]);
+  }, [fetchTicks]);
 
-  console.log('rerendering')
   const config = {
     data(canvas) {
       const ctx = canvas.getContext('2d');
@@ -107,15 +106,12 @@ const PaymentsLineChart = (props) => {
         <Row className="text-white align-items-center no-gutters">
           <Col>
             <CurrentTickPriceContainer />
-            {/* <p className="fs--1 font-weight-semi-bold">
-              Yesterday <span className="opacity-50">$684.87</span>
-            </p>{' '} */}
-            <Dialog toggle={toggle} modal={modal} setModal={setModal} />
+            {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
           </Col>
           <Button color={'light'} size="sm" className="px-4 ml-2" onClick={toggle}>
             Start Trading
           </Button>
-          <Dialog toggle={toggle} modal={modal} setModal={setModal} />
+          {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
         </Row>
         <Line data={config.data} options={config.options} width={1618} height={375} />
       </CardBody>
