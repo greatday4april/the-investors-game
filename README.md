@@ -71,7 +71,7 @@ useEffect(() => {
 #### `ticks`
 
 - `GET /api/ticks` - return all ticks matching conditions
-  - filtered by `start_time` and `period`
+  - with by `start_time`, `end_time` and `symbols`
 
 ## Postgres Database Schema
 

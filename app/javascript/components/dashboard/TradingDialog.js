@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Row, Col, Button, Modal, ModalHeader, ModalBody,  Input } from 'reactstrap';
+import React from 'react';
+import { Row, Col, Button, Modal, ModalHeader, ModalBody, Input } from 'reactstrap';
 
 
-const Dialog = ({ toggle, modal, setModal }) => {
-
-
+const TradingDialog = ({ toggle, modal, setModal }) => {
   return (
     <Modal isOpen={modal} toggle={toggle}>
       <ModalHeader toggle={toggle}>Start Trading!</ModalHeader>
@@ -43,4 +41,4 @@ const Dialog = ({ toggle, modal, setModal }) => {
   );
 };
 
-export default Dialog;
+export default TradingDialog;

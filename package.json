@@ -75,12 +75,7 @@
     "slick-carousel": "^1.8.1",
     "uuid": "^8.2.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject",
-    "analyze": "npx source-map-explorer 'build/static/js/*.js'"
-  },
+  "scripts": {},
   "eslintConfig": {
     "extends": "react-app"
   },
