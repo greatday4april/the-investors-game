@@ -1,4 +1,5 @@
 import { BUY_STOCK } from '../actions/transactionsAction';
+import { getTicksByTimeAndSymbol } from './ticksSelectors';
 
 export const stocksSelector = ({transactions}) => {
     const stocksShare = {};
@@ -18,4 +19,25 @@ export const stocksSelector = ({transactions}) => {
         }
     })
     return stocksShare;
+}
+
+const get_start_time = (end_time, days) => {
+    let d = new Date(end_time);
+    d.setDate(d.getDate() - days);
+    return moment(d.toISOString());
+}
+
+export const dailyTicksSelector = (state, end_time, symbol) => {
+    const start_time = get_start_time(end_time, 1);
+    getTicksByTimeAndSymbol(state, start_time, end_time, symbol);
+}
+
+export const weeklyTicksSelector = (state, end_time, symbol) => {
+    const start_time = get_start_time(end_time, 7);
+    getTicksByTimeAndSymbol(state, start_time, end_time, symbol);
+}
+
+export const monthlyTicksSelector = (state, end_time, symbol) => {
+    const start_time = get_start_time(end_time, 30);
+    getTicksByTimeAndSymbol(state, start_time, end_time, symbol);
 }
