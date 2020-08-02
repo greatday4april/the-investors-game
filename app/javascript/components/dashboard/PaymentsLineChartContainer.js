@@ -4,10 +4,12 @@ import { fetchTicks, setCurrentTickPrice } from '../../../../app/javascript/acti
 import { getTicksByTimeAndSymbol } from '../../reducers/ticksSelectors';
 import moment from "moment-timezone";
 import { ONE_DAY_DURATION } from '../../utils/constants'
-import { dailyTicksSelector, 
-        weeklyTicksSelector, 
-        monthlyTicksSelector
-} from '../../reducers/stocksSelector';
+import {
+    dailyTicksSelector,
+    weeklyTicksSelector,
+    monthlyTicksSelector
+} from '../../reducers/ticksSelectors';
+
 
 const mapStateToProps = (state, ownProps) => {
     const warpedTime = state.warpedTime;
@@ -28,12 +30,14 @@ const mapStateToProps = (state, ownProps) => {
     return {
         ticks: ticks,
         length: length,
+        warpedTime: warpedTime,
     }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     fetchTicks: () => dispatch(fetchTicks(ownProps.period, ownProps.symbol)),
     setCurrentTickPrice: (tickPrice) => dispatch(setCurrentTickPrice(tickPrice)),
+
 });
 
 export default connect(

@@ -1,4 +1,4 @@
-import { Card, CardBody, Col, Row } from 'reactstrap';
+import { Button, Card, CardBody, Col, Row } from 'reactstrap';
 import React, { Fragment, useEffect, useState } from 'react';
 
 import ActiveUsersBarChart from './ActiveUsersBarChart';
@@ -27,10 +27,20 @@ const Dashboard = () => {
     // TODO clear cache and current price
   }, []);
 
+  let [scale, setScale] = useState(ONE_DAY_DURATION);
+
   return (
     <Fragment>
       <PaymentsLineChartContainer period={ONE_DAY_DURATION} symbol="AAPL" />
-      <DashBoardDepositStatus />
+      <Button color={'light'} size="sm" className="ml-2 mb-2" onClick={()=> setScale(ONE_DAY_DURATION)}>
+        1 Day
+          </Button>
+      <Button color={'light'} size="sm" className="ml-2 mb-2" onClick={()=> setScale(ONE_WEEK_DURATION)}>
+        1 Week
+          </Button>
+      <Button color={'light'} size="sm" className="ml-2 mb-2" onClick={() => setScale(ONE_MONTH_DURATION)}>
+        1 Month
+          </Button>
       <Card className="mb-3">
         <FalconCardHeader title="Order History" light={false}>
           <Fragment>
