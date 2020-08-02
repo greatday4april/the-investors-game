@@ -30,7 +30,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         ticks: ticks,
         length: length,
-        warpedTime: warpedTime,
+        warpedTime: warpedTime
     }
 };
 
