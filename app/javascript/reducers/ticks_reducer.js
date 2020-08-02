@@ -4,7 +4,7 @@ import { isTick } from "../utils/funcUtils";
 
 
 const mergeTicksTree = (oldTree, newTree) => {
-    if (!newTree) return oldTree ? { ...oldTree } : oldTree;
+    if (!newTree) return oldTree;
     if (!oldTree) return newTree;
     if (isTick(newTree)) return newTree;
 
