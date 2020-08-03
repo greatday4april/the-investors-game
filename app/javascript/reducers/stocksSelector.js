@@ -1,5 +1,4 @@
 import { BUY_STOCK } from '../actions/transactionsAction';
-import { getTicksByTimeAndSymbol } from './ticksSelectors';
 
 export const stocksSelector = ({transactions}) => {
     const stocksShare = {};

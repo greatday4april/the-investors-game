@@ -1,14 +1,11 @@
 import { Button, Card, CardBody, Col, Row } from 'reactstrap';
 import React, { Fragment, useEffect, useState } from 'react';
-
 import ActiveUsersBarChart from './ActiveUsersBarChart';
 import ButtonIcon from '../common/ButtonIcon';
-import DashBoardDepositStatus from './DashboardDepositStatus';
 import FalconCardHeader from '../common/FalconCardHeader';
 import PaymentsLineChartContainer from './PaymentsLineChartContainer';
 import loadable from '@loadable/component';
 import { toast } from 'react-toastify';
-import moment from "moment-timezone";
 import { 
   ONE_WEEK_DURATION, 
   ONE_DAY_DURATION, 
@@ -20,7 +17,7 @@ import {
 const PurchasesTable = loadable(() => import('./PurchasesTable'));
 const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
 
-const Dashboard = () => {
+const Dashboard = ({symbol}) => {
   // State
   const [isSelected, setIsSelected] = useState(false);
   useEffect(() => {
@@ -37,7 +34,7 @@ const Dashboard = () => {
 
   return (
     <Fragment>
-      <PaymentsLineChartContainer period={scale} symbol="AAPL" />
+      <PaymentsLineChartContainer period={scale} symbol={symbol} />
       <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
       <Button color="link" size="sm" className="ml-4 mb-2" style={{ fontSize: '1.44rem' }} onClick={()=> setScale(ONE_DAY_DURATION)}>
         1 DAY
