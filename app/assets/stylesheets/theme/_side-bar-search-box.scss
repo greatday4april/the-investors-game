@@ -1,18 +1,17 @@
 /*-----------------------------------------------
-|   Search box
+|   Side Bar Search box
 -----------------------------------------------*/
-.search-box{
+.side-bar-search-box {
   position: relative;
-  .search-input{
-    width: 20rem;
-    padding-left: 1.95rem;
-    line-height: 2;
+  .side-bar-search-input {
+    width: 5rem;
+    padding-left: 1.5rem;
+    line-height: 1;
   }
-  .search-box-icon{
-    z-index: 1020;
+  .side-bar-search-box-icon {
+    z-index: 800;
     top: 50%;
     left: 0.9rem;
     transform: translateY(-48%);
   }
 }
-

@@ -1,0 +1,24 @@
+.side-bar-vertical-container {
+  position: relative;
+  margin-left: 35px;
+}
+.sside-bar-vertical {
+  border: 1px solid var(--border);
+  position: fixed;
+  top: 12%;
+  bottom: 3%;
+  box-shadow: 0 0 4px 1px var(--shadow-2), 0 3px 24px var(--shadow-3);
+  overflow: scroll;
+
+  h4 {
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    width: 275px;
+    height: 52px;
+  }
+}
+
+.side-bar-vertical.overflow {
+  bottom: 30%;
+}
