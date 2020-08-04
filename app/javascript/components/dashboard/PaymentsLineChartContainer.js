@@ -30,6 +30,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
     fetchTicks: () => dispatch(fetchTicks(ownProps.period, ownProps.symbol)),
     setCurrentTickPrice: (tickPrice) => dispatch(setCurrentTickPrice(tickPrice)),
+
 });
 
 export default connect(

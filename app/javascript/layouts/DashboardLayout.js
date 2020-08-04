@@ -18,6 +18,8 @@ const DashboardRoutes = loadable(() => import('./DashboardRoutes'));
 const DashboardLayout = ({ location }) => {
   const { isFluid, isTopNav, navbarStyle } = useContext(AppContext);
 
+  const symbol = "AAPL";
+
   const isKanban = getPageName('kanban');
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const DashboardLayout = ({ location }) => {
         <div className="content">
           <NavbarTop />
           <Switch>
-            <Route path="/" exact component={Dashboard} />
+            <Route path="/" exact component={()=> <Dashboard symbol={symbol}/>} />
             <Route path="/dashboard-alt" exact component={DashboardAlt} />
             <DashboardRoutes />
           </Switch>

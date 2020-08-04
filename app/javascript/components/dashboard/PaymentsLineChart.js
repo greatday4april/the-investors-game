@@ -108,7 +108,7 @@ const PaymentsLineChart = (props) => {
             <CurrentTickPriceContainer />
             {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
           </Col>
-          <Button color={'light'} size="sm" className="px-4 ml-2" onClick={toggle}>
+          <Button color={'light'} size="sm" className="ml-2" onClick={toggle}>
             Start Trading
           </Button>
           {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}

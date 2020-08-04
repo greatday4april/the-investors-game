@@ -52,7 +52,7 @@ export const getTicksByTimeAndSymbol = _.memoize(({ ticks }, startTime, endTime,
                     startMin = hour === startHour ? startTime.minute() : 0;
                     endMin = hour === endHour ? endTime.minute() : MINUTES_IN_HOUR - 1;
                     const hourData = ticks[year][month][date][hour];
-                    if (!hourData) continue;
+                    if (!Array.isArray(hourData)) continue;
                     ticksArr.push(...hourData.slice(startMin, endMin + 1).filter(tick => !!tick))
                 }
             }
