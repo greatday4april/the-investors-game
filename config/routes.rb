@@ -3,7 +3,5 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :ticks, only: [:index]
   end
-  get '(*slug)', to: 'static_pages#root', constraints: lambda { |req|
-    req.path.exclude? 'rails/active_storage'
-  }
+  get '(*slug)', to: 'static_pages#root', constraints: lambda {|req| req.path !~ /\.(png|jpg|js|css)$/ }
 end
