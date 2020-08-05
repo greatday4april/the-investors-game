@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: the_investors_game_production
-  username: the_investors_game
-  password: <%= ENV['THE_INVESTORS_GAME_DATABASE_PASSWORD'] %>
+  username: postgres
+  password:

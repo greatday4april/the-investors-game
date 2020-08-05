@@ -22,6 +22,8 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
+  config.serve_static_assets = true
+
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
@@ -88,6 +90,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # By default, React's [development version] is provided to Rails.env.development.
+  config.react.variant = :production
 
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
