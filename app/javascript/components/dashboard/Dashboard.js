@@ -6,6 +6,7 @@ import FalconCardHeader from '../common/FalconCardHeader';
 import PaymentsLineChartContainer from './PaymentsLineChartContainer';
 import loadable from '@loadable/component';
 import { toast } from 'react-toastify';
+import NewsItemsTableContainer from './NewsItemsTableContainer';
 import { 
   ONE_WEEK_DURATION, 
   ONE_DAY_DURATION, 
@@ -52,6 +53,8 @@ const Dashboard = ({symbol}) => {
         1 YEAR
           </Button>
       </div>
+      <NewsItemsTableContainer symbol={symbol} date={store.warpedTime?.format(MMDDYY)}/>
+      <br />
       <Card className="mb-3">
         <FalconCardHeader title="Order History" light={false}>
           <Fragment>
