@@ -14,8 +14,9 @@ const SidebarSearchBox = () => (
   //     {/* <FontAwesomeIcon icon="search" className="position-absolute text-200 search-box-icon" /> */}
   //   </Form>
   // </Row>
-  <div>
-    <Row className="align-items-center border-bottom border-light border-2x px-2 py-2 bg-white rounded-soft-top">
+  <div style={{ margin: "1rem 0rem"}}>
+    <Row className="border-bottom border-light border-2x px-2 py-2 bg-white rounded-soft-top"
+          style={{display: "contents"}}>
       <Form >
         <Input type="search" placeholder="Search..." className="bg-white rounded-pill px-3 side-bar-search-input"  />
       </Form>

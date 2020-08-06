@@ -103,7 +103,7 @@ const { isDark } = useContext(AppContext);
   const total = data.reduce((total, currentValue) => total + currentValue, 0);
 
   return (
-    <div>
+    <div >
       <Row className="align-items-center border-bottom border-light border-2x p-0 py-2 px-2 bg-white">
         <Media className="pl-1">
           <h6 className="text-900 ">AAPL</h6>

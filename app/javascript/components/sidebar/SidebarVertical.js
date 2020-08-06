@@ -95,8 +95,13 @@ const SidebarVertical = ({ navbarStyle }) => {
         }}
       > */}
       <Nav className="justify-content-center rounded-pill ">
-        <div style={{border:"solid 1px white", padding:"0px 1.25px",backgroundColor:"white", borderRadius: "0.375rem"}}>
-          <SidebarSearchBox style={{ alignself: 'center' }}  />
+        <div style={{ display: "block",
+                    border:"solid 1px white", 
+                    backgroundColor:"white", 
+                    borderRadius: "0.375rem",
+                    padding: "0.5rem 1.25rem"}}>
+          <SidebarSearchBox style={{ display: "contents",
+                                    width: "100%" }}  />
           <SidebarItem data={totalOrder} />
           <SidebarItem data={totalOrder} />
           <SidebarItem data={totalOrder} />
