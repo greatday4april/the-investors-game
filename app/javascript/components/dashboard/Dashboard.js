@@ -23,7 +23,6 @@ const Dashboard = ({symbol}) => {
     // TODO clear cache and current price
   }, []);
 
-
   return (
     <Fragment>
       <TicksChart symbol={symbol} />
