@@ -106,7 +106,9 @@ const { isDark } = useContext(AppContext);
     <div >
       <Row className="align-items-center border-bottom border-light border-2x p-0 py-2 px-2 bg-white">
         <Media className="pl-1">
-          <h6 className="text-900 ">AAPL</h6>
+          <Link to={{
+            pathname: "/aapl"
+          }}>AAPL</Link>
         </Media>
         <Col xs="auto" className="pl-3 mx-0">
           <ReactEchartsCore

@@ -9,7 +9,7 @@ const SearchBox = () => (
     aria-label="Search" 
     className="rounded-pill search-input" 
     />
-    <FontAwesomeIcon icon="search" className="position-absolute text-400 search-box-icon" />
+    <FontAwesomeIcon icon="search" className="position-absolute text-400 search-box-icon" style={{margin: "0 0.75rem"}} />
   </Form>
 );
 
