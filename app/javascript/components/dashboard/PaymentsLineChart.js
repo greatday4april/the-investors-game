@@ -105,8 +105,11 @@ const PaymentsLineChart = (props) => {
       <CardBody className="rounded-soft bg-gradient">
         <Row className="text-white align-items-center no-gutters">
           <Col>
-            <CurrentTickPriceContainer />
-            {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
+            <Row>
+              <h4 style={{padding: "0 1rem", color: "white"}}>{props.symbol}</h4>
+              <CurrentTickPriceContainer />
+              {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
+            </Row>
           </Col>
           <Button color={'light'} size="sm" className="ml-2" onClick={toggle}>
             Start Trading
