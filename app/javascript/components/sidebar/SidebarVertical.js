@@ -89,6 +89,7 @@ const SidebarVertical = (props) => {
                     border:"solid 1px white", 
                     backgroundColor:"white", 
                     borderRadius: "0.375rem",
+                    width: "100%",
                     padding: "0.5rem 1.25rem"}}>
           <SidebarSearchBox style={{ display: "contents",
                                     width: "100%" }}  />
