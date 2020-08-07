@@ -1,6 +1,5 @@
 import { BUY_STOCK } from '../actions/transactionsAction';
-
-const INITIAL_BALANCE = 1000000;
+import { INITIAL_BALANCE } from '../utils/constants'
 
 export const balanceSelector = ({transactions}) => {
     const reducer = (accumulator, currentValue) => {

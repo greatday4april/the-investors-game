@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import ActiveUsersBarChart from './ActiveUsersBarChart';
 import ButtonIcon from '../common/ButtonIcon';
 import FalconCardHeader from '../common/FalconCardHeader';
+import AccountPageContainer from './AccountPageContainer';
 import loadable from '@loadable/component';
 import { toast } from 'react-toastify';
 import TicksChart from './TicksChart';
@@ -52,6 +53,7 @@ const Dashboard = ({symbol}) => {
           <ActiveUsersMap />
         </Col>
       </Row>
+      <AccountPageContainer />
     </Fragment>
   );
 };
