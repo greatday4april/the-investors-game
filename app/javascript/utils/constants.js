@@ -13,4 +13,4 @@ export const ONE_WEEK_DURATION = moment.duration({ weeks: 1 });
 export const ONE_DAY_DURATION = moment.duration({ days: 1 });
 
 export const DEFAULT_WARPED_TIME = moment([2009, 2, 5, 9]);
-export const DEFAULT_NEWS_NUMBER = 5;
+export const DEFAULT_NEWS_LIMIT = 5;

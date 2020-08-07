@@ -4,11 +4,17 @@ export const receiveAllNewsItems = (newsItems) => ({
     type: RECEIVE_ALL_NEWS,
     newsItems
 });
-export const fetchNewsItems = (tickers, date, items) => {
+export const fetchNewsItems = (symbol, period, limit) => {
     return (dispatch, getState) => {
-        let newsDate = date ? date : getState().warpedTime.format(`MMDDYYYY`);
-        newsDate = '03052019';
-        return NewsApiUtil.fetchNewsItems(tickers, `${newsDate}-${newsDate}`, items).then(res => {
+        const warpedTime = getState().warpedTime;
+        let startDate = moment(warpedTime).subtract(period).format(`MMDDYYYY`);
+        let endDate = moment(warpedTime).add(period).format(`MMDDYYYY`);
+        console.log(startDate);
+        console.log(endDate);
+        console.log('aa');
+        startDate = '03052019';
+        endDate = '03052019';
+        return NewsApiUtil.fetchNewsItems(symbol, `${startDate}-${endDate}`, limit).then(res => {
         dispatch(receiveAllNewsItems(res.data.data));
     })};
 }
