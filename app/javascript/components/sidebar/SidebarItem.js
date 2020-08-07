@@ -98,17 +98,20 @@ const getOption = (data, isDark) => {
   };
 };
 
-const SidebarItem = ({ data}) => {
-const { isDark } = useContext(AppContext);
+const SidebarItem = (props) => {
+  const {data, symbol} = props;
+
+  const { isDark } = useContext(AppContext);
   const total = data.reduce((total, currentValue) => total + currentValue, 0);
 
   return (
     <div >
-      <Row className="align-items-center border-bottom border-light border-2x p-0 py-2 px-2 bg-white">
+      <Row className="align-items-center border-bottom border-light border-2x p-0 py-2 px-2 bg-white"
+        style={{ justifyContent: 'space-between' }}>
         <Media className="pl-1">
           <Link to={{
-            pathname: "/aapl"
-          }}>AAPL</Link>
+            pathname: `/${symbol}`
+          }}>{symbol}</Link>
         </Media>
         <Col xs="auto" className="pl-3 mx-0">
           <ReactEchartsCore
