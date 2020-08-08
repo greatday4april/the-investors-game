@@ -1,10 +1,119 @@
-import React, { Fragment } from 'react';
-export const AccountPage = ({historyBalances}) => (
-        historyBalances.map(balance => {
-            return (<Fragment>
-                    <p>{`balance: ${balance.amount}`}</p>
-                    <p>{`date: ${balance.date}`}</p>
-                </Fragment>
-                )
-        })
-);
+import { Card, CardBody, Col, Row } from 'reactstrap';
+import { Line } from 'react-chartjs-2';
+import React, { useContext, useEffect, useState } from 'react';
+import { rgbaColor, themeColors } from '../../helpers/utils';
+import AppContext from '../../context/Context';
+import TradingDialog from './TradingDialog';
+
+
+export const AccountPage = (props) => {
+  const { historyBalances } = props;
+  const length = historyBalances.length;
+  const { isDark } = useContext(AppContext);
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
+  const [balance, setBalance] = useState(0);
+//   console.log(historyBalances);
+//   console.log('ddd');
+  // ComponentDidMount()
+//   useEffect(() => {
+//     fetchTicks();
+
+//     Chart.pluginService.register({
+//       afterDraw: function (chart, _easing) {
+//         if (chart.tooltip._active && chart.tooltip._active.length) {
+//           const activePoint = chart.controller.tooltip._active[0];
+//           const ctx = chart.ctx;
+//           const x = activePoint.tooltipPosition().x;
+//           const topY = chart.scales['y-axis-0'].top;
+//           const bottomY = chart.scales['y-axis-0'].bottom;
+
+//           ctx.save();
+//           ctx.beginPath();
+//           ctx.moveTo(x, topY);
+//           ctx.lineTo(x, bottomY);
+//           ctx.lineWidth = 0.5;
+//           ctx.strokeStyle = '#c9ced1';
+//           ctx.stroke();
+//           ctx.restore();
+//         }
+//       }
+//     });
+//   }, [fetchTicks]);
+
+  const config = {
+    data(canvas) {
+      const ctx = canvas.getContext('2d');
+      const gradientFill = isDark
+        ? ctx.createLinearGradient(0, 0, 0, ctx.canvas.height)
+        : ctx.createLinearGradient(0, 0, 0, 250);
+      gradientFill.addColorStop(0, isDark ? 'rgba(44,123,229, 0.5)' : 'rgba(255, 255, 255, 0.3)');
+      gradientFill.addColorStop(1, isDark ? 'transparent' : 'rgba(255, 255, 255, 0)');
+      return {
+        labels: new Array(length).fill(''),
+        datasets: [
+          {
+            borderWidth: 1,
+            data: historyBalances.map(balance => balance.amount),
+            borderColor: rgbaColor(isDark ? themeColors.primary : '#fff', 0.8),
+            backgroundColor: gradientFill,
+            pointBorderWidth: 0,
+            pointRadius: 0,
+          },
+        ],
+      };
+    },
+    options: {
+      legend: {
+        display: false,
+      },
+      tooltips: {
+        mode: 'x-axis',
+        xPadding: 20,
+        yPadding: 10,
+        displayColors: false,
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+        callbacks: {
+          label: (tooltipItem) => { setBalance(tooltipItem.yLabel); }
+        },
+      },
+      scales: {
+        xAxes: [
+          {
+            display: false,
+            historyBalances: {
+              fontColor: rgbaColor('#fff', 0.7),
+              fontStyle: 600,
+            },
+            gridLines: {
+              drawOnChartArea: false
+            },
+          },
+        ],
+        yAxes: [
+          {
+            display: false,
+            gridLines: {
+              color: rgbaColor('#fff', 1),
+            },
+          },
+        ],
+      },
+    },
+  };
+
+  return (
+    <Card className="mb-3">
+      <CardBody className="rounded-soft bg-gradient">
+        <Row className="text-white align-items-center no-gutters">
+          <Col>
+            <h4 className="text-white mb-0">{`Assets: ${balance}`}</h4>
+            {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
+          </Col>
+          {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
+        </Row>
+        <Line data={config.data} options={config.options} width={1618} height={375} />
+      </CardBody>
+    </Card>
+  );
+};

@@ -2,9 +2,10 @@ import {connect} from 'react-redux';
 import {AccountPage} from './AccountPage';
 import { INITIAL_BALANCE, DEFAULT_WARPED_TIME } from '../../utils/constants';
 import { BUY_STOCK } from '../../actions/transactionsAction';
+
 const _generateHistoryBalances = (transactions) => {
     const historyBalances = [{
-        date: DEFAULT_WARPED_TIME,
+        date: moment(DEFAULT_WARPED_TIME).format('MM-DD-YYYY'),
         amount: INITIAL_BALANCE
     }];
     let previousAmount = INITIAL_BALANCE;
