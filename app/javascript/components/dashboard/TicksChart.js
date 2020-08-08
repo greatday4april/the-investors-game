@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PaymentsLineChartContainer from './PaymentsLineChartContainer';
-import {Button} from 'reactstrap';
+import {Button, Col, Row} from 'reactstrap';
+import StatsTable from './StatsTable';
+import TickPolygon from './TickPolygon';
 import {
     ONE_WEEK_DURATION,
     ONE_DAY_DURATION,
@@ -32,6 +34,31 @@ const TicksChart = (props) => {
                     1 YEAR
                     </Button>
             </div>
+            <div style={{display: "flex", marginTop: "2rem" }}>
+                <Col style={{ width: "45%" }}>
+                    <h3 style={{paddingLeft: "2rem"}}>Stats</h3>
+                    <Row style={{justifyContent: "space-between" }}>
+                    <Col style={{margin: "0 0.8rem"}}>
+                        <StatsTable />
+                        <StatsTable />
+                        <StatsTable />
+                        <StatsTable />
+                        <StatsTable />
+                    </Col>
+                    <Col style={{margin: "0 0.8rem"}}>
+                        <StatsTable />
+                        <StatsTable />
+                        <StatsTable />
+                        <StatsTable />
+                        <StatsTable />
+                    </Col>
+                    </Row>
+                </Col>
+                <Col style={{width: "45%", marginTop: "2rem"}}>
+                    <TickPolygon />
+                </Col>
+            </div>
+
         </div>
     )
 }
