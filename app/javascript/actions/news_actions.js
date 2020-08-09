@@ -8,12 +8,9 @@ export const fetchNewsItems = (symbol, period, limit) => {
     return (dispatch, getState) => {
         const warpedTime = getState().warpedTime;
         let startDate = moment(warpedTime).subtract(period).format(`MMDDYYYY`);
-        let endDate = moment(warpedTime).add(period).format(`MMDDYYYY`);
-        console.log(startDate);
-        console.log(endDate);
-        console.log('aa');
-        startDate = '03052019';
-        endDate = '03052019';
+        let endDate = moment(warpedTime).format(`MMDDYYYY`);
+        startDate = moment('03/05/2019').format(`MMDDYYYY`);
+        endDate = moment('03/05/2019').format(`MMDDYYYY`);
         return NewsApiUtil.fetchNewsItems(symbol, `${startDate}-${endDate}`, limit).then(res => {
         dispatch(receiveAllNewsItems(res.data.data));
     })};

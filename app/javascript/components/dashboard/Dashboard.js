@@ -33,7 +33,6 @@ const Dashboard = ({symbol}) => {
 
   return (
     <Fragment>
-      <PaymentsLineChartContainer period={scale} symbol={symbol} />
       <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
       <Button color="link" size="sm" className="ml-4 mb-2" style={{ fontSize: '1.44rem' }} onClick={()=> setScale(ONE_DAY_DURATION)}>
         1 DAY

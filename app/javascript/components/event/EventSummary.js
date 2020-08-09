@@ -12,8 +12,8 @@ EventBadge.propTypes = {
 
 const EventSummary = ({ date, title, badge, source_name, location, divider, news_url, children, text }) => {
   const calendar = {
-    month: date.split(" ")[2],
-    day: date.split(" ")[1]
+    month: moment(date).month() + 1,
+    day: moment(date).date()
   };
   return (
   <Media>
