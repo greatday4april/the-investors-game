@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Dashboard from '../components/dashboard/Dashboard';
 import DashboardAlt from '../components/dashboard-alt/DashboardAlt';
 import NavbarTop from '../components/navbar/NavbarTop';
-import SidebarVertical from '../components/sidebar/SidebarVertical';
+import SidebarVerticalContainer from '../components/sidebar/SidebarVerticalContainer';
 import NavbarVertical from '../components/navbar/NavbarTopDropDownMenus';
 import Footer from '../components/footer/Footer';
 import loadable from '@loadable/component';
@@ -32,7 +32,7 @@ const DashboardLayout = ({ location }) => {
 
   return (
   <div className={isFluid || isKanban ? 'container-fluid' : 'container'}>
-      {!isTopNav && <SidebarVertical isKanban={isKanban} />}
+      <SidebarVerticalContainer />
       <ProductProvider>
         <div className="content">
           <NavbarTop />

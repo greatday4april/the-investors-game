@@ -35,9 +35,9 @@ import SidebarItem from  './SidebarItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import totalOrder from '../../data/dashboard/totalOrder';
 
-const SidebarVertical = ({ navbarStyle }) => {
+const SidebarVertical = (props) => {
+  const {navbarStyle, symbols} = props;
   const navBarRef = useRef(null);
-
   const { showBurgerMenu, isNavbarVerticalCollapsed, setIsNavbarVerticalCollapsed } = useContext(AppContext);
   const { threads } = useContext(ChatContext);
 
@@ -72,6 +72,8 @@ const SidebarVertical = ({ navbarStyle }) => {
     }
   };
 
+  const items = symbols.map((symbol) => <SidebarItem data={totalOrder} symbol={symbol} />)
+
   return (
     <Navbar
       expand={navbarBreakPoint}
@@ -82,38 +84,21 @@ const SidebarVertical = ({ navbarStyle }) => {
       <Flex align="center">
         <Logo at="navbar-vertical" width={40} />
       </Flex>
-      {/* 
-      <Collapse
-        navbar
-        isOpen={showBurgerMenu}
-        className="scrollbar justify-content-center align-items-center"
-        innerRef={navBarRef}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={() => {
-          clearTimeout(time);
-          HTMLClassList.remove('navbar-vertical-collapsed-hover');
-        }}
-      > */}
       <Nav className="justify-content-center rounded-pill ">
-        <div style={{border:"solid 1px white", padding:"0px 1.25px",backgroundColor:"white", borderRadius: "0.375rem"}}>
-          <SidebarSearchBox style={{ alignself: 'center' }}  />
-          <SidebarItem data={totalOrder} />
-          <SidebarItem data={totalOrder} />
-          <SidebarItem data={totalOrder} />
-          <SidebarItem data={totalOrder} />
+        <div style={{ display: "block",
+                    border:"solid 1px white", 
+                    backgroundColor:"white", 
+                    borderRadius: "0.375rem",
+                    width: "100%",
+                    padding: "0.5rem 1.25rem"}}>
+          <SidebarSearchBox style={{ display: "contents",
+                                    width: "100%" }}  />
+          {items}
         </div>
       </Nav>
-      {/* </Collapse> */}
     </Navbar>
   );
 };
 
-// NavbarVertical.protoTypes = {
-//   navbarStyle: PropTypes.string,
-// };
-
-// NavbarVertical.defaultProps = {
-//   navbarStyle: 'transparent',
-// };
 
 export default SidebarVertical;

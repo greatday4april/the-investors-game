@@ -102,6 +102,8 @@ import EmojiMart from '../components/plugins/EmojiMart';
 import Chat from '../components/chat/Chat';
 import Widgets from '../components/widgets/Widgets';
 import Kanban from '../components/kanban/Kanban';
+// import for Investors Game
+import TicksChart from '../components/dashboard/TicksChart'
 
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>
@@ -135,6 +137,11 @@ const ProductRoutes = ({ match: { url } }) => (
 
 const DashboardRoutes = () => (
   <Switch>
+    {/* Routes for Investor Game */}
+    <Route path="/:symbol" component={TicksChart}/>
+
+
+    {/* routes that we probably won't use, came with this purchased template  */}
     <Route path="/feed" exact component={Feed} />
     {/*Pages*/}
     <Route path="/pages/activity" exact component={Activity} />

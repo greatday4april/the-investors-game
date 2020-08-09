@@ -3,7 +3,6 @@ import React, { Fragment, useEffect, useState } from 'react';
 import ActiveUsersBarChart from './ActiveUsersBarChart';
 import ButtonIcon from '../common/ButtonIcon';
 import FalconCardHeader from '../common/FalconCardHeader';
-import PaymentsLineChartContainer from './PaymentsLineChartContainer';
 import loadable from '@loadable/component';
 import { toast } from 'react-toastify';
 import NewsItemsTableContainer from './NewsItemsTableContainer';
@@ -14,6 +13,7 @@ import {
   SIX_MONTHS_DURATION,
   ONE_YEAR_DURATION 
 } from "../../utils/constants";
+import TicksChart from './TicksChart';
 
 const PurchasesTable = loadable(() => import('./PurchasesTable'));
 const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
@@ -30,8 +30,6 @@ const Dashboard = ({symbol}) => {
     );
     // TODO clear cache and current price
   }, []);
-
-  let [scale, setScale] = useState(ONE_DAY_DURATION);
 
   return (
     <Fragment>
@@ -55,6 +53,7 @@ const Dashboard = ({symbol}) => {
       </div>
       <NewsItemsTableContainer symbol={symbol} date={store.warpedTime?.format(MMDDYY)}/>
       <br />
+      <TicksChart symbol={symbol} />
       <Card className="mb-3">
         <FalconCardHeader title="Order History" light={false}>
           <Fragment>
