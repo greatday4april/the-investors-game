@@ -3,11 +3,12 @@ import React, { Fragment, useEffect, useState } from 'react';
 import ActiveUsersBarChart from './ActiveUsersBarChart';
 import ButtonIcon from '../common/ButtonIcon';
 import FalconCardHeader from '../common/FalconCardHeader';
+import AccountPageContainer from './AccountPageContainer';
 import loadable from '@loadable/component';
 import { toast } from 'react-toastify';
 import NewsItemsTableContainer from './NewsItemsTableContainer';
 import TicksChart from './TicksChart';
-
+import { ONE_YEAR_DURATION } from '../../utils/constants';
 const PurchasesTable = loadable(() => import('./PurchasesTable'));
 const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
 
@@ -55,6 +56,8 @@ const Dashboard = ({symbol}) => {
           <ActiveUsersMap />
         </Col>
       </Row>
+      <br />
+      <AccountPageContainer period={ONE_YEAR_DURATION} symbols = {['AAPL', 'AMZN', 'AMD']}/>
     </Fragment>
   );
 };
