@@ -7,7 +7,7 @@ import AccountPageContainer from './AccountPageContainer';
 import loadable from '@loadable/component';
 import { toast } from 'react-toastify';
 import TicksChart from './TicksChart';
-
+import { ONE_YEAR_DURATION } from '../../utils/constants';
 const PurchasesTable = loadable(() => import('./PurchasesTable'));
 const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
 
@@ -53,7 +53,8 @@ const Dashboard = ({symbol}) => {
           <ActiveUsersMap />
         </Col>
       </Row>
-      <AccountPageContainer />
+      <br />
+      <AccountPageContainer period={ONE_YEAR_DURATION} symbols = {['AAPL', 'AMZN', 'AMD']}/>
     </Fragment>
   );
 };

@@ -24,8 +24,19 @@ export const fetchTicks = (period, symbol) => {
     return (dispatch, getState) => {
         const warpedTime = getState().warpedTime;
         const startTime = moment(warpedTime).subtract(period);
-        const endTime = moment(warpedTime).add(period);
+        const endTime = moment(warpedTime).add(period);;
         TickApiUtil.fetchAllTicks(startTime, endTime, [symbol])
+            .then((response) => dispatch(receiveAllTicks(response.data)))
+            .catch((error) => dispatch(receiveError(error)));
+    }
+}
+
+export const fetchAllTicks = (period, symbols) => {
+    return (dispatch, getState) => {
+        const warpedTime = getState().warpedTime;
+        const startTime = moment(warpedTime).subtract(period);
+        const endTime = moment(warpedTime).add(period);;
+        TickApiUtil.fetchAllTicks(startTime, endTime, symbols)
             .then((response) => dispatch(receiveAllTicks(response.data)))
             .catch((error) => dispatch(receiveError(error)));
     }

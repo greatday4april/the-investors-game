@@ -4,42 +4,16 @@ import React, { useContext, useEffect, useState } from 'react';
 import { rgbaColor, themeColors } from '../../helpers/utils';
 import AppContext from '../../context/Context';
 import TradingDialog from './TradingDialog';
-
+import CurrentAssetAmountContainer from './CurrentAssetAmountContainer';
 
 export const AccountPage = (props) => {
-  const { historyBalances } = props;
-  const length = historyBalances.length;
+  const { historyAssets, fetchAllTicks, setCurrentAssetAmount } = props;
   const { isDark } = useContext(AppContext);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
-  const [balance, setBalance] = useState(0);
-//   console.log(historyBalances);
-//   console.log('ddd');
-  // ComponentDidMount()
-//   useEffect(() => {
-//     fetchTicks();
-
-//     Chart.pluginService.register({
-//       afterDraw: function (chart, _easing) {
-//         if (chart.tooltip._active && chart.tooltip._active.length) {
-//           const activePoint = chart.controller.tooltip._active[0];
-//           const ctx = chart.ctx;
-//           const x = activePoint.tooltipPosition().x;
-//           const topY = chart.scales['y-axis-0'].top;
-//           const bottomY = chart.scales['y-axis-0'].bottom;
-
-//           ctx.save();
-//           ctx.beginPath();
-//           ctx.moveTo(x, topY);
-//           ctx.lineTo(x, bottomY);
-//           ctx.lineWidth = 0.5;
-//           ctx.strokeStyle = '#c9ced1';
-//           ctx.stroke();
-//           ctx.restore();
-//         }
-//       }
-//     });
-//   }, [fetchTicks]);
+  useEffect(() => {
+    fetchAllTicks();
+  }, [fetchAllTicks]);
 
   const config = {
     data(canvas) {
@@ -50,11 +24,11 @@ export const AccountPage = (props) => {
       gradientFill.addColorStop(0, isDark ? 'rgba(44,123,229, 0.5)' : 'rgba(255, 255, 255, 0.3)');
       gradientFill.addColorStop(1, isDark ? 'transparent' : 'rgba(255, 255, 255, 0)');
       return {
-        labels: new Array(length).fill(''),
+        labels: historyAssets.map(asset => asset.date.format('YYYY/MM/DD')),
         datasets: [
           {
             borderWidth: 1,
-            data: historyBalances.map(balance => balance.amount),
+            data: historyAssets.map(asset => asset.amount),
             borderColor: rgbaColor(isDark ? themeColors.primary : '#fff', 0.8),
             backgroundColor: gradientFill,
             pointBorderWidth: 0,
@@ -74,14 +48,14 @@ export const AccountPage = (props) => {
         displayColors: false,
         backgroundColor: 'rgba(0, 0, 0, 0)',
         callbacks: {
-          label: (tooltipItem) => { setBalance(tooltipItem.yLabel); }
+          label: (tooltipItem) => { setCurrentAssetAmount(tooltipItem.yLabel); }
         },
       },
       scales: {
         xAxes: [
           {
             display: false,
-            historyBalances: {
+            historyAssets: {
               fontColor: rgbaColor('#fff', 0.7),
               fontStyle: 600,
             },
@@ -107,7 +81,7 @@ export const AccountPage = (props) => {
       <CardBody className="rounded-soft bg-gradient">
         <Row className="text-white align-items-center no-gutters">
           <Col>
-            <h4 className="text-white mb-0">{`Assets: ${balance}`}</h4>
+            <CurrentAssetAmountContainer />
             {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
           </Col>
           {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
