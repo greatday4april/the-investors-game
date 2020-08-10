@@ -100,7 +100,6 @@ const getOption = (data, isDark) => {
 
 const SidebarItem = (props) => {
   const {data, symbol} = props;
-
   const { isDark } = useContext(AppContext);
   const total = data.reduce((total, currentValue) => total + currentValue, 0);
   console.log(props)

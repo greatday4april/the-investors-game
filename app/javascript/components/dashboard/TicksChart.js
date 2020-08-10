@@ -14,8 +14,6 @@ import {
 const TicksChart = (props) => {
     let [scale, setScale] = useState(ONE_DAY_DURATION);
     let symbol = props.symbol || props.match.params.symbol.toUpperCase()
-    console.log(props);
-    
     let statsComponent;
     if (!props.match) {
         statsComponent = <br/>
