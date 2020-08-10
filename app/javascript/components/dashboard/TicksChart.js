@@ -14,12 +14,13 @@ import {
 const TicksChart = (props) => {
     let [scale, setScale] = useState(ONE_DAY_DURATION);
     let symbol = props.symbol || props.match.params.symbol.toUpperCase()
-    let stats = props.stats[symbol];
+    console.log(props);
     
     let statsComponent;
     if (!props.match) {
         statsComponent = <br/>
     } else {
+        let stats = props.stats[symbol];
         statsComponent = <div style={{ margin: "1.5rem" }}>
             <h3 >Stats</h3>
             <div style={{ display: "flex", marginTop: "2rem" }}>
