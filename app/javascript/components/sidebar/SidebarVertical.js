@@ -36,7 +36,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import totalOrder from '../../data/dashboard/totalOrder';
 
 const SidebarVertical = (props) => {
-  const {navbarStyle, symbols} = props;
+  const {navbarStyle, symbols, stats} = props;
   const navBarRef = useRef(null);
   const { showBurgerMenu, isNavbarVerticalCollapsed, setIsNavbarVerticalCollapsed } = useContext(AppContext);
   const { threads } = useContext(ChatContext);
@@ -72,7 +72,7 @@ const SidebarVertical = (props) => {
     }
   };
 
-  const items = symbols.map((symbol) => <SidebarItem data={totalOrder} symbol={symbol} />)
+  const items = symbols.map((symbol) => <SidebarItem data={totalOrder} stats={stats[symbol]} symbol={symbol} />)
 
   return (
     <Navbar

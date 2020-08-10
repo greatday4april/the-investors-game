@@ -1,11 +1,10 @@
 import {connect} from 'react-redux';
-import SidebarVertical from './SidebarVertical';
+import TicksChart from './TicksChart'
 
 const mapStateToProps = state => ({
-    symbols: state.symbols,
     stats: state.stats
 })
 
 export default connect(
-mapStateToProps
-)(SidebarVertical)
+mapStateToProps 
+)(TicksChart);

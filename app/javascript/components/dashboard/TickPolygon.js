@@ -1,10 +1,8 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
 
+const TickPolygon = ({stats}) =>  {
 
-
-const TickPolygon = () =>  {
-    const abilityValues = 200;
     const option = {
         tooltip: {
             // show: false
@@ -31,22 +29,15 @@ const TickPolygon = () =>  {
         },
         series: [{
             type: 'radar',
-            symbolSize: 0,
+            symbolSize: 5,
             itemStyle: {
-                color: '#FFF'
-            },
-            lineStyle: {
-                color: 'rgb(128, 128, 128, 0)'
+                color: 'rgba(1, 1, 1)'
             },
             data: [
                 {
-                    value: abilityValues,
+                    value: [40, 80, 120, 160, 200],
                     label: {
                         show: true
-                    },
-                    areaStyle: {
-                        opacity: 0.7,
-                        color: '#5FDDC0'
                     }
                 }
             ]
@@ -55,7 +46,7 @@ const TickPolygon = () =>  {
 
     return (
         <div>
-            <ReactEcharts option={option} style={{ width: "100%"}} />
+            <ReactEcharts option={option} style={{ width: "100%" }} />
         </div>)
 }
 

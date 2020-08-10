@@ -14,6 +14,38 @@ import {
 const TicksChart = (props) => {
     let [scale, setScale] = useState(ONE_DAY_DURATION);
     let symbol = props.symbol || props.match.params.symbol.toUpperCase()
+    let stats = props.stats[symbol];
+    
+    let statsComponent;
+    if (!props.match) {
+        statsComponent = <br/>
+    } else {
+        statsComponent = <div style={{ margin: "1.5rem" }}>
+            <h3 >Stats</h3>
+            <div style={{ display: "flex", marginTop: "2rem" }}>
+                <Col style={{ width: "65%" }}>
+                    <Row style={{ justifyContent: "space-between" }}>
+                        <Col style={{ margin: "0 2rem 0 0" }}>
+                            <StatsTable stats={stats} keyWord={"CEO"} />
+                            <StatsTable stats={stats} keyWord={"Employees"} />
+                            <StatsTable stats={stats} keyWord={"Headquarters"}/>
+                            <StatsTable stats={stats} keyWord={"Founded"}/>
+                        </Col>
+                        <Col style={{ margin: "0 0 0 2rem" }}>
+                            <StatsTable stats={stats} keyWord={"Market Cap"}/>
+                            <StatsTable stats={stats} keyWord={"Earnings Ratio"}/>
+                            <StatsTable stats={stats} keyWord={"Dividend Yield"}/>
+                            <StatsTable stats={stats} keyWord={"Average Volume"}/>
+                        </Col>
+                    </Row>
+                </Col>
+                <Col style={{ width: "30%", marginTop: "2rem" }}>
+                    <TickPolygon stats={stats} />
+                </Col>
+            </div>
+        </div>
+    }
+
     return (
         <div>
             <PaymentsLineChartContainer period={scale} symbol={symbol} />
@@ -34,31 +66,7 @@ const TicksChart = (props) => {
                     1 YEAR
                     </Button>
             </div>
-            <div style={{display: "flex", marginTop: "2rem" }}>
-                <Col style={{ width: "45%" }}>
-                    <h3 style={{paddingLeft: "2rem"}}>Stats</h3>
-                    <Row style={{justifyContent: "space-between" }}>
-                    <Col style={{margin: "0 0.8rem"}}>
-                        <StatsTable />
-                        <StatsTable />
-                        <StatsTable />
-                        <StatsTable />
-                        <StatsTable />
-                    </Col>
-                    <Col style={{margin: "0 0.8rem"}}>
-                        <StatsTable />
-                        <StatsTable />
-                        <StatsTable />
-                        <StatsTable />
-                        <StatsTable />
-                    </Col>
-                    </Row>
-                </Col>
-                <Col style={{width: "45%", marginTop: "2rem"}}>
-                    <TickPolygon />
-                </Col>
-            </div>
-
+            {statsComponent}
         </div>
     )
 }
