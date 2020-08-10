@@ -19,7 +19,14 @@ const TicksChart = (props) => {
         statsComponent = <br/>
     } else {
         let stats = props.stats[symbol];
-        statsComponent = <div style={{ margin: "1.5rem" }}>
+        statsComponent = <div style={{
+            display: "block",
+            border: "solid 1px white",
+            backgroundColor: "white",
+            borderRadius: "0.375rem",
+            width: "100%",
+            padding: "2rem"
+        }}>
             <h3 >Stats</h3>
             <div style={{ display: "flex", marginTop: "2rem" }}>
                 <Col style={{ width: "65%" }}>
