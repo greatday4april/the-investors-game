@@ -2,7 +2,8 @@ import React from "react";
 import ReactEcharts from "echarts-for-react";
 
 const TickPolygon = ({stats}) =>  {
-
+    const abilities = ["Health", "Dividend", "Value", "Future", "Past"]
+    let polygonValue = abilities.map(ability => stats[ability])
     const option = {
         tooltip: {
             // show: false
@@ -18,11 +19,11 @@ const TickPolygon = ({stats}) =>  {
             },
             splitNumber: 3,
             indicator: [
-                { name: 'Ability1', max: 255 },
-                { name: 'Ability2', max: 255 },
-                { name: 'Ability3', max: 255 },
-                { name: 'Ability4', max: 255 },
-                { name: 'Ability5', max: 255 },
+                { name: abilities[0], max: 6 },
+                { name: abilities[1], max: 6 },
+                { name: abilities[2], max: 6 },
+                { name: abilities[3], max: 6 },
+                { name: abilities[4], max: 6 },
             ],
             radius: '80%',
             center: ['50%', '50%'],
@@ -31,11 +32,11 @@ const TickPolygon = ({stats}) =>  {
             type: 'radar',
             symbolSize: 5,
             itemStyle: {
-                color: 'rgba(1, 1, 1)'
+                color: '#2C7BE5'
             },
             data: [
                 {
-                    value: [40, 80, 120, 160, 200],
+                    value: polygonValue,
                     label: {
                         show: true
                     }
