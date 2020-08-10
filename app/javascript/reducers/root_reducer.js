@@ -4,7 +4,7 @@ import ErrorsReducer from './errors_reducer';
 import transactionsReducer from './transactionsReducer';
 import warpedTimeReducer from './warped_time_reducer';
 import symbolsReducer from './symbolsReducer';
-import { CurrentAssetAmountReducer } from './asset_reducer';
+import { currentAssetAmountReducer } from './asset_reducer';
 
 const RootReducer = combineReducers({
     ticks: TicksReducer,
@@ -13,7 +13,7 @@ const RootReducer = combineReducers({
     currentTickPrice: CurrentTickPriceReducer,
     errors: ErrorsReducer,
     warpedTime: warpedTimeReducer,
-    assetAmount: CurrentAssetAmountReducer
+    assetAmount: currentAssetAmountReducer
 })
 
 export default RootReducer;
