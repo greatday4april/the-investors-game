@@ -5,7 +5,6 @@ import { rgbaColor, themeColors } from '../../helpers/utils';
 import AppContext from '../../context/Context';
 import TradingDialog from './TradingDialog';
 import CurrentAssetAmountContainer from './CurrentAssetAmountContainer';
-
 export const AccountPage = (props) => {
   const { historyAssets, fetchAllTicks, setCurrentAssetAmount } = props;
   const { isDark } = useContext(AppContext);

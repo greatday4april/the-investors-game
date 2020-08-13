@@ -51,5 +51,5 @@ export const generateHistoryAssets = (state, symbols, transactions, warpedTime, 
         startDate = moment(startDate).add(1, 'days');
     }
     const durationDays = moment.duration(period).asDays();
-    return HistoryAssets.slice(HistoryAssets.length - durationDays, HistoryAssets.length - 1);
+    return HistoryAssets.slice(Math.max(HistoryAssets.length - durationDays, 0), HistoryAssets.length - 1);
 };

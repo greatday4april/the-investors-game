@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { AccountPage } from './AccountPage';
 import { fetchAllTicks } from '../../actions/tick_actions';
-
 import { setCurrentAssetAmount } from '../../actions/asset_actions';
 import { generateHistoryAssets } from '../../reducers/assetSelector';
 

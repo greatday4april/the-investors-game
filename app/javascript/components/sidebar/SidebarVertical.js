@@ -72,8 +72,8 @@ const SidebarVertical = (props) => {
     }
   };
 
-  const items = symbols.map((symbol) => <SidebarItem data={totalOrder} stats={stats[symbol]} symbol={symbol} />)
-
+  const items = symbols.map((symbol) => <SidebarItem data={totalOrder} stats={stats[symbol]} symbol={symbol} />);
+  items.push(<SidebarItem data={totalOrder} symbol="Account" />);
   return (
     <Navbar
       expand={navbarBreakPoint}

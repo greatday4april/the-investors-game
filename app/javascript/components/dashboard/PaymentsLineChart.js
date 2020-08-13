@@ -16,7 +16,6 @@ const PaymentsLineChart = (props) => {
   // ComponentDidMount()
   useEffect(() => {
     fetchTicks();
-
     Chart.pluginService.register({
       afterDraw: function (chart, _easing) {
         if (chart.tooltip._active && chart.tooltip._active.length) {

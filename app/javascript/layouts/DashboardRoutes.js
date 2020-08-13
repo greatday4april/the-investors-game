@@ -103,7 +103,8 @@ import Chat from '../components/chat/Chat';
 import Widgets from '../components/widgets/Widgets';
 import Kanban from '../components/kanban/Kanban';
 // import for Investors Game
-import TicksChartContainer from '../components/dashboard/TicksChartContainer'
+import TicksChartContainer from '../components/dashboard/TicksChartContainer';
+import AccountContainer from '../components/dashboard/AccountContainer';
 
 const InboxRoutes = ({ match: { url } }) => (
   <InboxProvider>
@@ -138,8 +139,8 @@ const ProductRoutes = ({ match: { url } }) => (
 const DashboardRoutes = () => (
   <Switch>
     {/* Routes for Investor Game */}
+    <Route path="/account" exact component={AccountContainer}/>
     <Route path="/:symbol" component={TicksChartContainer}/>
-
 
     {/* routes that we probably won't use, came with this purchased template  */}
     <Route path="/feed" exact component={Feed} />
