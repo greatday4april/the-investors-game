@@ -43,5 +43,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'react-rails', '~> 2.6'
 
-gem 'solargraph', '~> 0.39.12', group: :development
 gem 'pry-rails', '~> 0.3.9', group: :development
+
+gem 'solargraph', '~> 0.39.12', group: :development
