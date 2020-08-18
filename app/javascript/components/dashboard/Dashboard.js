@@ -7,7 +7,7 @@ import loadable from '@loadable/component';
 import { toast } from 'react-toastify';
 import TicksChart from './TicksChart';
 
-const PurchasesTable = loadable(() => import('./PurchasesTable'));
+const PurchasesTableContainer = loadable(() => import('./PurchasesTableContainer'));
 const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
 
 const Dashboard = ({symbol}) => {
@@ -27,7 +27,7 @@ const Dashboard = ({symbol}) => {
     <Fragment>
       <TicksChart symbol={symbol} />
       <Card className="mb-3">
-        <FalconCardHeader title="Order History" light={false}>
+        <FalconCardHeader title="Transaction History" light={false}>
           <Fragment>
             <ButtonIcon icon="plus" transform="shrink-3 down-2" color="falcon-default" size="sm">
               New
@@ -41,7 +41,7 @@ const Dashboard = ({symbol}) => {
           </Fragment>
         </FalconCardHeader>
         <CardBody className="p-0">
-          <PurchasesTable setIsSelected={setIsSelected} />
+          <PurchasesTableContainer setIsSelected={setIsSelected} />
         </CardBody>
       </Card>
       <Row noGutters>

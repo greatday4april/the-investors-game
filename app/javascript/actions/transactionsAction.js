@@ -5,12 +5,14 @@ export const buyStock = stock => ({
     type: BUY_STOCK,
     symbol: stock.symbol,
     share: stock.share,
-    price: stock.price
+    price: stock.price,
+    date: stock.date
 });
 
 export const sellStock = stock => ({
     type: SELL_STOCK,
     symbol: stock.symbol,
     share: stock.share,
-    price: stock.price
+    price: stock.price,
+    date: stock.date,
 });
