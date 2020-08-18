@@ -47,5 +47,5 @@ Dir.glob(File.dirname(__FILE__) + '/selected/*.csv') do |csv_filename|
       close: tick[4].to_f,
       volume: tick[5].to_i }
   end
-  Tick.create!(ticks)
+  Tick.insert_all(ticks)
 end
