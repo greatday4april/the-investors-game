@@ -7,12 +7,14 @@ import CartNotification from './CartNotification';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import AppContext from '../../context/Context';
-import WarpedTimeContainer from '../dashboard/WarpedTimeContainer'
+import WarpedTimeContainer from '../dashboard/WarpedTimeContainer';
+import DailyCheckInModal from '../dashboard/DailyCheckInModal';
 
 const TopNavRightSideNavItem = () => {
   const { isTopNav } = useContext(AppContext);
   return (
     <Nav navbar className="navbar-nav-icons ml-auto flex-row align-items-center">
+      <DailyCheckInModal />
       <WarpedTimeContainer />
       <NavItem>
         <SettingsAnimatedIcon />
