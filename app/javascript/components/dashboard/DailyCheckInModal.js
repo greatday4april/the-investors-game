@@ -10,7 +10,7 @@ import { REWARD_STOCK, REWARD_MONEY_AMOUNT, HOURS_IN_DAY } from '../../utils/con
 const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, receiveShare, receiveMoney }) => {
   const CARD_COUNT = 3;
   const [cardIsRevealed, setCardIsRevealed] = useState(false);
-  const [dailyCheckInIsOpen, setDailyCheckInIsOpen] = useState(false);
+  const [dailyCheckInIsOpen, setDailyCheckInIsOpen] = useState(true);
   const closeDailyCheckInModal = () => {
     setCardIsRevealed(false);
     setDailyCheckInIsOpen(false);
@@ -41,11 +41,11 @@ const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, recei
     switch (reward) {
       case stock:
         description = `Stock++: ${REWARD_STOCK.symbol} ${REWARD_STOCK.share} shares`;
-        receiveShare(REWARD_STOCK, moment());
+        receiveShare(REWARD_STOCK);
         break;
       case money:
         description = `Money++: $${REWARD_MONEY_AMOUNT}`;
-        receiveMoney(REWARD_MONEY_AMOUNT, moment());
+        receiveMoney(REWARD_MONEY_AMOUNT);
         break;
       default:
         description = 'Insider News: blablablablabla...';

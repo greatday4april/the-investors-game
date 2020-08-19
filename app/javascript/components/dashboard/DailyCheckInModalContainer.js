@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
     updatePreviousRewardTime: () => dispatch(updatePreviousRewardTime()),
-    receiveShare: (stock, date) => dispatch(buyStock(stock, date)),
-    receiveMoney: (amount, date) => dispatch(receiveMoney(amount, date))
+    receiveShare: (stock) => dispatch(buyStock(stock)),
+    receiveMoney: (amount) => dispatch(receiveMoney(amount))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(DailyCheckInModal);
