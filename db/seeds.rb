@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 require "csv"
 Tick.delete_all # in case multiple seeds
 
@@ -46,7 +47,7 @@ Dir.glob(File.dirname(__FILE__) + "/selected/*.csv") do |csv_filename|
       close: tick[4].to_f,
       volume: tick[5].to_i }
   end
-  Tick.insert_all(ticks)
+  Tick.create!(ticks)
 end
 
 require "csv"
