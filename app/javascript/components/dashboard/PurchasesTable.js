@@ -55,7 +55,6 @@ const columns = [
   {
     dataField: 'type',
     text: 'Transaction',
-    // formatter: customerFormatter,
     classes: 'border-0 align-middle',
     headerClasses: 'border-0',
     sort: true
@@ -77,7 +76,6 @@ const columns = [
   {
     dataField: 'price',
     text: 'Price',
-    // formatter: badgeFormatter,
     classes: 'border-0 align-middle fs-0',
     headerClasses: 'border-0',
     sort: true
@@ -85,7 +83,6 @@ const columns = [
   {
     dataField: 'date',
     text: 'Date',
-    // formatter: amountFormatter,
     classes: 'border-0 align-middle',
     headerClasses: 'border-0',
     sort: true,

@@ -50,14 +50,12 @@ Dir.glob(File.dirname(__FILE__) + "/selected/*.csv") do |csv_filename|
   Tick.create!(ticks)
 end
 
-require "csv"
-
 Housing.delete_all # in case multiple seeds
 # Housing will include all the MONTHLY data after from January 2008 to June 2020.
 # Housing type includes single-family, condo, 1-bedroom, 2-bedroo, 3-bedroom, 4-bedroom, 5+-bedroom
 # City includes NYC, LA, DC, SF, Chicago, Boston, Miami, Atlanta, Seattle,
 
-csv_text = CSV.read(Rails.root.join("db", "selected", "Metro.csv"))
+csv_text = CSV.read(Rails.root.join("db", "housing", "Metro.csv"))
 date = csv_text[0][2..-1]
 csv_text[1..-1].each do |row|
   row[2..-1].each_with_index do |price, index|
