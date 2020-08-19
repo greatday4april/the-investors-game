@@ -6,7 +6,6 @@ export const buyStock = stock => ({
     symbol: stock.symbol,
     share: stock.share,
     price: stock.price,
-    date: stock.date
 });
 
 export const sellStock = stock => ({
@@ -14,5 +13,4 @@ export const sellStock = stock => ({
     symbol: stock.symbol,
     share: stock.share,
     price: stock.price,
-    date: stock.date,
 });
