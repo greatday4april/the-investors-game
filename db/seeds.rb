@@ -65,6 +65,5 @@ csv_text[1..-1].each do |row|
     h.date = date[index]
     h.price = price
     h.save
-    p "#{h.region}, #{h.home_type}, #{h.date}, #{h.price} saved"
   end
 end
