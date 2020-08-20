@@ -7,6 +7,7 @@ import {newsItemsReducer} from './newsItemsReducer';
 import symbolsReducer from './symbolsReducer';
 import { currentAssetAmountReducer } from './asset_reducer';
 import statsReducer from './statsReducer';
+import previousRewardTimeReducer from './previous_reward_time_reducer';
 
 const RootReducer = combineReducers({
     ticks: TicksReducer,
@@ -17,7 +18,8 @@ const RootReducer = combineReducers({
     errors: ErrorsReducer,
     warpedTime: warpedTimeReducer,
     assetAmount: currentAssetAmountReducer,
-    newsItems: newsItemsReducer
+    newsItems: newsItemsReducer,
+    previousRewardTime: previousRewardTimeReducer
 })
 
 export default RootReducer;

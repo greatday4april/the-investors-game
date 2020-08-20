@@ -1,29 +1,66 @@
-import React, { useState, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, Fragment, useEffect } from 'react';
 import { Card, Modal, ModalBody, ModalHeader } from 'reactstrap';
 import card from '../../../assets/images/dailyCheckIn/Card.png';
 import money from '../../../assets/images/dailyCheckIn/Money.png';
 import stock from '../../../assets/images/dailyCheckIn/Stock.png';
 import news from '../../../assets/images/dailyCheckIn/News.png';
 
-const DailyCheckInModal = () => {
-  const CARD_NUM = 3;
+import { REWARD_STOCK, REWARD_MONEY_AMOUNT, HOURS_IN_DAY } from '../../utils/constants';
+
+const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, receiveShare, receiveMoney }) => {
+  const CARD_COUNT = 3;
   const [cardIsRevealed, setCardIsRevealed] = useState(false);
   const [dailyCheckInIsOpen, setDailyCheckInIsOpen] = useState(false);
-  const toggleDailyCheckInModal = () => {
+  const closeDailyCheckInModal = () => {
     setCardIsRevealed(false);
-    setDailyCheckInIsOpen(!dailyCheckInIsOpen);
+    setDailyCheckInIsOpen(false);
   };
+  const _checkTimeDelta = () => {
+    if (previousRewardTime === null) {
+      setDailyCheckInIsOpen(true);
+    } else {
+      const now = moment();
+      const pre = moment(previousRewardTime);
+      const timeDelta = moment.duration(now.diff(pre));
+      const hours = timeDelta.asHours();
+      if (hours >= HOURS_IN_DAY) {
+        setDailyCheckInIsOpen(true);
+      }
+    }
+  };
+  //didMount
+  useEffect(() => {
+    _checkTimeDelta();
+  }, []);
+
   const _getRandomInt = (max) => {
     return Math.floor(Math.random() * Math.floor(max));
   };
-  const _makeReward = (reward) => (
-    <Fragment>
-      <img src={reward} alt="Reward" width="400" height="400" />
-    </Fragment>
-  );
-  const chooseCard = () => {
+  const _makeReward = (reward) => {
+    let description = '';
+    switch (reward) {
+      case stock:
+        description = `Stock++: ${REWARD_STOCK.symbol} ${REWARD_STOCK.share} shares`;
+        receiveShare(REWARD_STOCK, moment());
+        break;
+      case money:
+        description = `Money++: $${REWARD_MONEY_AMOUNT}`;
+        receiveMoney(REWARD_MONEY_AMOUNT, moment());
+        break;
+      default:
+        description = 'Insider News: blablablablabla...';
+        break;
+    }
+    return (
+      <Fragment>
+        <h2>{description}</h2>
+        <img src={reward} alt="Reward" width="400" height="400" />
+      </Fragment>
+    );
+  };
+  const revealCard = () => {
     setCardIsRevealed(true);
+    updatePreviousRewardTime();
   };
   const showCard = () => {
     const choices = [stock, money, news];
@@ -32,28 +69,23 @@ const DailyCheckInModal = () => {
   };
   return (
     <Card className="h-100">
-      <div className="fs--1">
-        <Link className="text-sans-serif ml-2 ml-sm-3" to="#!" onClick={toggleDailyCheckInModal}>
-          Feeling Lucky!
-        </Link>
-      </div>
-      <Modal isOpen={dailyCheckInIsOpen} toggle={toggleDailyCheckInModal} centered size="lg">
+      <Modal isOpen={dailyCheckInIsOpen} toggle={closeDailyCheckInModal} centered size="lg">
         <ModalHeader>{cardIsRevealed ? 'Congratulations!' : 'Choose your lucky card!'}</ModalHeader>
         <ModalBody>
           {cardIsRevealed
             ? showCard()
-            : _.range(CARD_NUM).map((_ele, index) => {
+            : _.range(CARD_COUNT).map((_ele, index) => {
                 return (
                   <input
                     key={index}
                     type="image"
                     src={card}
                     name="saveForm"
-                    class="btTxt submit"
+                    className="btTxt submit"
                     id="saveForm"
                     width="250"
                     height="250"
-                    onClick={chooseCard}
+                    onClick={revealCard}
                   />
                 );
               })}
