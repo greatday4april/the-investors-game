@@ -24,6 +24,7 @@ const RootReducer = combineReducers({
     newsItems: newsItemsReducer,
     previousRewardTime: previousRewardTimeReducer,
     level: levelReducer,
+    asset: realTimeAssetReducer
 });
 
 export default RootReducer;
