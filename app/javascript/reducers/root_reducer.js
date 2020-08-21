@@ -12,19 +12,19 @@ import previousRewardTimeReducer from './previous_reward_time_reducer';
 import { levelReducer } from './levelReducer';
 
 const RootReducer = combineReducers({
-    ticks: TicksReducer,
-    symbols: symbolsReducer,
-    housings: housingsReducer,
-    stats: statsReducer,
-    transactions: transactionsReducer,
-    currentTickPrice: CurrentTickPriceReducer,
-    errors: ErrorsReducer,
-    warpedTime: warpedTimeReducer,
-    assetAmount: currentAssetAmountReducer,
-    newsItems: newsItemsReducer,
-    previousRewardTime: previousRewardTimeReducer,
-    level: levelReducer,
-    asset: realTimeAssetReducer
+  ticks: TicksReducer,
+  symbols: symbolsReducer,
+  housings: housingsReducer,
+  stats: statsReducer,
+  transactions: transactionsReducer,
+  currentTickPrice: CurrentTickPriceReducer,
+  errors: ErrorsReducer,
+  warpedTime: warpedTimeReducer,
+  assetAmount: currentAssetAmountReducer,
+  newsItems: newsItemsReducer,
+  previousRewardTime: previousRewardTimeReducer,
+  level: levelReducer,
+  asset: realTimeAssetReducer,
 });
 
 export default RootReducer;
