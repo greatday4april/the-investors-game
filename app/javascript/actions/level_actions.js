@@ -39,10 +39,10 @@ export const upgradeLevel = () => {
     const state = getState();
 
     const level = getState().level;
-    if (level === LEVELS.length - 1) {
+    if (level === LEVELS.length) {
       return;
     }
-    const nextLevelAssetBar = LEVELS[level + 1];
+    const nextLevelAssetBar = LEVELS[level];
     const totalAsset = _calculateTotalAsset(state);
     dispatch(setRealTimeAsset(Math.round(totalAsset * 1e2) / 1e2));
     if (totalAsset >= nextLevelAssetBar) {
