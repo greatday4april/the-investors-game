@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     throttle(() => {
       saveState({
         transactions: store.getState().transactions,
-        previousRewardTime: store.getState().previousRewardTime
+        previousRewardTime: store.getState().previousRewardTime,
+        level: store.getState().level
       });
     }, 20000)
   );
