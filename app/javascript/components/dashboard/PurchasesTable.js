@@ -53,50 +53,41 @@ const amountFormatter = amount => <Fragment>${amount}</Fragment>;
 
 const columns = [
   {
-    dataField: 'customer',
-    text: 'Customer',
-    formatter: customerFormatter,
+    dataField: 'type',
+    text: 'Transaction',
     classes: 'border-0 align-middle',
     headerClasses: 'border-0',
     sort: true
   },
   {
-    dataField: 'email',
-    text: 'Email',
+    dataField: 'symbol',
+    text: 'Stock',
     classes: 'border-0 align-middle',
     headerClasses: 'border-0',
     sort: true
   },
   {
-    dataField: 'product',
-    text: 'Product',
+    dataField: 'share',
+    text: 'Share',
     classes: 'border-0 align-middle',
     headerClasses: 'border-0',
     sort: true
   },
   {
-    dataField: 'status',
-    text: 'Payment',
-    formatter: badgeFormatter,
+    dataField: 'price',
+    text: 'Price',
     classes: 'border-0 align-middle fs-0',
     headerClasses: 'border-0',
     sort: true
   },
   {
-    dataField: 'amount',
-    text: 'Amount',
-    formatter: amountFormatter,
+    dataField: 'date',
+    text: 'Date',
     classes: 'border-0 align-middle',
     headerClasses: 'border-0',
     sort: true,
     align: 'right',
     headerAlign: 'right'
-  },
-  {
-    dataField: 'action',
-    classes: 'border-0 align-middle',
-    headerClasses: 'border-0',
-    text: ''
   }
 ];
 
@@ -131,7 +122,9 @@ const options = {
   totalSize: purchases.length
 };
 
-const PurchasesTable = ({ setIsSelected }) => {
+const PurchasesTable = (props) => {
+  const { setIsSelected } = props;
+  console.log(props);
   let table = createRef();
   const handleNextPage = ({ page, onPageChange }) => () => {
     onPageChange(page + 1);
@@ -163,7 +156,7 @@ const PurchasesTable = ({ setIsSelected }) => {
                 ref={table}
                 bootstrap4
                 keyField="id"
-                data={purchases}
+                data={props.transactions}
                 columns={columns}
                 selectRow={selectRow(onSelect)}
                 bordered={false}

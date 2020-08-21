@@ -39,6 +39,9 @@ const TickPolygon = ({stats}) =>  {
                     value: polygonValue,
                     label: {
                         show: true
+                    },
+                    areaStyle: {
+                        color: '#2C7BE5'
                     }
                 }
             ]
