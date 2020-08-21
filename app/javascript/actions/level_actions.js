@@ -44,7 +44,7 @@ export const upgradeLevel = () => {
     }
     const nextLevelAssetBar = LEVELS[level + 1];
     const totalAsset = _calculateTotalAsset(state);
-    dispatch(setRealTimeAsset(totalAsset));
+    dispatch(setRealTimeAsset(Math.round(totalAsset * 1e2) / 1e2));
     if (totalAsset >= nextLevelAssetBar) {
       dispatch({ type: LEVEL_UP });
     }
