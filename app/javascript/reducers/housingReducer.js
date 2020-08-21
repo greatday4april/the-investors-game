@@ -1,14 +1,8 @@
+const housingsReducer = (state = {}, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
 
-const housingsReducer = (state, action) => {
-    switch (action.type) {
-        default:
-            return state;
-    }
-}
-
-export default housingsReducer
-
-
-
-
-
+export default housingsReducer;

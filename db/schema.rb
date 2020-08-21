@@ -17,11 +17,9 @@ ActiveRecord::Schema.define(version: 2020_08_18_021029) do
 
   create_table "housings", force: :cascade do |t|
     t.string "region"
-    t.string "date"
+    t.date "date"
     t.integer "price"
     t.string "home_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "ticks", force: :cascade do |t|

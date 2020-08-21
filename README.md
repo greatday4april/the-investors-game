@@ -2,11 +2,15 @@
 
 a investment game Inspired by Monopoly and Paper Trading
 
+## DEMO
+
+https://investors-game.herokuapp.com/
+
 ## setup
 
 1. `yarn install`
 2. `bundle install && rails db:setup`
-3. `rails db:seed` to seed the data (it will take > 20mins)
+3. `rails db:seed` to seed the data
 4. `gem install foreman`
 5. `foreman start` to run
 
@@ -14,6 +18,7 @@ a investment game Inspired by Monopoly and Paper Trading
 
 1. you dont need to restart the server whenever you made change
 2. if you encounter weird frontend issues, delete public/pack
+3. to completely re-create DB: run `rails db:drop && rails db:create && rails db:migrate && rails db:seed`
 
 ### Create the backend resource chain (example)
 
