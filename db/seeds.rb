@@ -6,25 +6,25 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'csv'
+require "csv"
 Tick.delete_all # in case multiple seeds
 
-Dir.glob(File.dirname(__FILE__) + '/raw/*.csv') do |csv_filename|
-  symbol = csv_filename.split('/')[-1].split('_')[0]
+Dir.glob(File.dirname(__FILE__) + "/raw/*.csv") do |csv_filename|
+  symbol = csv_filename.split("/")[-1].split("_")[0]
   p "symbol: #{symbol}"
   # inspect if there's already a selected version
   next unless Dir.glob(File.dirname(__FILE__) + "/selected/#{symbol}*.csv").empty?
 
   ticks = CSV.read( # 2D array
-    File.expand_path(csv_filename, File.dirname(__FILE__) + '/raw')
+    File.expand_path(csv_filename, File.dirname(__FILE__) + "/raw")
   )
-  start_time = Time.zone.parse('2009-01-01 12:00am')
-  end_time = Time.zone.parse('2010-01-01 12:00am')
+  start_time = Time.zone.parse("2009-01-01 12:00am")
+  end_time = Time.zone.parse("2010-01-01 12:00am")
   ticks = ticks.select do |tick|
     tick_time = Time.zone.parse(tick[0])
     tick_time > start_time && tick_time < end_time
   end
-  CSV.open(File.expand_path("#{symbol}_2009_2010.csv", File.dirname(__FILE__) + '/selected'), 'wb') do |csv|
+  CSV.open(File.expand_path("#{symbol}_2009_2010.csv", File.dirname(__FILE__) + "/selected"), "wb") do |csv|
     ticks.each do |tick|
       csv << tick
     end
@@ -32,12 +32,12 @@ Dir.glob(File.dirname(__FILE__) + '/raw/*.csv') do |csv_filename|
   end
 end
 
-Dir.glob(File.dirname(__FILE__) + '/selected/*.csv') do |csv_filename|
+Dir.glob(File.dirname(__FILE__) + "/selected/*.csv") do |csv_filename|
   p "Reading & seeding Tick:#{csv_filename}"
   ticks = CSV.read(
-    File.expand_path(csv_filename, File.dirname(__FILE__) + '/selected')
+    File.expand_path(csv_filename, File.dirname(__FILE__) + "/selected")
   )
-  symbol = csv_filename.split('/')[-1].split('_')[0]
+  symbol = csv_filename.split("/")[-1].split("_")[0]
   ticks.map! do |tick|
     { symbol: symbol,
       tick_time: Time.zone.parse(tick[0]),
@@ -48,4 +48,22 @@ Dir.glob(File.dirname(__FILE__) + '/selected/*.csv') do |csv_filename|
       volume: tick[5].to_i }
   end
   Tick.insert_all(ticks)
+end
+
+Housing.delete_all # in case multiple seeds
+# Housing will include all the MONTHLY data after from January 2008 to June 2020.
+# Housing type includes single-family, condo, 1-bedroom, 2-bedroo, 3-bedroom, 4-bedroom, 5+-bedroom
+# City includes NYC, LA, DC, SF, Chicago, Boston, Miami, Atlanta, Seattle,
+
+csv_text = CSV.read(Rails.root.join("db", "housing", "Metro.csv"))
+date = csv_text[0][2..-1]
+csv_text[1..-1].each do |row|
+  row[2..-1].each_with_index do |price, index|
+    h = Housing.new()
+    h.home_type = row[0]
+    h.region = row[1]
+    h.date = date[index]
+    h.price = price
+    h.save
+  end
 end

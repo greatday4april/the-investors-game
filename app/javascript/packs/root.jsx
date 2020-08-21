@@ -11,6 +11,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from '../store/store';
 import { fetchTicks } from '../actions/tick_actions';
+import * as TransactionsAction from '../actions/transactionsAction';
 import {fetchNewsItems} from '../utils/news_api_utils';
 import moment from 'moment-timezone';
 import throttle from 'lodash/throttle';
@@ -37,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   window.fetchTicks = fetchTicks;
   window.store = store;
+  window.sellStock = TransactionsAction.sellStock;
+  window.buyStock = TransactionsAction.buyStock;
   window.fetchNewsItems = fetchNewsItems;
   ReactDOM.render(<Root store={store} />, document.body.appendChild(document.createElement('div')));
 });

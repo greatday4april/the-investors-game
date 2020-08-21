@@ -3,6 +3,7 @@ import SidebarVertical from './SidebarVertical';
 
 const mapStateToProps = state => ({
     symbols: state.symbols,
+    housings: state.housings,
     stats: state.stats
 })
 
