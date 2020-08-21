@@ -7,6 +7,8 @@ import SearchBox from './SearchBox';
 import TopNavRightSideNavItem from './TopNavRightSideNavItem';
 import NavbarTopDropDownMenus from './NavbarTopDropDownMenus';
 import { navbarBreakPoint, topNavbarBreakpoint } from '../../packs/config';
+import RealTimeAssetContainer from '../../components/dashboard/RealTimeAssetContainer';
+import ProgressBarContainer from '../../components/dashboard/ProgressBarContainer';
 
 const NavbarTop = () => {
   const { showBurgerMenu, setShowBurgerMenu, isTopNav } = useContext(AppContext);
@@ -21,7 +23,7 @@ const NavbarTop = () => {
       <div
         className={classNames('toggle-icon-wrapper mr-md-3 mr-2', {
           'd-lg-none': isTopNav,
-          [`d-${navbarBreakPoint}-none`]: !isTopNav
+          [`d-${navbarBreakPoint}-none`]: !isTopNav,
         })}
       >
         <button
@@ -37,18 +39,18 @@ const NavbarTop = () => {
         </button>
       </div>
       <Logo at="navbar-top" width={40} id="topLogo" />
+      <ProgressBarContainer />
+      <RealTimeAssetContainer />
       <Collapse navbar isOpen={navbarCollapsed} className="scrollbar">
         {!isTopNav ? (
           <Nav navbar className="align-items-center d-none d-lg-block">
-            <NavItem>
-              <SearchBox />
-            </NavItem>
+            <NavItem>{/* <SearchBox /> */}</NavItem>
           </Nav>
         ) : (
-            <Nav navbar>
-              <NavbarTopDropDownMenus setNavbarCollapsed={setNavbarCollapsed} />
-            </Nav>
-          )}
+          <Nav navbar>
+            <NavbarTopDropDownMenus setNavbarCollapsed={setNavbarCollapsed} />
+          </Nav>
+        )}
       </Collapse>
       <TopNavRightSideNavItem />
     </Navbar>

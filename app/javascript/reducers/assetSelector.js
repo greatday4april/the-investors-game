@@ -15,8 +15,7 @@ const _getClosingPrice = (state, date, symbol) => {
   }
 };
 
-const _getCurrentPrice = (state, date, symbol) => {
-  debugger;
+export const getCurrentPrice = (state, date, symbol) => {
   if (date.isBefore(GAME_START_TIME)) {
     return 0;
   }
@@ -56,17 +55,16 @@ export const generateHistoryAssets = (state, symbols, transactions, warpedTime, 
         }
       }
     }
-    let stockValue = 0;
     Object.keys(stocks).forEach((symbol) => {
       const share = stocks[symbol];
       if (share != 0) {
         const closingPrice = startDate.isSame(endDate)
-          ? _getCurrentPrice(state, warpedTime, symbol)
+          ? getCurrentPrice(state, warpedTime, symbol)
           : _getClosingPrice(state, startDate, symbol);
-        stockValue += share * closingPrice;
+        balance += share * closingPrice;
       }
     });
-    HistoryAssets.push({ date: startDate, amount: Math.round((balance + stockValue) * 1e2) / 1e2 });
+    HistoryAssets.push({ date: startDate, amount: Math.round(balance * 1e2) / 1e2 });
     startDate = moment(startDate).add(1, 'days');
   }
   HistoryAssets.push({ date: startDate, amount: 0 });
