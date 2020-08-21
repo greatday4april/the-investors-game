@@ -1,42 +1,18 @@
-import { Button, Card, CardBody, Col, Row } from 'reactstrap';
-import { Chart, Line } from 'react-chartjs-2';
+import { Card, CardBody, Col, Row } from 'reactstrap';
+import { Line } from 'react-chartjs-2';
 import React, { useContext, useEffect, useState } from 'react';
 import { rgbaColor, themeColors } from '../../helpers/utils';
 import AppContext from '../../context/Context';
-import TradingDialog from './TradingDialog'
-import CurrentTickPriceContainer from './CurrentTickPriceContainer';
-
-
-const PaymentsLineChart = (props) => {
-  const { ticks, length, fetchTicks, setCurrentTickPrice } = props;
+import TradingDialog from './TradingDialog';
+import CurrentAssetAmountContainer from './CurrentAssetAmountContainer';
+export const AccountPage = (props) => {
+  const { historyAssets, fetchAllTicks, setCurrentAssetAmount } = props;
   const { isDark } = useContext(AppContext);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
-  // const [tickPrice, setTickPrice] = useState(0);
-  // ComponentDidMount()
   useEffect(() => {
-    fetchTicks();
-    Chart.pluginService.register({
-      afterDraw: function (chart, _easing) {
-        if (chart.tooltip._active && chart.tooltip._active.length) {
-          const activePoint = chart.controller.tooltip._active[0];
-          const ctx = chart.ctx;
-          const x = activePoint.tooltipPosition().x;
-          const topY = chart.scales['y-axis-0'].top;
-          const bottomY = chart.scales['y-axis-0'].bottom;
-
-          ctx.save();
-          ctx.beginPath();
-          ctx.moveTo(x, topY);
-          ctx.lineTo(x, bottomY);
-          ctx.lineWidth = 0.5;
-          ctx.strokeStyle = '#c9ced1';
-          ctx.stroke();
-          ctx.restore();
-        }
-      }
-    });
-  }, [fetchTicks]);
+    fetchAllTicks();
+  }, [fetchAllTicks]);
 
   const config = {
     data(canvas) {
@@ -47,11 +23,11 @@ const PaymentsLineChart = (props) => {
       gradientFill.addColorStop(0, isDark ? 'rgba(44,123,229, 0.5)' : 'rgba(255, 255, 255, 0.3)');
       gradientFill.addColorStop(1, isDark ? 'transparent' : 'rgba(255, 255, 255, 0)');
       return {
-        labels: new Array(length).fill(''),
+        labels: historyAssets.map(asset => asset.date.format('YYYY/MM/DD')),
         datasets: [
           {
             borderWidth: 1,
-            data: ticks.map(tick => tick.close),
+            data: historyAssets.map(asset => asset.amount),
             borderColor: rgbaColor(isDark ? themeColors.primary : '#fff', 0.8),
             backgroundColor: gradientFill,
             pointBorderWidth: 0,
@@ -71,14 +47,14 @@ const PaymentsLineChart = (props) => {
         displayColors: false,
         backgroundColor: 'rgba(0, 0, 0, 0)',
         callbacks: {
-          label: (tooltipItem) => { setCurrentTickPrice(tooltipItem.yLabel); }
+          label: (tooltipItem) => { setCurrentAssetAmount(tooltipItem.yLabel); }
         },
       },
       scales: {
         xAxes: [
           {
             display: false,
-            ticks: {
+            historyAssets: {
               fontColor: rgbaColor('#fff', 0.7),
               fontStyle: 600,
             },
@@ -104,15 +80,9 @@ const PaymentsLineChart = (props) => {
       <CardBody className="rounded-soft bg-gradient">
         <Row className="text-white align-items-center no-gutters">
           <Col>
-            <Row>
-              <h4 style={{padding: "0 1rem", color: "white"}}>{props.symbol}</h4>
-              <CurrentTickPriceContainer />
-              {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
-            </Row>
+            <CurrentAssetAmountContainer />
+            {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
           </Col>
-          <Button color={'light'} size="sm" className="ml-2" onClick={toggle}>
-            Start Trading
-          </Button>
           {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
         </Row>
         <Line data={config.data} options={config.options} width={1618} height={375} />
@@ -120,5 +90,3 @@ const PaymentsLineChart = (props) => {
     </Card>
   );
 };
-
-export default PaymentsLineChart;

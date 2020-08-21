@@ -71,10 +71,12 @@ const SidebarVertical = (props) => {
       }, 100);
     }
   };
+  
   const cities = Object.keys(props.housings);
   let newsymbols = symbols.concat(cities);
-
-  const items = newsymbols.map((symbol) => <SidebarItem data={totalOrder} stats={stats[symbol]} symbol={symbol} />)
+  const items = newsymbols.map((symbol) => <SidebarItem data={totalOrder} stats={stats[symbol]} symbol={symbol} />);
+  items.push(<SidebarItem data={totalOrder} symbol="Account" />);
+  
   return (
     <Navbar
       expand={navbarBreakPoint}
