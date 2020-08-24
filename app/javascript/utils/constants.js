@@ -20,4 +20,4 @@ export const DEFAULT_NEWS_LIMIT = 5;
 export const REWARD_STOCK = { symbol: 'AAPL', share: 500, price: 0 };
 export const REWARD_MONEY_AMOUNT = 1000;
 
-export const LEVELS = [50000, 100000, 200000, 400000];
+export const LEVELS = [0, 10001, 100000, 200000, 400000]; //game initial level is 1, the bar of level one is 0, the bar of level two is 10001.....

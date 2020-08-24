@@ -10,7 +10,7 @@ import { REWARD_STOCK, REWARD_MONEY_AMOUNT, HOURS_IN_DAY } from '../../utils/con
 const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, receiveShare, receiveMoney }) => {
   const CARD_COUNT = 3;
   const [cardIsRevealed, setCardIsRevealed] = useState(false);
-  const [dailyCheckInIsOpen, setDailyCheckInIsOpen] = useState(true);
+  const [dailyCheckInIsOpen, setDailyCheckInIsOpen] = useState(false);
   const closeDailyCheckInModal = () => {
     setCardIsRevealed(false);
     setDailyCheckInIsOpen(false);
