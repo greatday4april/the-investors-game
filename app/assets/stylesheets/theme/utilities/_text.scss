@@ -1,3 +1,4 @@
+@import url('https://rsms.me/inter/inter.css');
 /*-----------------------------------------------
 |   Font Sizes
 -----------------------------------------------*/
@@ -105,4 +106,35 @@
   @include media-breakpoint-up(sm) {
     font-size: 10rem;
   }
+}
+
+/*-----------------------------------------------
+|   (The Investor's Game)
+-----------------------------------------------*/
+
+.text-title {
+  color: $black-ig;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.text-sub-title {
+  color: $grey-ig;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.text {
+  color: $black-ig;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
 }

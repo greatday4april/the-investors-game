@@ -5,13 +5,13 @@ import classNames from 'classnames';
 
 const Title = ({ titleTag: TitleTag, className, breakPoint, children }) => (
   <TitleTag
-    className={classNames(
+    className={`text-title ${classNames(
       {
         'mb-0': !breakPoint,
-        [`mb-${breakPoint}-0`]: !!breakPoint
+        [`mb-${breakPoint}-0`]: !!breakPoint,
       },
       className
-    )}
+    )}`}
   >
     {children}
   </TitleTag>
@@ -21,7 +21,7 @@ Title.propsType = {
   breakPoint: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', 'xxl']),
   titleTag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 Title.defaultProps = { titleTag: 'h5' };
@@ -57,7 +57,7 @@ FalconCardHeader.propTypes = {
   titleTag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   titleClass: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 FalconCardHeader.defaultProps = { light: true };
