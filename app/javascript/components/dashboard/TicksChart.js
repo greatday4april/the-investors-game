@@ -45,7 +45,7 @@ const TicksChart = (props) => {
         <div style={{ display: 'flex', marginTop: '2rem' }}>
           <Col style={{ width: '65%' }}>
             <Row style={{ justifyContent: 'space-between' }}>
-              <Col style={{ margin: '0 2rem 0 0' }}>
+              <Col style={{ margin: '0 1rem 0 0' }}>
                 <StatsTable stats={stats} keyWord={'CEO'} />
                 <StatsTable stats={stats} keyWord={'Employees'} />
                 <StatsTable stats={stats} keyWord={'Headquarters'} />
