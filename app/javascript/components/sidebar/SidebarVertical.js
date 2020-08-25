@@ -1,11 +1,6 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button,
-  Collapse,
-  Card,
-  CardBody,
-  Badge,
   Nav,
   Navbar,
   Row,
@@ -36,7 +31,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import totalOrder from '../../data/dashboard/totalOrder';
 
 const SidebarVertical = (props) => {
-  const {navbarStyle, symbols, stats} = props;
+  const {navbarStyle, symbols, stats, housingStats} = props;
   const navBarRef = useRef(null);
   const { showBurgerMenu, isNavbarVerticalCollapsed, setIsNavbarVerticalCollapsed } = useContext(AppContext);
   const { threads } = useContext(ChatContext);
@@ -77,6 +72,10 @@ const SidebarVertical = (props) => {
   const items = newsymbols.map((symbol) => <SidebarItem data={totalOrder} stats={stats[symbol]} symbol={symbol} />);
   items.push(<SidebarItem data={totalOrder} symbol="Account" />);
   
+
+  // const items = symbols.map((symbol) => <SidebarItem data={totalOrder} stats={stats[symbol]} symbol={symbol} />);
+  // items.push(<SidebarItem data={totalOrder} stats= {housingStats['NewYork']} symbol="NewYork" />);
+
   return (
     <Navbar
       expand={navbarBreakPoint}

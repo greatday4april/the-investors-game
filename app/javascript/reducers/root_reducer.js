@@ -9,6 +9,7 @@ import { currentAssetAmountReducer, realTimeAssetReducer } from './asset_reducer
 import statsReducer from './statsReducer';
 import housingsReducer from './housingReducer';
 import previousRewardTimeReducer from './previous_reward_time_reducer';
+import housingStatsReducer from './housingStatsReducer';
 import { levelReducer } from './levelReducer';
 
 const RootReducer = combineReducers({
@@ -16,6 +17,7 @@ const RootReducer = combineReducers({
   symbols: symbolsReducer,
   housings: housingsReducer,
   stats: statsReducer,
+  housingStats: housingStatsReducer,
   transactions: transactionsReducer,
   currentTickPrice: CurrentTickPriceReducer,
   errors: ErrorsReducer,
