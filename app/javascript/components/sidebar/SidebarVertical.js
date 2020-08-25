@@ -78,8 +78,9 @@ const SidebarVertical = (props) => {
   items.push(<SidebarItem data={totalOrder} symbol="Account" />);
   
   return (
-    <Navbar
+    <Navbar 
       expand={navbarBreakPoint}
+      
       className={classNames('navbar-vertical w-25 ml-2', {
         [`navbar-${navbarStyle}`]: navbarStyle !== 'transparent',
       })}
@@ -88,12 +89,7 @@ const SidebarVertical = (props) => {
         <Logo at="navbar-vertical" width={40} />
       </Flex>
       <Nav className="justify-content-center rounded-pill ">
-        <div style={{ display: "block",
-                    border:"solid 1px white", 
-                    backgroundColor:"white", 
-                    borderRadius: "0.375rem",
-                    width: "100%",
-                    padding: "0.5rem 1.25rem"}}>
+        <div className="shadowed-card">
           <SidebarSearchBox style={{ display: "contents",
                                     width: "100%" }}  />
           {items}
@@ -105,3 +101,12 @@ const SidebarVertical = (props) => {
 
 
 export default SidebarVertical;
+
+// style = {{
+//   display: "block",
+//     border: "solid 1px white",
+//       backgroundColor: "white",
+//         borderRadius: "0.375rem",
+//           width: "100%",
+//             padding: "0.5rem 1.25rem"
+// }}

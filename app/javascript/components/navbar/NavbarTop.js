@@ -18,6 +18,7 @@ const NavbarTop = () => {
     <Navbar
       light
       className="navbar-glass fs--1 font-weight-semi-bold row navbar-top sticky-kit"
+      style={{ backgroundColor: '#F9F4E9' }}
       expand={isTopNav ? topNavbarBreakpoint : navbarBreakPoint}
     >
       <div

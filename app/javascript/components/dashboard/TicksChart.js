@@ -21,20 +21,20 @@ const TicksChart = (props) => {
   } else {
     let stats = props.stats[symbol];
     statsComponent = (
-      <div
-        style={{
-          width: '811px',
-          height: '584px',
-          display: 'block',
-          border: 'solid 1px white',
-          backgroundColor: 'white',
-          borderRadius: '20px',
-          padding: '10px',
-          background: '#F9F4E9',
-          boxShadow: '6px 6px 0px #000000',
-          boxSizing: 'border-box',
-          border: '4px solid #000000',
-        }}
+      <div className="shadowed-card"
+        // style={{
+        //   width: '811px',
+        //   height: '584px',
+        //   display: 'block',
+        //   border: 'solid 1px white',
+        //   backgroundColor: 'white',
+        //   borderRadius: '20px',
+        //   padding: '10px',
+        //   background: '#F9F4E9',
+        //   boxShadow: '6px 6px 0px #000000',
+        //   boxSizing: 'border-box',
+        //   border: '4px solid #000000',
+        // }}
       >
         <div
           className="text-title"

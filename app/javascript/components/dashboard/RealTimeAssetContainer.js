@@ -6,7 +6,7 @@ const RealTimeAsset = ({ asset, fetchAllTicks }) => {
   useEffect(() => {
     fetchAllTicks();
   }, [fetchAllTicks]);
-  return <p className="nav-link">{`Total Asset Right Now: ${asset}`}</p>;
+  return <p className="nav-link" >{`Total Asset Right Now: ${asset}`}</p>;
 };
 const mapStateToProps = (state) => ({
   asset: state.asset,

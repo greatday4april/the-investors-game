@@ -18,3 +18,16 @@ td .dropdown-toggle:after{ display: none; }
   th{ border-bottom-width: 1px !important; }
 }
 
+.shadowed-card{
+          width: 100%;
+          display: block;
+          border: solid 1px white;
+          background-color: white;
+          border-radius: 20px;
+          padding: 10px;
+          background: #F9F4E9;
+          box-shadow: 6px 6px 0px #000000;
+          box-sizing: border-box;
+          border: 4px solid #000000;
+}
+

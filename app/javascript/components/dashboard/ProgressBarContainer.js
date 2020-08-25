@@ -4,8 +4,8 @@ import { Progress } from 'reactstrap';
 import { upgradeLevel } from '../../actions/level_actions';
 import { LEVELS } from '../../utils/constants';
 const ProgressBar = ({ level }) => (
-  <div style={{width: 600}}>
-    <Progress value={(level * 100) / LEVELS.length}>{`Level: ${level}`}</Progress>
+  <div style={{ width: 600, backgroundColor: '#F9F4E9'}} >
+    <Progress  value={(level * 100) / LEVELS.length}>{`Level: ${level}`}</Progress>
   </div>
 );
 
