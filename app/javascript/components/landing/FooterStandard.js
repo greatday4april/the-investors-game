@@ -89,7 +89,7 @@ const FooterStandard = () => {
         <div className="container py-3">
           <Row className="justify-content-between">
             <Col xs={12} sm="auto">
-              <p className="mb-0 text-600">
+              {/* <p className="mb-0 text-600">
                 Thank you for creating with Falcon <span className="d-none d-sm-inline-block">| </span>
                 <br className="d-sm-none" /> {new Date().getFullYear()} &copy;{' '}
                 <a
@@ -100,7 +100,7 @@ const FooterStandard = () => {
                 >
                   ThemeWagon
                 </a>
-              </p>
+              </p> */}
             </Col>
             <Col xs={12} sm="auto">
               <p className="mb-0 text-600">v{version}</p>

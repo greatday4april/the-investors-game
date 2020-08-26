@@ -14,11 +14,18 @@ const TopNavRightSideNavItem = () => {
   const { isTopNav } = useContext(AppContext);
   return (
     <Nav navbar className="navbar-nav-icons ml-auto flex-row align-items-center">
+      {/* <NavItem>
+        <SettingsAnimatedIcon />
+        <CartNotification />
+
+        <NotificationDropdown />
+        <ProfileDropdown />
+      </NavItem> */}
+
+      
       <DailyCheckInModalContainer />
       <WarpedTimeContainer />
-      <NavItem>
-        <SettingsAnimatedIcon />
-      </NavItem>
+
       {isTopNav && (
         <NavItem className="d-none d-md-block p-2 px-lg-0 cursor-pointer">
           <NavLink tag={Link} to="/changelog" id="changelog">
@@ -29,10 +36,7 @@ const TopNavRightSideNavItem = () => {
           </UncontrolledTooltip>
         </NavItem>
       )}
-      {/* <CartNotification /> */}
 
-      <NotificationDropdown />
-      <ProfileDropdown />
     </Nav>
   );
 };

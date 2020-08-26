@@ -63,7 +63,7 @@ const TicksChart = (props) => {
           <Button
             color="link"
             size="sm"
-            className="p-lr"
+            className="p-lr  blk-clicked"
             onClick={() => setScale(ONE_DAY_DURATION)}
           >
             1 DAY

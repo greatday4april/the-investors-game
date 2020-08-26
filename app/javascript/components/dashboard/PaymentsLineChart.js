@@ -45,14 +45,14 @@ const PaymentsLineChart = (props) => {
         ? ctx.createLinearGradient(0, 0, 0, ctx.canvas.height)
         : ctx.createLinearGradient(0, 0, 0, 250);
       gradientFill.addColorStop(0, isDark ? 'rgba(44,123,229, 0.5)' : 'rgba(255, 255, 255, 0.3)');
-      gradientFill.addColorStop(1, isDark ? 'transparent' : 'rgba(255, 255, 255, 0)');
+      gradientFill.addColorStop(1, isDark ? 'transparent' : '#5F995B');
       return {
         labels: new Array(length).fill(''),
         datasets: [
           {
             borderWidth: 1,
             data: ticks.map(tick => tick.close),
-            borderColor: rgbaColor(isDark ? themeColors.primary : '#fff', 0.8),
+            borderColor: rgbaColor(isDark ? themeColors.primary : '#5F995B'),
             backgroundColor: gradientFill,
             pointBorderWidth: 0,
             pointRadius: 0,
@@ -105,12 +105,12 @@ const PaymentsLineChart = (props) => {
         <Row className="text-white align-items-center no-gutters">
           <Col>
             <Row>
-              <h4 style={{padding: "0 1rem", color: "white"}}>{props.symbol}</h4>
+              <h4 style={{padding: "0 1rem", color: "black"}}>{props.symbol}</h4>
               <CurrentTickPriceContainer />
               {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
             </Row>
           </Col>
-          <Button color={'light'} size="sm" className="ml-2" onClick={toggle}>
+          <Button color={'light'} size="sm" className="px-2 sqr-blk-btn" onClick={toggle}>
             Start Trading
           </Button>
           {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}

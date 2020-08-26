@@ -4,6 +4,10 @@ import classNames from 'classnames';
 import AppContext from '../../context/Context';
 import Logo from './Logo';
 import SearchBox from './SearchBox';
+import ProfileDropdown from './ProfileDropdown';
+import NotificationDropdown from './NotificationDropdown';
+import SettingsAnimatedIcon from './SettingsAnimatedIcon';
+import CartNotification from './CartNotification';
 import TopNavRightSideNavItem from './TopNavRightSideNavItem';
 import NavbarTopDropDownMenus from './NavbarTopDropDownMenus';
 import { navbarBreakPoint, topNavbarBreakpoint } from '../../packs/config';
@@ -39,7 +43,12 @@ const NavbarTop = () => {
           </span>
         </button>
       </div>
-      <Logo at="navbar-top" width={40} id="topLogo" />
+      <NavItem>
+        <SettingsAnimatedIcon />
+        <NotificationDropdown />
+        <ProfileDropdown />
+      </NavItem>
+
       <ProgressBarContainer />
       <RealTimeAssetContainer />
       <Collapse navbar isOpen={navbarCollapsed} className="scrollbar">

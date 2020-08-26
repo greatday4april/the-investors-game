@@ -107,7 +107,7 @@ const SidebarItem = (props) => {
       <Row className="align-items-center p-0 py-2 px-3"
         style={{ justifyContent: 'space-between', fontSize: "1.25rem"}}>
         <Media className="pl-1">
-          <Link to={`/${symbol.toLowerCase()}`} >{symbol}</Link>
+          <Link to={`/${symbol.toLowerCase()}`}>{symbol}</Link>
         </Media>
         <Col xs="auto" className="pl-3 mx-0">
           <ReactEchartsCore
