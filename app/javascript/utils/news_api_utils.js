@@ -31,18 +31,32 @@ import {DEFAULT_NEWS_LIMIT} from './constants';
             "type": "Video",
             "tickers": [
             "AAPL"
-            ]
+            ] 
         }
     ]
 }
  */
-export const fetchNewsItems = (symbol, date, limit=DEFAULT_NEWS_LIMIT) => {
-    return axios.get('https://stocknewsapi.com/api/v1', {
-        params: {
-            tickers: symbol, //'AAPL'
-            date,//Use the date parameters to obtain historical news (up to March 2019). Please use the following format: MMDDYYY. You can also use today, yesterday, last7days, last30days, yeartodate .&date=03152019-03252019
-            items: limit,
-            token: 'zw6vljb0afpvbu85djmvfbt0dnlpxykaf8oxwnrw'
-        }
-    })
-}
+// export const fetchNewsItems = (symbol, date, limit=DEFAULT_NEWS_LIMIT) => {
+//     return axios.get('https://stocknewsapi.com/api/v1', {
+//         params: {
+//             tickers: symbol, //'AAPL'
+//             date,//Use the date parameters to obtain historical news (up to March 2019). Please use the following format: MMDDYYY. You can also use today, yesterday, last7days, last30days, yeartodate .&date=03152019-03252019
+//             items: limit,
+//             token: 'zw6vljb0afpvbu85djmvfbt0dnlpxykaf8oxwnrw'
+//         }
+//     })
+// }
+
+
+export const fetchNewsItems = (symbol, date, limit = DEFAULT_NEWS_LIMIT) => {
+  return axios.get('https://google-news.p.rapidapi.com/v1/search', {
+    params: {
+      q: symbol, //'AAPL'
+      from: date, //Use the date parameters to obtain historical news (up to March 2019). Please use the following format: MMDDYYY. You can also use today, yesterday, last7days, last30days, yeartodate .&date=03152019-03252019
+      items: limit,
+      lang: 'en',
+      country: 'US',
+      token: '9432144a30mshdb4b100e5817c28p1c95a2jsn2cf1852fd1ed',
+    },
+  });
+};
