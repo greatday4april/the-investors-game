@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Collapse, Navbar, NavItem, Nav } from 'reactstrap';
+import { Collapse, Navbar, NavItem, Nav, Row } from 'reactstrap';
 import classNames from 'classnames';
 import AppContext from '../../context/Context';
 import Logo from './Logo';
@@ -19,41 +19,27 @@ const NavbarTop = () => {
   const [navbarCollapsed, setNavbarCollapsed] = useState(false);
 
   return (
-    <Navbar
+    <Nav
       light
-      className="navbar-glass fs--1 font-weight-semi-bold row navbar-top sticky-kit"
+      className="navbar-glass fs--1 font-weight-semi-bold sticky-kit"
       style={{ backgroundColor: '#F9F4E9' }}
       expand={isTopNav ? topNavbarBreakpoint : navbarBreakPoint}
     >
-      <div
-        className={classNames('toggle-icon-wrapper mr-md-3 mr-2', {
-          'd-lg-none': isTopNav,
-          [`d-${navbarBreakPoint}-none`]: !isTopNav,
-        })}
-      >
-        <button
-          className="navbar-toggler-humburger-icon btn btn-link d-flex align-item-center justify-content-center "
-          onClick={() => {
-            !isTopNav ? setShowBurgerMenu(!showBurgerMenu) : setNavbarCollapsed(!navbarCollapsed);
-          }}
-          id="burgerMenu"
-        >
-          <span className="navbar-toggle-icon">
-            <span className="toggle-line" />
-          </span>
-        </button>
-      </div>
-      <NavItem>
+      <div className="width-fill nav-t">
+        <div></div>
+        <div className='d-flex w-20'>
         <SettingsAnimatedIcon />
         <NotificationDropdown />
         <ProfileDropdown />
-      </NavItem>
-
+        </div>
+      </div>
+       
+      <div className='d-flex w-100'>
       <ProgressBarContainer />
       <RealTimeAssetContainer />
       <Collapse navbar isOpen={navbarCollapsed} className="scrollbar">
         {!isTopNav ? (
-          <Nav navbar className="align-items-center d-none d-lg-block">
+          <Nav navbar className=" d-none d-lg-block">
             <NavItem>{/* <SearchBox /> */}</NavItem>
           </Nav>
         ) : (
@@ -63,7 +49,8 @@ const NavbarTop = () => {
         )}
       </Collapse>
       <TopNavRightSideNavItem />
-    </Navbar>
+      </div>
+    </Nav>
   );
 };
 

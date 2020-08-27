@@ -12,9 +12,11 @@ const WarpedTime = ({ warpedTime, incrementWarpedTime }) => {
     }, [incrementWarpedTime]);
 
     return (
-        <div className='nav-link shadowed-card'>
-            <p>Current Time:</p>
-            <p > {`${warpedTime.format("dddd, MMMM Do YYYY, h:mm a")}`}</p >
+        <div className='nav-link shadowed-card w-100 nav-top-card'>
+            <div>
+            <p className="nav-top-p">Current Time:</p>
+            <p className="time"> {`${warpedTime.format("dddd, MMMM Do YYYY, h:mm a")}`}</p >
+            </div>
             <svg width="70" height="76" viewBox="0 0 70 76" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path opacity="0.5" d="M35.5859 76.0001C54.0962 76.0001 69.1018 72.2633 69.1018 67.6538C69.1018 63.0443 54.0962 59.3075 35.5859 59.3075C17.0756 59.3075 2.07007 63.0443 2.07007 67.6538C2.07007 72.2633 17.0756 76.0001 35.5859 76.0001Z" fill="#B8CBCD" />
                 <path d="M34.8511 69.6405C53.4907 69.6405 68.6011 54.4569 68.6011 35.7269C68.6011 16.9969 53.4907 1.81323 34.8511 1.81323C16.2115 1.81323 1.10107 16.9969 1.10107 35.7269C1.10107 54.4569 16.2115 69.6405 34.8511 69.6405Z" fill="#F6AD55" fill-opacity="0.8" />

@@ -13,7 +13,7 @@ import DailyCheckInModalContainer from '../dashboard/DailyCheckInModalContainer'
 const TopNavRightSideNavItem = () => {
   const { isTopNav } = useContext(AppContext);
   return (
-    <Nav navbar className="navbar-nav-icons ml-auto flex-row align-items-center">
+    <Nav navbar className="navbar-nav-icons flex-row align-items-center w-48">
       {/* <NavItem>
         <SettingsAnimatedIcon />
         <CartNotification />

@@ -6,9 +6,11 @@ const RealTimeAsset = ({ asset, fetchAllTicks }) => {
   useEffect(() => {
     fetchAllTicks();
   }, [fetchAllTicks]);
-  return (<div className="nav-link shadowed-card">
-    <p>Total Asset:</p>
-    <p  >{`${asset}`}</p>
+  return (<div className="nav-link shadowed-card w-48 nav-top-card">
+    <div>
+    <p className="nav-top-p">Total Asset:</p>
+    <p className="asset">{`$ ${asset}`}</p>
+    </div>
     <svg width="60" height="85" viewBox="0 0 60 85" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path opacity="0.5" d="M29.8331 84.3093C46.2867 84.3093 59.625 81.0038 59.625 76.9262C59.625 72.8486 46.2867 69.5431 29.8331 69.5431C13.3795 69.5431 0.0412598 72.8486 0.0412598 76.9262C0.0412598 81.0038 13.3795 84.3093 29.8331 84.3093Z" fill="#B8CBCD" />
       <path d="M30.0344 21.4338C35.8986 21.4338 40.6525 16.8595 40.6525 11.2169C40.6525 5.57425 35.8986 1 30.0344 1C24.1702 1 19.4163 5.57425 19.4163 11.2169C19.4163 16.8595 24.1702 21.4338 30.0344 21.4338Z" fill="#F6E89A" stroke="#8D4520" stroke-width="2" stroke-miterlimit="10" />
