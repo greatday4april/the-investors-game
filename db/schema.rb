@@ -45,4 +45,5 @@ ActiveRecord::Schema.define(version: 2020_08_25_032755) do
     t.integer "volume"
     t.datetime "tick_time"
   end
+
 end
