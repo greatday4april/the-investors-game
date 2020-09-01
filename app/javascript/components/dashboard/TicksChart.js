@@ -94,8 +94,9 @@ const TicksChart = props => {
           <Button
             color="link"
             size="sm"
-            className="p-lr  blk-clicked"
+            className="p-lr"
             onClick={() => setScale(ONE_DAY_DURATION)}
+            autoFocus={true}
           >
             1 DAY
           </Button>
