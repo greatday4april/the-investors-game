@@ -8,7 +8,7 @@ import CurrentTickPriceContainer from './CurrentTickPriceContainer';
 
 
 const PaymentsLineChart = (props) => {
-  const { ticks, length, fetchTicks, setCurrentTickPrice } = props;
+  const { ticks, length, fetchTicks, setCurrentTickPrice, sidebar } = props;
   const { isDark } = useContext(AppContext);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
@@ -98,23 +98,27 @@ const PaymentsLineChart = (props) => {
       },
     },
   };
+  let items = <br />;
+  if (sidebar!=true) {
+    items = <Row className="text-white align-items-center no-gutters">
+      <Col>
+        <Row>
+          <h4 style={{ padding: "0 1rem", color: "black" }}>{props.symbol}</h4>
+          <CurrentTickPriceContainer />
+          {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
+        </Row>
+      </Col>
+      <Button color={'light'} size="sm" className="px-2 sqr-blk-btn" onClick={toggle}>
+        Start Trading
+          </Button>
+      {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
+    </Row>
+  } 
 
   return (
     <Card className="mb-3">
       <CardBody className="rounded-soft bg-gradient">
-        <Row className="text-white align-items-center no-gutters">
-          <Col>
-            <Row>
-              <h4 style={{padding: "0 1rem", color: "black"}}>{props.symbol}</h4>
-              <CurrentTickPriceContainer />
-              {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
-            </Row>
-          </Col>
-          <Button color={'light'} size="sm" className="px-2 sqr-blk-btn" onClick={toggle}>
-            Start Trading
-          </Button>
-          {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
-        </Row>
+        {items}
         <Line data={config.data} options={config.options} width={1618} height={375} />
       </CardBody>
     </Card>

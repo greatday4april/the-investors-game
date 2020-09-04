@@ -80,9 +80,9 @@ const SidebarVertical = (props) => {
     <Navbar 
       expand={navbarBreakPoint}
       
-      className={classNames('navbar-vertical w-25 ml-2', {
+      className={classNames('navbar-vertical w-25 ml-2 ', {
         [`navbar-${navbarStyle}`]: navbarStyle !== 'transparent',
-      })}
+      })} style={{position: "absolute"}}
     >
       <Flex align="center">
         <Logo at="navbar-vertical" width={40} />
@@ -113,7 +113,7 @@ const SidebarVertical = (props) => {
 
         </div>
         
-        <div className="shadowed-card">
+        <div className="shadowed-card w-100">
           <SidebarSearchBox style={{ display: "contents",
                                     width: "100%" }}  />
           {items}
