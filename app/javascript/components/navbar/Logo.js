@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import logo from '../../../assets/images/illustrations/falcon.png';
+import logo from '../../../assets/images/logos/INVESTOR‘S GAME.png';
 
 const Logo = ({ at, width, className, ...rest }) => {
   return (
@@ -26,10 +26,7 @@ const Logo = ({ at, width, className, ...rest }) => {
           className
         )}
       >
-        <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="19.5" cy="19.5" r="19.5" fill="#F6AD55" />
-        </svg>
-        <span className="text-sans-serif logo" style={{fontWeight: 550}}>Investor's Game</span>
+        <img src={logo} />
       </div>
     </Link>
   );
