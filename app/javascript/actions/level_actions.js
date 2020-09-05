@@ -35,20 +35,22 @@ const _calculateTotalAsset = (state) => {
   });
   return balance;
 };
-export const upgradeLevel = () => {
+export const needUpgradeLevel = () => {
   return (dispatch, getState) => {
     const state = getState();
 
     const level = getState().level;
     if (level === LEVELS.length) {
-      return;
+      return false;
     }
     const nextLevelAssetBar = LEVELS[level];
     const totalAsset = _calculateTotalAsset(state);
     dispatch(setRealTimeAsset(Math.round(totalAsset * 1e2) / 1e2));
     if (totalAsset >= nextLevelAssetBar) {
-      alert('level up');
-      dispatch({ type: LEVEL_UP });
+      return true;
+    } else {
+      return false;
     }
   };
 };
+export const upgradeLevel = () => ({ type: LEVEL_UP });

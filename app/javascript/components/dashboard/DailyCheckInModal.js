@@ -76,7 +76,7 @@ const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, recei
   const CARD_COUNT = 3;
   const [isFirstTimePlay, setIsFirstTimePlay] = useState(false);
   const [cardIsRevealed, setCardIsRevealed] = useState(false);
-  const [dailyCheckInIsOpen, setDailyCheckInIsOpen] = useState(true);
+  const [dailyCheckInIsOpen, setDailyCheckInIsOpen] = useState(false);
   const closeDailyCheckInModal = () => {
     setCardIsRevealed(false);
     setDailyCheckInIsOpen(false);
@@ -108,11 +108,9 @@ const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, recei
     switch (reward) {
       case stock:
         description = `Stock++: ${REWARD_STOCK.symbol} ${REWARD_STOCK.share} shares`;
-        receiveShare(REWARD_STOCK);
         break;
       case money:
         description = `Money++: $${REWARD_MONEY_AMOUNT}`;
-        receiveMoney(REWARD_MONEY_AMOUNT);
         break;
       default:
         description = 'Insider News: blablablablabla...';

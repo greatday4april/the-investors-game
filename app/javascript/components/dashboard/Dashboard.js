@@ -38,7 +38,7 @@ const Dashboard = ({symbol, warpedTime}) => {
           </Fragment>
         </FalconCardHeader>
         <CardBody className="p-0">
-          <PurchasesTableContainer setIsSelected={setIsSelected} />
+          {/* <PurchasesTableContainer setIsSelected={setIsSelected} /> */}
         </CardBody>
       </Card>
       <Row noGutters>
