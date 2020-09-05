@@ -11,7 +11,7 @@ const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, recei
   let showCardHeader = 'Congratulations!';
   const CARD_COUNT = 3;
   const [cardIsRevealed, setCardIsRevealed] = useState(false);
-  const [dailyCheckInIsOpen, setDailyCheckInIsOpen] = useState(true);
+  const [dailyCheckInIsOpen, setDailyCheckInIsOpen] = useState(false);
   const closeDailyCheckInModal = () => {
     setCardIsRevealed(false);
     setDailyCheckInIsOpen(false);
@@ -84,7 +84,7 @@ const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, recei
       className="shadowed-card"
       isOpen={dailyCheckInIsOpen}
       toggle={closeDailyCheckInModal}
-      style={{ margin: 'relative' }}
+      style={{ left: '330px', top: '466px' }}
     >
       <ModalHeader>{cardIsRevealed ? showCardHeader : 'Choose your lucky card!'}</ModalHeader>
       <ModalBody
