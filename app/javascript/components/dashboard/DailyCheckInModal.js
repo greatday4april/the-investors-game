@@ -84,7 +84,7 @@ const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, recei
       className="shadowed-card"
       isOpen={dailyCheckInIsOpen}
       toggle={closeDailyCheckInModal}
-      style={{ margin: 'relative' }}
+      style={{ margin: 'relative', top: "35%" }}
     >
       <ModalHeader>{cardIsRevealed ? showCardHeader : 'Choose your lucky card!'}</ModalHeader>
       <ModalBody

@@ -116,6 +116,8 @@ const SidebarVertical = (props) => {
         <div className="shadowed-card w-100">
           <SidebarSearchBox style={{ display: "contents",
                                     width: "100%" }}  />
+
+          <p className="nav-top-p">STOCK</p>
           {items}
         </div>
       </Nav>

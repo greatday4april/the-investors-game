@@ -106,14 +106,14 @@ const SidebarItem = (props) => {
   const { isDark } = useContext(AppContext);
   const total = data.reduce((total, currentValue) => total + currentValue, 0);
   return (
-    <div style={{padding: "1rem 0" }}>
+    <div className="border-b">
       <Row className="align-items-center p-0 py-2 px-3"
         style={{ justifyContent: 'space-between', fontSize: "1.25rem"}}>
         <Media className="pl-1">
-          <Link to={`/${symbol.toLowerCase()}`} style={{ color: 'black' }}  >{symbol}</Link>
+          <Link to={`/${symbol.toLowerCase()}`} className="share-text"  >{symbol}</Link>
         </Media>
-        <Col xs="auto" className="pl-3 mx-0" style={{width: "80%", height: "100%"}}>
-          <PaymentsLineChartContainer period={ONE_MONTH_DURATION} symbol={symbol} sidebar={true} />
+        <Col xs="auto" className="pl-3 mx-0" style={{width: "60%", height: "100%"}}>
+          <PaymentsLineChartContainer period={ONE_MONTH_DURATION} symbol={symbol} sidebar={true} className="mg-pd-0" />
           {/* <ReactEchartsCore
             echarts={echarts}
             option={getOption(data, isDark)}

@@ -114,12 +114,17 @@ const PaymentsLineChart = (props) => {
       {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
     </Row>
   } 
+  
+  let classname = "rounded-soft bg-gradient";
+  if (sidebar==true) {
+    classname = "rounded-soft bg-gradient mg-pd-0"
+  }
 
   return (
     <Card className="mb-3">
-      <CardBody className="rounded-soft bg-gradient">
+      <CardBody className={classname} >
         {items}
-        <Line data={config.data} options={config.options} width={1618} height={375} />
+        <Line data={config.data} options={config.options} width={1618} height={375}  />
       </CardBody>
     </Card>
   );
