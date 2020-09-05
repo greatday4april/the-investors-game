@@ -1,2 +1,0 @@
-class Table < ApplicationRecord
-end

@@ -10,26 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_25_032755) do
+ActiveRecord::Schema.define(version: 2020_08_25_020316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "housings", force: :cascade do |t|
     t.string "region"
-    t.string "date"
+    t.date "date"
     t.integer "price"
     t.string "home_type"
   end
 
   create_table "news", force: :cascade do |t|
-    t.string "symbol"
-    t.text "news"
-    t.date "date"
-    t.string "source"
-  end
-
-  create_table "tables", force: :cascade do |t|
     t.string "symbol"
     t.text "news"
     t.date "date"
