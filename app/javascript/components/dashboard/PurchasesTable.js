@@ -53,41 +53,41 @@ const amountFormatter = amount => <Fragment>${amount}</Fragment>;
 
 const columns = [
   {
-    dataField: 'type',
-    text: 'Transaction',
-    classes: 'border-0 align-middle',
-    headerClasses: 'border-0',
-    sort: true
-  },
-  {
     dataField: 'symbol',
-    text: 'Stock',
-    classes: 'border-0 align-middle',
-    headerClasses: 'border-0',
-    sort: true
-  },
-  {
-    dataField: 'share',
-    text: 'Share',
-    classes: 'border-0 align-middle',
-    headerClasses: 'border-0',
-    sort: true
+    text: 'STOCK',
+    classes: 'border-0 align-middle order-data',
+    headerClasses: 'border-0 order-header',
   },
   {
     dataField: 'price',
-    text: 'Price',
-    classes: 'border-0 align-middle fs-0',
-    headerClasses: 'border-0',
-    sort: true
+    text: 'PRICE',
+    classes: 'border-0 align-middle fs-0 order-data',
+    headerClasses: 'border-0 order-header',
+  },
+  {
+    dataField: 'type',
+    text: 'ACTION',
+    classes: 'border-0 align-middle order-data',
+    headerClasses: 'border-0 order-header',
+  },
+  {
+    dataField: 'share',
+    text: 'SHARE',
+    classes: 'border-0 align-middle order-data',
+    headerClasses: 'border-0 order-header',
+  },
+  {
+    text: 'GAIN/LOSS',
+    classes: 'border-0 align-middle fs-0 order-data',
+    headerClasses: 'border-0 order-header',
   },
   {
     dataField: 'date',
-    text: 'Date',
-    classes: 'border-0 align-middle',
-    headerClasses: 'border-0',
-    sort: true,
-    align: 'right',
-    headerAlign: 'right'
+    text: 'DATE',
+    classes: 'border-0 align-middle order-data',
+    headerClasses: 'border-0 order-header',
+    align: 'left',
+    headerAlign: 'left'
   }
 ];
 
@@ -158,50 +158,14 @@ const PurchasesTable = (props) => {
                 keyField="id"
                 data={props.transactions}
                 columns={columns}
-                selectRow={selectRow(onSelect)}
+                // selectRow={selectRow(onSelect)}
                 bordered={false}
                 classes="table-dashboard table-sm fs--1 border-bottom border-200 mb-0 table-dashboard-th-nowrap"
                 rowClasses="btn-reveal-trigger border-top border-200"
-                headerClasses="bg-200 text-900 border-y border-200"
+                headerClasses="bg-200 text-900 border-y border-200 bg-color"
                 {...paginationTableProps}
               />
             </div>
-            <Row noGutters className="px-1 py-3">
-              <Col className="pl-3 fs--1">
-                <CustomTotal {...paginationProps} lastIndex={lastIndex} />
-                <ButtonIcon
-                  color="link"
-                  size="sm"
-                  icon="chevron-right"
-                  iconAlign="right"
-                  transform="down-1 shrink-4"
-                  className="px-0 font-weight-semi-bold"
-                  onClick={() => handleViewAll(paginationProps, purchases.length)}
-                >
-                  view all
-                </ButtonIcon>
-              </Col>
-              <Col xs="auto" className="pr-3">
-                <Button
-                  color={paginationProps.page === 1 ? 'light' : 'primary'}
-                  size="sm"
-                  onClick={handlePrevPage(paginationProps)}
-                  disabled={paginationProps.page === 1}
-                  className="px-4"
-                >
-                  Previous
-                </Button>
-                <Button
-                  color={lastIndex >= paginationProps.totalSize ? 'light' : 'primary'}
-                  size="sm"
-                  onClick={handleNextPage(paginationProps)}
-                  disabled={lastIndex >= paginationProps.totalSize}
-                  className="px-4 ml-2"
-                >
-                  Next
-                </Button>
-              </Col>
-            </Row>
           </Fragment>
         );
       }}

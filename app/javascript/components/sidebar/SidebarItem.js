@@ -109,10 +109,12 @@ const SidebarItem = (props) => {
     <div className="border-b">
       <Row className="align-items-center p-0 py-2 px-3"
         style={{ justifyContent: 'space-between', fontSize: "1.25rem"}}>
-        <Media className="pl-1">
+        <Col className="pl-1">
           <Link to={`/${symbol.toLowerCase()}`} className="share-text"  >{symbol}</Link>
-        </Media>
-        <Col xs="auto" className="pl-3 mx-0" style={{width: "60%", height: "100%"}}>
+          <p className="nav-top-p share-p">200 Share</p>
+          <p> 13.5% </p>
+        </Col>
+        <Col xs="auto" className="pl-3 mx-0" style={{width: "50%", height: "100%"}}>
           <PaymentsLineChartContainer period={ONE_MONTH_DURATION} symbol={symbol} sidebar={true} className="mg-pd-0" />
           {/* <ReactEchartsCore
             echarts={echarts}

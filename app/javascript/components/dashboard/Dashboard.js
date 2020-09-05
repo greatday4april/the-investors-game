@@ -30,21 +30,10 @@ const Dashboard = ({symbol}) => {
       <NewsItemsTableContainer symbol={symbol} date={store.warpedTime?.format(MMDDYY)}/>
       <br />
       <TicksChart symbol={symbol} />
-      <Card className="mb-3">
-        <FalconCardHeader title="Transaction History" light={false}>
-          <Fragment>
-            <ButtonIcon icon="plus" transform="shrink-3 down-2" color="falcon-default" size="sm">
-              New
-            </ButtonIcon>
-            <ButtonIcon icon="filter" transform="shrink-3 down-2" color="falcon-default" size="sm" className="mx-2">
-              Filter
-            </ButtonIcon>
-            <ButtonIcon icon="external-link-alt" transform="shrink-3 down-2" color="falcon-default" size="sm">
-              Export
-            </ButtonIcon>
-          </Fragment>
+      <Card className="mb-3 shadowed-card">
+        <FalconCardHeader title="ORDER HISTORY" light={false} className="bg-color" >
         </FalconCardHeader>
-        <CardBody className="p-0">
+        <CardBody className="p-0 bg-color">
           <PurchasesTableContainer setIsSelected={setIsSelected} />
         </CardBody>
       </Card>
