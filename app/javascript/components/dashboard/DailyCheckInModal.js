@@ -76,7 +76,7 @@ const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, recei
   const CARD_COUNT = 3;
   const [isFirstTimePlay, setIsFirstTimePlay] = useState(false);
   const [cardIsRevealed, setCardIsRevealed] = useState(false);
-  const [dailyCheckInIsOpen, setDailyCheckInIsOpen] = useState(false);
+  const [dailyCheckInIsOpen, setDailyCheckInIsOpen] = useState(true);
   const closeDailyCheckInModal = () => {
     setCardIsRevealed(false);
     setDailyCheckInIsOpen(false);
@@ -129,7 +129,18 @@ const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, recei
           size="sm"
           className="px-2 sqr-blk-btn"
           style={{ display: 'flex', width: '128', height: '56' }}
-          onClick={closeDailyCheckInModal}
+          onClick={() => {
+            closeDailyCheckInModal();
+            switch (reward) {
+              case stock:
+                receiveShare(REWARD_STOCK);
+                break;
+              case money:
+                receiveMoney(REWARD_MONEY_AMOUNT);
+                break;
+              default:
+            }
+          }}
         >
           OK
         </button>

@@ -8,7 +8,8 @@ const _calculateTotalAsset = (state) => {
   const transactions = state.transactions;
   const symbols = state.symbols;
   let balance = INITIAL_BALANCE;
-  let stocks = symbols.reduce((map, symbol) => ((map[symbol] = 0), map), {});
+  let stocks = {};
+  symbols.forEach(symbol => stocks[symbol] = 0);
   for (let transaction of transactions) {
     if (transaction.type === RECEIVE_MONEY) {
       balance += transaction.amount;
@@ -27,7 +28,7 @@ const _calculateTotalAsset = (state) => {
   }
   Object.keys(stocks).forEach((symbol) => {
     const share = stocks[symbol];
-    if (share != 0) {
+    if (share !== 0) {
       const closingPrice = getCurrentPrice(state, warpedTime, symbol);
       balance += share * closingPrice;
     }
