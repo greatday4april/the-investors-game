@@ -12,7 +12,7 @@ const PurchasesTableContainer = loadable(() => import('./PurchasesTableContainer
 
 const ActiveUsersMap = loadable(() => import('./ActiveUsersMap'));
 
-const Dashboard = ({symbol}) => {
+const Dashboard = ({symbol, warpedTime}) => {
   // State
   const [isSelected, setIsSelected] = useState(false);
   useEffect(() => {
@@ -27,8 +27,7 @@ const Dashboard = ({symbol}) => {
 
   return (
     <Fragment>
-      <NewsItemsTableContainer symbol={symbol} date={store.warpedTime?.format(MMDDYY)}/>
-      <br />
+      <NewsItemsTableContainer symbol={symbol} date={warpedTime?.format('MMDDYY')}/>
       <TicksChart symbol={symbol} />
       <Card className="mb-3">
         <FalconCardHeader title="Transaction History" light={false}>
