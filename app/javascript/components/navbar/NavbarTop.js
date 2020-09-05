@@ -28,6 +28,7 @@ const NavbarTop = () => {
       <div className="width-fill nav-t">
         <div></div>
         <div className='d-flex w-20'>
+        <ProgressBarContainer /> 
         <SettingsAnimatedIcon />
         <NotificationDropdown />
         <ProfileDropdown />
@@ -35,7 +36,6 @@ const NavbarTop = () => {
       </div>
        
       <div className='d-flex w-100'>
-      <ProgressBarContainer />
       <RealTimeAssetContainer />
       <Collapse navbar isOpen={navbarCollapsed} className="scrollbar">
         {!isTopNav ? (

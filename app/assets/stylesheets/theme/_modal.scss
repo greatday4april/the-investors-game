@@ -6,12 +6,6 @@
     margin-right: initial;
     max-width: 350px;
   }
-  // .modal-content {
-  //   border-radius: 0;
-  //   height: 100vh;
-  //   border-top: 0;
-  //   border-bottom: 0;
-  // }
   &.fade .modal-dialog-vertical {
     transform: translateX(100%);
   }
@@ -68,6 +62,10 @@
   .modal-title {
     z-index: 1;
   }
+}
+.modal-content {
+  background-color: transparent;
+  border: 0px;
 }
 .theme-modal {
   border: 0;

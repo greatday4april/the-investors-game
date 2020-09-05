@@ -21,8 +21,6 @@ const TopNavRightSideNavItem = () => {
         <NotificationDropdown />
         <ProfileDropdown />
       </NavItem> */}
-
-      
       <DailyCheckInModalContainer />
       <WarpedTimeContainer />
 
@@ -36,7 +34,6 @@ const TopNavRightSideNavItem = () => {
           </UncontrolledTooltip>
         </NavItem>
       )}
-
     </Nav>
   );
 };
