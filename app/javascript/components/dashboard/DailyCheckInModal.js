@@ -1,5 +1,5 @@
 import React, { useState, Fragment, useEffect } from 'react';
-import { Card, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 import card from '../../../assets/images/dailyCheckIn/Card.png';
 import money from '../../../assets/images/dailyCheckIn/Money.png';
 import stock from '../../../assets/images/dailyCheckIn/Stock.png';
@@ -8,9 +8,10 @@ import news from '../../../assets/images/dailyCheckIn/News.png';
 import { REWARD_STOCK, REWARD_MONEY_AMOUNT, HOURS_IN_DAY } from '../../utils/constants';
 
 const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, receiveShare, receiveMoney }) => {
+  let showCardHeader = 'Congratulations!';
   const CARD_COUNT = 3;
   const [cardIsRevealed, setCardIsRevealed] = useState(false);
-  const [dailyCheckInIsOpen, setDailyCheckInIsOpen] = useState(false);
+  const [dailyCheckInIsOpen, setDailyCheckInIsOpen] = useState(true);
   const closeDailyCheckInModal = () => {
     setCardIsRevealed(false);
     setDailyCheckInIsOpen(false);
@@ -54,7 +55,18 @@ const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, recei
     return (
       <Fragment>
         <h2>{description}</h2>
-        <img src={reward} alt="Reward" width="400" height="400" />
+        <img src={reward} alt="Reward" width="144" height="170" />
+        <br />
+        <button
+          type="button"
+          color={'light'}
+          size="sm"
+          className="px-2 sqr-blk-btn"
+          style={{ display: 'flex', width: '128', height: '56' }}
+          onClick={closeDailyCheckInModal}
+        >
+          OK
+        </button>
       </Fragment>
     );
   };
@@ -68,30 +80,35 @@ const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, recei
     return _makeReward(reward);
   };
   return (
-    <Card className="h-100">
-      <Modal isOpen={dailyCheckInIsOpen} toggle={closeDailyCheckInModal} centered size="lg">
-        <ModalHeader>{cardIsRevealed ? 'Congratulations!' : 'Choose your lucky card!'}</ModalHeader>
-        <ModalBody>
-          {cardIsRevealed
-            ? showCard()
-            : _.range(CARD_COUNT).map((_ele, index) => {
-                return (
-                  <input
-                    key={index}
-                    type="image"
-                    src={card}
-                    name="saveForm"
-                    className="btTxt submit"
-                    id="saveForm"
-                    width="250"
-                    height="250"
-                    onClick={revealCard}
-                  />
-                );
-              })}
-        </ModalBody>
-      </Modal>
-    </Card>
+    <Modal
+      className="shadowed-card"
+      isOpen={dailyCheckInIsOpen}
+      toggle={closeDailyCheckInModal}
+      style={{ margin: 'relative' }}
+    >
+      <ModalHeader>{cardIsRevealed ? showCardHeader : 'Choose your lucky card!'}</ModalHeader>
+      <ModalBody
+        style={cardIsRevealed ? {} : { display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}
+      >
+        {cardIsRevealed
+          ? showCard()
+          : _.range(CARD_COUNT).map((_ele, index) => {
+              return (
+                <input
+                  key={index}
+                  type="image"
+                  src={card}
+                  name="saveForm"
+                  className="btTxt submit"
+                  id="saveForm"
+                  width="150"
+                  height="150"
+                  onClick={revealCard}
+                />
+              );
+            })}
+      </ModalBody>
+    </Modal>
   );
 };
 
