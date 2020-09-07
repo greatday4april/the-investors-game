@@ -258,6 +258,10 @@ text-shadow: 4px 4px 0px #783741;
 
 .share-p{
   margin-block-end: 0;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 1.2rem !important;
+  color: black !important;
 }
 
 .bg-color{
@@ -267,15 +271,15 @@ text-shadow: 4px 4px 0px #783741;
 .order-header{
   font-size: 1.2rem;
   color: #5A607F;
-  padding: 1.5rem;
-  font-weight: 400 !important;
+  padding: 1.5rem !important;
+  // font-weight: 400 !important;
 
 }
 
 .order-data{
   font-size: 1.2rem;
   color: black;
-  padding: 1.5rem;
-  font-weight: 350;
+  padding: 1.5rem !important;
+  // font-weight: 350;
 }
 

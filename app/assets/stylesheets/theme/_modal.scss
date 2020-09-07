@@ -62,6 +62,9 @@
   .modal-title {
     z-index: 1;
   }
+  .new-line {
+    white-space: 'pre-wrap';
+  }
 }
 .modal-content {
   background-color: transparent;

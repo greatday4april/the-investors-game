@@ -8,7 +8,8 @@ const _calculateTotalAsset = (state) => {
   const transactions = state.transactions;
   const symbols = state.symbols;
   let balance = INITIAL_BALANCE;
-  let stocks = symbols.reduce((map, symbol) => ((map[symbol] = 0), map), {});
+  let stocks = {};
+  symbols.forEach(symbol => stocks[symbol] = 0);
   for (let transaction of transactions) {
     if (transaction.type === RECEIVE_MONEY) {
       balance += transaction.amount;
@@ -27,27 +28,29 @@ const _calculateTotalAsset = (state) => {
   }
   Object.keys(stocks).forEach((symbol) => {
     const share = stocks[symbol];
-    if (share != 0) {
+    if (share !== 0) {
       const closingPrice = getCurrentPrice(state, warpedTime, symbol);
       balance += share * closingPrice;
     }
   });
   return balance;
 };
-export const upgradeLevel = () => {
+export const needUpgradeLevel = () => {
   return (dispatch, getState) => {
     const state = getState();
 
     const level = getState().level;
     if (level === LEVELS.length) {
-      return;
+      return false;
     }
     const nextLevelAssetBar = LEVELS[level];
     const totalAsset = _calculateTotalAsset(state);
     dispatch(setRealTimeAsset(Math.round(totalAsset * 1e2) / 1e2));
     if (totalAsset >= nextLevelAssetBar) {
-      alert('level up');
-      dispatch({ type: LEVEL_UP });
+      return true;
+    } else {
+      return false;
     }
   };
 };
+export const upgradeLevel = () => ({ type: LEVEL_UP });

@@ -7,7 +7,7 @@ import { Button, Col, Row } from 'reactstrap';
 import ButtonIcon from '../common/ButtonIcon';
 import { Link } from 'react-router-dom';
 
-import purchases from '../../data/dashboard/purchaseList';
+const purchases = {length: 0};
 
 const CustomTotal = ({ sizePerPage, totalSize, page, lastIndex }) => (
   <span>
@@ -124,7 +124,7 @@ const options = {
 
 const PurchasesTable = (props) => {
   const { setIsSelected } = props;
-  console.log(props);
+  purchases.length = props.transactions.length;
   let table = createRef();
   const handleNextPage = ({ page, onPageChange }) => () => {
     onPageChange(page + 1);
@@ -166,6 +166,42 @@ const PurchasesTable = (props) => {
                 {...paginationTableProps}
               />
             </div>
+            <Row noGutters className="px-1 py-3">
+              <Col className="pl-3 fs--1">
+                {/* <CustomTotal {...paginationProps} lastIndex={lastIndex} /> */}
+                <ButtonIcon
+                  color="link"
+                  size="sm"
+                  // icon="chevron-right"
+                  iconAlign="right"
+                  transform="down-1 shrink-4"
+                  className="px-0 font-weight-semi-bold nav-top-p m-auto"
+                  onClick={() => handleViewAll(paginationProps, purchases.length)}
+                >
+                  + MORE
+                </ButtonIcon>
+              </Col>
+              {/* <Col xs="auto" className="pr-3">
+                <Button
+                  color={paginationProps.page === 1 ? 'light' : 'primary'}
+                  size="sm"
+                  onClick={handlePrevPage(paginationProps)}
+                  disabled={paginationProps.page === 1}
+                  className="px-4"
+                >
+                  Previous
+                </Button>
+                <Button
+                  color={lastIndex >= paginationProps.totalSize ? 'light' : 'primary'}
+                  size="sm"
+                  onClick={handleNextPage(paginationProps)}
+                  disabled={lastIndex >= paginationProps.totalSize}
+                  className="px-4 ml-2"
+                >
+                  Next
+                </Button>
+              </Col>*/}
+            </Row> 
           </Fragment>
         );
       }}

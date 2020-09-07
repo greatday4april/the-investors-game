@@ -4,7 +4,7 @@ export const RECEIVE_MONEY = 'RECEIVE_MONEY';
 
 export const buyStock = (stock) => {
   return (dispatch, getState) => {
-    const warpedTime = getState().warpedTime;
+    const warpedTime = getState().warpedTime.toString().slice(0,24);
     dispatch({
       type: BUY_STOCK,
       symbol: stock.symbol,
@@ -17,7 +17,7 @@ export const buyStock = (stock) => {
 
 export const sellStock = (stock) => {
   return (dispatch, getState) => {
-    const warpedTime = getState().warpedTime;
+    const warpedTime = getState().warpedTime.toString().slice(0, 24);
     dispatch({
       type: SELL_STOCK,
       symbol: stock.symbol,
@@ -30,7 +30,7 @@ export const sellStock = (stock) => {
 
 export const receiveMoney = (amount) => {
   return (dispatch, getState) => {
-    const warpedTime = getState().warpedTime;
+    const warpedTime = getState().warpedTime.toString().slice(0, 24);
     dispatch({
       type: RECEIVE_MONEY,
       amount,

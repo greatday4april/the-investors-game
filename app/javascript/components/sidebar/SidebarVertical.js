@@ -31,7 +31,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import totalOrder from '../../data/dashboard/totalOrder';
 
 const SidebarVertical = (props) => {
-  const {navbarStyle, symbols, stats, housingStats} = props;
+  const {navbarStyle, symbols, stats, housingStats, transactions} = props;
+  const shares = {};
+  symbols.forEach(symbol => shares[symbol] = 0);
+  transactions.forEach(transaction => {
+    transaction.type == "BUY_STOCK" ? (shares[transaction.symbol] += transaction.share) : (shares[transaction.symbol] -= transaction.share)
+  });
   const navBarRef = useRef(null);
   const { showBurgerMenu, isNavbarVerticalCollapsed, setIsNavbarVerticalCollapsed } = useContext(AppContext);
   const { threads } = useContext(ChatContext);
@@ -69,7 +74,7 @@ const SidebarVertical = (props) => {
   
   const cities = Object.keys(props.housings);
   let newsymbols = symbols.concat(cities);
-  const items = newsymbols.map((symbol) => <SidebarItem data={totalOrder} stats={stats[symbol]} symbol={symbol} />);
+  const items = newsymbols.map((symbol) => <SidebarItem data={totalOrder} stats={stats[symbol]} symbol={symbol} share={shares[symbol]} />);
   items.push(<SidebarItem data={totalOrder} symbol="Account" />);
   
 

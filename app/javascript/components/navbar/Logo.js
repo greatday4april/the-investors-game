@@ -9,7 +9,7 @@ const Logo = ({ at, width, className, ...rest }) => {
     <Link
       to="/"
       className={classNames(
-        'text-decoration-none',
+        'text-decoration-none margin-19',
         { 'navbar-brand text-left': at === 'navbar-vertical' },
         { 'navbar-brand text-left': at === 'navbar-top' }
       )}

@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import AppContext from '../../context/Context';
 import WarpedTimeContainer from '../dashboard/WarpedTimeContainer';
 import DailyCheckInModalContainer from '../dashboard/DailyCheckInModalContainer';
+import LevelUpModalContainer from '../dashboard/LevelUpModalContainer';
 
 const TopNavRightSideNavItem = () => {
   const { isTopNav } = useContext(AppContext);
@@ -22,6 +23,7 @@ const TopNavRightSideNavItem = () => {
         <ProfileDropdown />
       </NavItem> */}
       <DailyCheckInModalContainer />
+      <LevelUpModalContainer />
       <WarpedTimeContainer />
 
       {isTopNav && (

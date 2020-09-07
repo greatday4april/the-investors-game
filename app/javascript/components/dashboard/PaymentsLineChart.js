@@ -44,7 +44,7 @@ const PaymentsLineChart = (props) => {
       const gradientFill = isDark
         ? ctx.createLinearGradient(0, 0, 0, ctx.canvas.height)
         : ctx.createLinearGradient(0, 0, 0, 250);
-      gradientFill.addColorStop(0, isDark ? 'rgba(44,123,229, 0.5)' : 'rgba(255, 255, 255, 0.3)');
+      gradientFill.addColorStop(0, isDark ? 'rgba(44,123,229, 0.5)' : 'rgba(255, 255, 255, 1)');
       gradientFill.addColorStop(1, isDark ? 'transparent' : '#5F995B');
       return {
         labels: new Array(length).fill(''),

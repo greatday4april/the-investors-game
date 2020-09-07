@@ -102,7 +102,8 @@ const getOption = (data, isDark) => {
 };
 
 const SidebarItem = (props) => {
-  const {data, symbol} = props;
+  const {data, symbol, share} = props;
+  // console.log(props)
   const { isDark } = useContext(AppContext);
   const total = data.reduce((total, currentValue) => total + currentValue, 0);
   return (
@@ -111,7 +112,7 @@ const SidebarItem = (props) => {
         style={{ justifyContent: 'space-between', fontSize: "1.25rem"}}>
         <Col className="pl-1">
           <Link to={`/${symbol.toLowerCase()}`} className="share-text"  >{symbol}</Link>
-          <p className="nav-top-p share-p">200 Share</p>
+          <p className="nav-top-p share-p">{share} Share</p>
           <p> 13.5% </p>
         </Col>
         <Col xs="auto" className="pl-3 mx-0" style={{width: "50%", height: "100%"}}>
