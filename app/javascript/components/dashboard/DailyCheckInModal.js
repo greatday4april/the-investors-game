@@ -62,7 +62,7 @@ const DailyCheckInModal = ({ previousRewardTime, updatePreviousRewardTime, recei
         className="shadowed-card"
         isOpen={dailyCheckInIsOpen || isFirstTimePlay}
         toggle={closeDailyCheckInModal}
-        style={{ left: '330px', top: '466px' }}
+        style={{ /*left: '330px', */top: '466px' }}
       >
         <ModalHeader>{title}</ModalHeader>
         <ModalBody
