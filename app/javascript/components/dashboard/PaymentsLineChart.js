@@ -114,7 +114,7 @@ const PaymentsLineChart = (props) => {
       {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
     </Row>
   } 
-  
+   
   let classname = "rounded-soft bg-gradient";
   if (sidebar==true) {
     classname = "rounded-soft bg-gradient mg-pd-0"
