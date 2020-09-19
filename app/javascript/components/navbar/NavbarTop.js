@@ -1,18 +1,19 @@
+import { Collapse, Nav, NavItem, Navbar, Row } from 'reactstrap';
 import React, { useContext, useState } from 'react';
-import { Collapse, Navbar, NavItem, Nav, Row } from 'reactstrap';
-import classNames from 'classnames';
-import AppContext from '../../context/Context';
-import Logo from './Logo';
-import SearchBox from './SearchBox';
-import ProfileDropdown from './ProfileDropdown';
-import NotificationDropdown from './NotificationDropdown';
-import SettingsAnimatedIcon from './SettingsAnimatedIcon';
-import CartNotification from './CartNotification';
-import TopNavRightSideNavItem from './TopNavRightSideNavItem';
-import NavbarTopDropDownMenus from './NavbarTopDropDownMenus';
 import { navbarBreakPoint, topNavbarBreakpoint } from '../../packs/config';
-import RealTimeAssetContainer from '../../components/dashboard/RealTimeAssetContainer';
+
+import AppContext from '../../context/Context';
+import CartNotification from './CartNotification';
+import Logo from './Logo';
+import NavbarTopDropDownMenus from './NavbarTopDropDownMenus';
+import NotificationDropdown from './NotificationDropdown';
+import ProfileDropdown from './ProfileDropdown';
 import ProgressBarContainer from '../../components/dashboard/ProgressBarContainer';
+import RealTimeAssetContainer from '../../components/dashboard/RealTimeAssetContainer';
+import SearchBox from './SearchBox';
+import SettingsAnimatedIcon from './SettingsAnimatedIcon';
+import TopNavRightSideNavItem from './TopNavRightSideNavItem';
+import classNames from 'classnames';
 
 const NavbarTop = () => {
   const { showBurgerMenu, setShowBurgerMenu, isTopNav } = useContext(AppContext);

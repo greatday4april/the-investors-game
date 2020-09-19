@@ -1,9 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { DropdownItem, DropdownMenu, DropdownToggle, Dropdown } from 'reactstrap';
-import team3 from '../../../assets/images/team/3.jpg';
-import Avatar from '../common/Avatar';
+
+// import Avatar from '../common/Avatar';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { Link } from 'react-router-dom';
+// import team3 from '../../../assets/images/team/3.jpg';
 
 const ProfileDropdown = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -61,7 +62,7 @@ const ProfileDropdown = () => {
         </svg>
 
       </DropdownToggle>
-      <DropdownMenu right className="dropdown-menu-card">
+      {/* <DropdownMenu right className="dropdown-menu-card">
         <div className="bg-white rounded-soft py-2">
           <DropdownItem className="font-weight-bold text-warning" href="#!">
             <FontAwesomeIcon icon="crown" className="mr-1" />
@@ -81,7 +82,7 @@ const ProfileDropdown = () => {
             Logout
           </DropdownItem>
         </div>
-      </DropdownMenu>
+      </DropdownMenu> */}
     </Dropdown>
   );
 };

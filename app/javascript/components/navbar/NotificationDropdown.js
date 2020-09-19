@@ -1,15 +1,16 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import classNames from 'classnames';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Card, Dropdown, DropdownMenu, DropdownToggle } from 'reactstrap';
-import ListGroup from 'reactstrap/es/ListGroup';
-import ListGroupItem from 'reactstrap/es/ListGroupItem';
+import React, { useState } from 'react';
 import { rawEarlierNotifications, rawNewNotifications } from '../../data/notification/notification';
-import { isIterableArray } from '../../helpers/utils';
+
+// import FalconCardHeader from '../common/FalconCardHeader';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { Link } from 'react-router-dom';
+// import ListGroup from 'reactstrap/es/ListGroup';
+// import ListGroupItem from 'reactstrap/es/ListGroupItem';
+// import Notification from '../notification/Notification';
+import classNames from 'classnames';
+// import { isIterableArray } from '../../helpers/utils';
 import useFakeFetch from '../../hooks/useFakeFetch';
-import FalconCardHeader from '../common/FalconCardHeader';
-import Notification from '../notification/Notification';
 
 const NotificationDropdown = () => {
   // State
@@ -93,7 +94,7 @@ const NotificationDropdown = () => {
         </svg>
 
       </DropdownToggle>
-      <DropdownMenu right className="dropdown-menu-card">
+      {/* <DropdownMenu right className="dropdown-menu-card">
         <Card className="card-notification shadow-none" style={{ maxWidth: '20rem' }}>
           <FalconCardHeader className="card-header" title="Notifications" titleTag="h6" light={false}>
             <Link className="card-link font-weight-normal" to="#!" onClick={markAsRead}>
@@ -122,7 +123,7 @@ const NotificationDropdown = () => {
             </Link>
           </div>
         </Card>
-      </DropdownMenu>
+      </DropdownMenu> */}
     </Dropdown>
   );
 };
