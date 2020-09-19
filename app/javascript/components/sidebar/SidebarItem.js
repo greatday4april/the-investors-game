@@ -12,6 +12,9 @@ import AppContext from '../../context/Context';
 import Media from 'reactstrap/es/Media';
 import Avatar from '../common/Avatar';
 import { Link } from 'react-router-dom';
+import PaymentsLineChartContainer from '../dashboard/PaymentsLineChartContainer';
+import { ONE_MONTH_DURATION } from '../../utils/constants'
+
 
 const getOption = (data, isDark) => {
   const grays = getGrays(isDark);
@@ -99,27 +102,33 @@ const getOption = (data, isDark) => {
 };
 
 const SidebarItem = (props) => {
-  const {data, symbol} = props;
+  const {data, symbol, share} = props;
+  // console.log(props)
   const { isDark } = useContext(AppContext);
   const total = data.reduce((total, currentValue) => total + currentValue, 0);
   return (
-    <div style={{padding: "1rem 0" }}>
+    <div className="border-b">
       <Row className="align-items-center p-0 py-2 px-3"
         style={{ justifyContent: 'space-between', fontSize: "1.25rem"}}>
-        <Media className="pl-1">
-          <Link to={`/${symbol.toLowerCase()}`}>{symbol}</Link>
-        </Media>
-        <Col xs="auto" className="pl-3 mx-0">
-          <ReactEchartsCore
+        <Col className="pl-1">
+          <Link to={`/${symbol.toLowerCase()}`} className="share-text" style={{ textDecoration: "none", color: "#5A607F"}} >{symbol}
+            <p className="nav-top-p share-p">{share} Share</p>
+            <p> 13.5% </p>
+          </Link>
+
+        </Col>
+        <Col xs="auto" className="pl-3 mx-0" style={{width: "50%", height: "100%"}}>
+          <PaymentsLineChartContainer period={ONE_MONTH_DURATION} symbol={symbol} sidebar={true} className="mg-pd-0" />
+          {/* <ReactEchartsCore
             echarts={echarts}
             option={getOption(data, isDark)}
             style={{ width: '4.355rem', minHeight: '2.5rem', height: '50%' }}
-          />
+          /> */}
         </Col>
-        <Badge pill color="soft-info" className="fs--2 mr-3">
+        {/* <Badge pill color="soft-info" className="fs--2 mr-3">
           <FontAwesomeIcon icon="caret-up" className="mr-0" />
           13.6%
-        </Badge>
+        </Badge> */}
       </Row>
     </div>
   );

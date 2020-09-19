@@ -5,7 +5,8 @@ const mapStateToProps = state => ({
     symbols: state.symbols,
     housings: state.housings,
     stats: state.stats,
-    housingStats: state.housingStats
+    housingStats: state.housingStats,
+    transactions: state.transactions
 })
 
 export default connect(

@@ -23,7 +23,7 @@ const TicksChart = props => {
     statsComponent = (
       <div className="shadowed-card">
         <div
-          className='text-title'
+          className='text-title nav-top-p'
           style={{ width: '58px', height: '24px', left: '529px', top: '713px', marginLeft: '30px', marginTop: '30px' }}
         >
           STATS
@@ -94,8 +94,9 @@ const TicksChart = props => {
           <Button
             color="link"
             size="sm"
-            className="p-lr  blk-clicked"
+            className="p-lr"
             onClick={() => setScale(ONE_DAY_DURATION)}
+            autoFocus={true}
           >
             1 DAY
           </Button>

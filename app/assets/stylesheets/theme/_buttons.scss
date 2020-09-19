@@ -214,7 +214,7 @@ $theme-falcon-btn-colors: (
 /*-----------------------------------------------
 |    Investor's Game
 -----------------------------------------------*/
-.blk-clicked{
+.p-lr:focus{
   background: #131523;
   mix-blend-mode: normal;
   border: 2px solid #131523;
@@ -228,5 +228,19 @@ $theme-falcon-btn-colors: (
 color: white;
 box-shadow: 0px 4px 4px rgba(102, 102, 102, 0.1), inset 0px -2px 0px rgba(102, 102, 102, 0.1);
 border-radius: 10px;
+}
+
+.mg-pd-0{
+  margin: 0;
+  padding: 0;
+}
+
+.border-b{
+  padding: 1rem 0;
+  border-bottom:1px solid #D7DBEC;
+}
+
+.margin-19{
+  margin: 1.1rem 1.9rem;
 }
 

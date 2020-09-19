@@ -9,10 +9,10 @@ const StatsTable = (props) => {
       className="align-items-center border-bottom border-grey border-2x py-3"
       style={{ justifyContent: 'space-between', fontSize: '2.45rem' }}
     >
-      <Col xs="auto" className="pl-3 mx-0 text-sub-title">
+      <Col xs="auto" className="pl-3 mx-0 share-text">
         {keyWord}
       </Col>
-      <Col xs="auto" className="pl-3 mx-0 text" style={{ fontWeight: '550', color: 'black' }}>
+      <Col xs="auto" className="pl-3 mx-0 share-p" style={{ fontWeight: '550', color: 'black' }}>
         {stats[keyWord]}
       </Col>
     </div>

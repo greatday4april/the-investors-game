@@ -23,22 +23,11 @@ const Dashboard = ({symbol, warpedTime}) => {
     <Fragment>
       <NewsItemsTableContainer symbol={symbol} date={warpedTime?.format('MMDDYY')}/>
       <TicksChart symbol={symbol} />
-      <Card className="mb-3">
-        <FalconCardHeader title="Transaction History" light={false}>
-          <Fragment>
-            <ButtonIcon icon="plus" transform="shrink-3 down-2" color="falcon-default" size="sm">
-              New
-            </ButtonIcon>
-            <ButtonIcon icon="filter" transform="shrink-3 down-2" color="falcon-default" size="sm" className="mx-2">
-              Filter
-            </ButtonIcon>
-            <ButtonIcon icon="external-link-alt" transform="shrink-3 down-2" color="falcon-default" size="sm">
-              Export
-            </ButtonIcon>
-          </Fragment>
+      <Card className="mb-3 shadowed-card">
+        <FalconCardHeader title="ORDER HISTORY" light={false} className="bg-color" >
         </FalconCardHeader>
-        <CardBody className="p-0">
-          {/* <PurchasesTableContainer setIsSelected={setIsSelected} /> */}
+        <CardBody className="p-0 bg-color">
+          <PurchasesTableContainer setIsSelected={setIsSelected} />
         </CardBody>
       </Card>
       <Row noGutters>

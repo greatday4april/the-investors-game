@@ -4,7 +4,7 @@ import { Row, Col, Button, Modal, ModalHeader, ModalBody, Input } from 'reactstr
 
 const TradingDialog = ({ toggle, modal, setModal }) => {
   return (
-    <Modal isOpen={modal} toggle={toggle}>
+    <Modal isOpen={modal} toggle={toggle} className="shadowed-card">
       <ModalHeader toggle={toggle}>Start Trading!</ModalHeader>
       <ModalBody>
         <Row noGutters className="font-weight-bold px-4 ">
@@ -29,10 +29,10 @@ const TradingDialog = ({ toggle, modal, setModal }) => {
         </Row>
         <br />
         <Col xs="auto" className="pr-3 text-center">
-          <Button color={'success'} size="md" className="px-4 mb-3">
+          <Button size="md" className="px-4 mb-3 sqr-blk-btn">
             Buy
           </Button>
-          <Button color={'success'} size="md" className="px-4 ml-4 mb-3">
+          <Button size="md" className="px-4 ml-4 mb-3 sqr-blk-btn">
             Sell
           </Button>
         </Col>

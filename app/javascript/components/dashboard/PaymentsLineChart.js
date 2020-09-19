@@ -8,7 +8,7 @@ import CurrentTickPriceContainer from './CurrentTickPriceContainer';
 
 
 const PaymentsLineChart = (props) => {
-  const { ticks, length, fetchTicks, setCurrentTickPrice } = props;
+  const { ticks, length, fetchTicks, setCurrentTickPrice, sidebar } = props;
   const { isDark } = useContext(AppContext);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
@@ -44,8 +44,8 @@ const PaymentsLineChart = (props) => {
       const gradientFill = isDark
         ? ctx.createLinearGradient(0, 0, 0, ctx.canvas.height)
         : ctx.createLinearGradient(0, 0, 0, 250);
-      gradientFill.addColorStop(0, isDark ? 'rgba(44,123,229, 0.5)' : 'rgba(255, 255, 255, 0.3)');
-      gradientFill.addColorStop(1, isDark ? 'transparent' : '#5F995B');
+      gradientFill.addColorStop(1, isDark ? 'rgba(249, 244, 233, 0.5)' : 'rgba(249, 244, 233, 0.5)');
+      gradientFill.addColorStop(0.3, isDark ? 'transparent' : '#5F995B');
       return {
         labels: new Array(length).fill(''),
         datasets: [
@@ -98,24 +98,33 @@ const PaymentsLineChart = (props) => {
       },
     },
   };
+  let items = <br />;
+  if (sidebar!=true) {
+    items = <Row className="text-white align-items-center no-gutters">
+      <Col>
+        <Row>
+          <h4 style={{ padding: "0 1rem", color: "black" }}>{props.symbol}</h4>
+          <CurrentTickPriceContainer />
+          {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
+        </Row>
+      </Col>
+      <Button color={'light'} size="sm" className="px-2 sqr-blk-btn" onClick={toggle}>
+        Start Trading
+          </Button>
+      {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
+    </Row>
+  } 
+   
+  let classname = "rounded-soft bg-gradient";
+  if (sidebar==true) {
+    classname = "rounded-soft bg-gradient mg-pd-0"
+  }
 
   return (
     <Card className="mb-3">
-      <CardBody className="rounded-soft bg-gradient">
-        <Row className="text-white align-items-center no-gutters">
-          <Col>
-            <Row>
-              <h4 style={{padding: "0 1rem", color: "black"}}>{props.symbol}</h4>
-              <CurrentTickPriceContainer />
-              {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
-            </Row>
-          </Col>
-          <Button color={'light'} size="sm" className="px-2 sqr-blk-btn" onClick={toggle}>
-            Start Trading
-          </Button>
-          {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
-        </Row>
-        <Line data={config.data} options={config.options} width={1618} height={375} />
+      <CardBody className={classname} >
+        {items}
+        <Line data={config.data} options={config.options} width={1618} height={375}  />
       </CardBody>
     </Card>
   );
