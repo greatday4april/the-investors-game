@@ -10,22 +10,22 @@ const ProfileDropdown = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen(prevState => !prevState);
   return (
-    <Dropdown
-      nav
-      inNavbar
-      isOpen={dropdownOpen}
-      toggle={toggle}
-      onMouseOver={() => {
-        let windowWidth = window.innerWidth;
-        windowWidth > 992 && setDropdownOpen(true);
-      }}
-      onMouseLeave={() => {
-        let windowWidth = window.innerWidth;
-        windowWidth > 992 && setDropdownOpen(false);
-      }}
-    >
-      <DropdownToggle nav className="pr-0">
-        <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+    // <Dropdown
+    //   nav
+    //   inNavbar
+    //   isOpen={dropdownOpen}
+    //   toggle={toggle}
+    //   onMouseOver={() => {
+    //     let windowWidth = window.innerWidth;
+    //     windowWidth > 992 && setDropdownOpen(true);
+    //   }}
+    //   onMouseLeave={() => {
+    //     let windowWidth = window.innerWidth;
+    //     windowWidth > 992 && setDropdownOpen(false);
+    //   }}
+    // >
+    //   <DropdownToggle nav className="pr-0" >
+        <svg width="55" height="60" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"       style={{ bottom: 0, top: '100%' }} >
           <path d="M28.9023 46.438C40.2142 46.438 49.3842 44.1655 49.3842 41.3622C49.3842 38.5588 40.2142 36.2863 28.9023 36.2863C17.5905 36.2863 8.42041 38.5588 8.42041 41.3622C8.42041 44.1655 17.5905 46.438 28.9023 46.438Z" fill="#B8CBCD" />
           <path d="M48.8113 29.7253H7.99099C7.99099 29.7253 6.80935 36.3855 7.99099 38.6392C9.03943 40.6394 17.3749 43.2966 28.4226 43.2966C39.4699 43.2966 48.0267 40.5986 48.8113 38.6392C49.6707 36.4929 48.8113 29.7253 48.8113 29.7253Z" fill="#F7BB83" />
           <path d="M28.4225 44.5857C18.0726 44.5857 8.39478 42.1867 6.84877 39.2378C5.52963 36.7219 6.51103 30.6848 6.72115 29.5002C6.83029 28.8849 7.36568 28.4363 7.99045 28.4363H48.8108C49.46 28.4363 50.0079 28.9188 50.0895 29.5629C50.2403 30.7484 50.9437 36.7804 50.0074 39.1183C48.8211 42.0819 38.9361 44.5857 28.4225 44.5857ZM9.09174 31.0144C8.73123 33.5698 8.5456 36.9222 9.13213 38.0411C9.78053 39.227 17.1256 42.0075 28.4225 42.0075C39.5837 42.0075 46.942 39.2936 47.6257 38.1352C48.0562 37.0562 47.9243 33.6437 47.6596 31.0144H9.09174Z" fill="#6E4123" />
@@ -61,8 +61,8 @@ const ProfileDropdown = () => {
           <path d="M5.86415 33.3223C5.53716 33.3223 5.21017 33.1985 4.9588 32.951C2.96806 30.9865 3.06903 28.3113 3.82743 26.4627C4.56521 24.6649 5.94622 23.5031 7.34614 23.5031C8.05814 23.5031 8.63521 24.0801 8.63521 24.7921C8.63521 25.5041 8.05814 26.0812 7.34614 26.0812C7.18243 26.0812 6.6045 26.4855 6.21263 27.4416C5.77177 28.5166 5.68626 30.0463 6.7695 31.1154C7.27653 31.6156 7.28169 32.4315 6.78153 32.9386C6.52931 33.1942 6.19673 33.3223 5.86415 33.3223Z" fill="#6E4123" />
         </svg>
 
-      </DropdownToggle>
-      {/* <DropdownMenu right className="dropdown-menu-card">
+      // </DropdownToggle>
+      /* <DropdownMenu right className="dropdown-menu-card">
         <div className="bg-white rounded-soft py-2">
           <DropdownItem className="font-weight-bold text-warning" href="#!">
             <FontAwesomeIcon icon="crown" className="mr-1" />
@@ -82,8 +82,8 @@ const ProfileDropdown = () => {
             Logout
           </DropdownItem>
         </div>
-      </DropdownMenu> */}
-    </Dropdown>
+      </DropdownMenu> */
+    // </Dropdown>
   );
 };
 

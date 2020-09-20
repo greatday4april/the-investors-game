@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import React from 'react';
+import classNames from 'classnames';
 import logo from '../../../assets/images/logos/INVESTOR‘S GAME.png';
 
 const Logo = ({ at, width, className, ...rest }) => {
@@ -9,10 +9,11 @@ const Logo = ({ at, width, className, ...rest }) => {
     <Link
       to="/"
       className={classNames(
-        'text-decoration-none margin-19',
+        'text-decoration-none margin-10',
         { 'navbar-brand text-left': at === 'navbar-vertical' },
         { 'navbar-brand text-left': at === 'navbar-top' }
       )}
+      style={{ height: '154px' }}
       {...rest}
     >
       <div
@@ -25,8 +26,12 @@ const Logo = ({ at, width, className, ...rest }) => {
           },
           className
         )}
+        style={{ 
+          marginTop: '40px', 
+          marginBottom: '0px'
+      }}
       >
-        <img src={logo} />
+        <img src={logo} alt="Investor's Game" />
       </div>
     </Link>
   );

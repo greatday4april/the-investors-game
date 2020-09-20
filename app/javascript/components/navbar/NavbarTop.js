@@ -26,13 +26,13 @@ const NavbarTop = () => {
       style={{ backgroundColor: '#F9F4E9' }}
       expand={isTopNav ? topNavbarBreakpoint : navbarBreakPoint}
     >
-      <div className="width-fill nav-t">
-        <div></div>
+      <div className="width-fill nav-t"  style={{ height: '120px' }}>
+        <div><span></span></div>
         <div className='d-flex w-20'>
-        <ProgressBarContainer /> 
-        <SettingsAnimatedIcon />
-        <NotificationDropdown />
-        <ProfileDropdown />
+          <ProgressBarContainer /> 
+          <SettingsAnimatedIcon />
+          <NotificationDropdown />
+          <ProfileDropdown />
         </div>
       </div>
        

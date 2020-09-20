@@ -52,27 +52,27 @@ const NotificationDropdown = () => {
   };
 
   return (
-    <Dropdown
-      nav
-      inNavbar
-      isOpen={isOpen}
-      toggle={handleToggle}
-      onMouseOver={() => {
-        let windowWidth = window.innerWidth;
-        windowWidth > 992 && setIsOpen(true);
-      }}
-      onMouseLeave={() => {
-        let windowWidth = window.innerWidth;
-        windowWidth > 992 && setIsOpen(false);
-      }}
-    >
-      <DropdownToggle
-        nav
-        className={classNames('px-0', {
-          'notification-indicator notification-indicator-primary': !isAllRead
-        })}
-      >
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    // <Dropdown
+    //   nav
+    //   inNavbar
+    //   isOpen={isOpen}
+    //   toggle={handleToggle}
+    //   onMouseOver={() => {
+    //     let windowWidth = window.innerWidth;
+    //     windowWidth > 992 && setIsOpen(true);
+    //   }}
+    //   onMouseLeave={() => {
+    //     let windowWidth = window.innerWidth;
+    //     windowWidth > 992 && setIsOpen(false);
+    //   }}
+    // >
+    //   <DropdownToggle
+    //     nav
+    //     className={classNames('px-0', {
+    //       'notification-indicator notification-indicator-primary': !isAllRead
+    //     })}
+    //   >
+        <svg width="50" height="50" viewBox="0 0 40 35" fill="none" xmlns="http://www.w3.org/2000/svg"    style={{ bottom: 0, top: '100%' }}>
           <path d="M9.40396 24.7071H4.78615C4.78615 24.7071 4.12646 22.1781 4.12646 19.4293C4.12646 16.6806 4.78615 14.1515 4.78615 14.1515H9.40396" fill="#B2EDA6" />
           <path d="M9.40396 25.3321H4.78615C4.50178 25.3321 4.25303 25.1402 4.18146 24.8649C4.15365 24.7587 3.50146 22.2262 3.50146 19.4293C3.50146 16.6324 4.15365 14.1002 4.18146 13.9937C4.25303 13.7184 4.50178 13.5265 4.78615 13.5265H9.40396C9.74896 13.5265 10.029 13.8065 10.029 14.1515C10.029 14.4965 9.74896 14.7765 9.40396 14.7765H5.28209C5.09959 15.6168 4.75115 17.4771 4.75115 19.4293C4.75115 21.3859 5.09959 23.2431 5.28209 24.0821H9.40396C9.74896 24.0821 10.029 24.3621 10.029 24.7071C10.029 25.0521 9.74928 25.3321 9.40396 25.3321Z" fill="#3C663E" />
           <path d="M28.5361 23.1159C28.2961 23.1159 28.0561 23.0243 27.8733 22.8412C27.5086 22.4768 27.5071 21.8865 27.8686 21.52C27.894 21.4934 28.698 20.6372 28.698 19.4297C28.698 18.2031 27.8815 17.3522 27.8733 17.3437C27.5071 16.9778 27.5071 16.384 27.8733 16.0181C28.2393 15.6518 28.833 15.6518 29.1989 16.0181C29.2552 16.074 30.573 17.4153 30.573 19.4297C30.573 21.444 29.2552 22.7853 29.1989 22.8412C29.0161 23.0243 28.7758 23.1159 28.5361 23.1159Z" fill="#3C663E" />
@@ -93,8 +93,8 @@ const NotificationDropdown = () => {
           <path d="M9.07392 25.2576C8.80424 25.2576 8.55518 25.0816 8.47486 24.8094C8.44674 24.7148 7.78955 22.4538 7.78955 19.4298C7.78955 16.7426 8.44111 14.1791 8.46893 14.071C8.55486 13.7369 8.89455 13.5354 9.22986 13.6216C9.56424 13.7076 9.76549 14.0482 9.67955 14.3826C9.67299 14.4076 9.03955 16.9054 9.03955 19.4298C9.03955 22.2751 9.66736 24.4341 9.67361 24.4557C9.77142 24.7866 9.58236 25.1344 9.25111 25.2319C9.19236 25.2494 9.13267 25.2576 9.07392 25.2576Z" fill="#3C663E" />
         </svg>
 
-      </DropdownToggle>
-      {/* <DropdownMenu right className="dropdown-menu-card">
+      // </DropdownToggle>
+      /* <DropdownMenu right className="dropdown-menu-card">
         <Card className="card-notification shadow-none" style={{ maxWidth: '20rem' }}>
           <FalconCardHeader className="card-header" title="Notifications" titleTag="h6" light={false}>
             <Link className="card-link font-weight-normal" to="#!" onClick={markAsRead}>
@@ -123,8 +123,8 @@ const NotificationDropdown = () => {
             </Link>
           </div>
         </Card>
-      </DropdownMenu> */}
-    </Dropdown>
+      </DropdownMenu> */
+    // </Dropdown>
   );
 };
 
