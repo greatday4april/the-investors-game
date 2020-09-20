@@ -1,10 +1,12 @@
 import { Card, CardBody, Col, Row } from 'reactstrap';
-import { Line } from 'react-chartjs-2';
 import React, { useContext, useEffect, useState } from 'react';
 import { rgbaColor, themeColors } from '../../helpers/utils';
+
 import AppContext from '../../context/Context';
-import TradingDialog from './TradingDialog';
+// import TradingDialog from './TradingDialog';
 import CurrentAssetAmountContainer from './CurrentAssetAmountContainer';
+import { Line } from 'react-chartjs-2';
+
 export const AccountPage = (props) => {
   const { historyAssets, fetchAllTicks, setCurrentAssetAmount } = props;
   const { isDark } = useContext(AppContext);
@@ -81,9 +83,9 @@ export const AccountPage = (props) => {
         <Row className="text-white align-items-center no-gutters">
           <Col>
             <CurrentAssetAmountContainer />
-            {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
+            {/* {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null} */}
           </Col>
-          {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
+          {/* {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null} */}
         </Row>
         <Line data={config.data} options={config.options} width={1618} height={375} />
       </CardBody>

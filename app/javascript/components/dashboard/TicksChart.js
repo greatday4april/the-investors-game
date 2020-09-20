@@ -1,29 +1,30 @@
-import React, { useState } from 'react'
-import PaymentsLineChartContainer from './PaymentsLineChartContainer'
-import NewsItemsTableContainer from './NewsItemsTableContainer'
-import { Button, Col, Row } from 'reactstrap'
-import StatsTable from './StatsTable'
-import TickPolygon from './TickPolygon'
+import { Button, Col, Row } from 'reactstrap';
 import {
-  ONE_WEEK_DURATION,
   ONE_DAY_DURATION,
   ONE_MONTH_DURATION,
+  ONE_WEEK_DURATION,
+  ONE_YEAR_DURATION,
   SIX_MONTHS_DURATION,
-  ONE_YEAR_DURATION
-} from '../../utils/constants'
+} from '../../utils/constants';
+import React, { useState } from 'react';
 
-const TicksChart = props => {
-  let [scale, setScale] = useState(ONE_DAY_DURATION)
-  let symbol = props.symbol || props.match.params.symbol.toUpperCase()
-  let statsComponent
+import PaymentsLineChartContainer from './PaymentsLineChartContainer';
+import StatsTable from './StatsTable';
+import TickPolygon from './TickPolygon';
+import TradingDialog from '../../components/dashboard/TradingDialog';
+
+const TicksChart = (props) => {
+  let [scale, setScale] = useState(ONE_DAY_DURATION);
+  let symbol = props.symbol || props.match.params.symbol.toUpperCase();
+  let statsComponent;
   if (!props.match || !props.stats[symbol]) {
-    statsComponent = <br />
+    statsComponent = <br />;
   } else if (props.stats[symbol]) {
-    let stats = props.stats[symbol]
+    let stats = props.stats[symbol];
     statsComponent = (
       <div className="shadowed-card">
         <div
-          className='text-title nav-top-p'
+          className="text-title nav-top-p"
           style={{ width: '58px', height: '24px', left: '529px', top: '713px', marginLeft: '30px', marginTop: '30px' }}
         >
           STATS
@@ -49,14 +50,13 @@ const TicksChart = props => {
             <TickPolygon stats={stats} />
           </Col>
         </div>
-        <NewsItemsTableContainer symbol={symbol} date={props.warpedTime?.format('MMDDYY')} />
       </div>
-    )
+    );
 
     // stats for housing stats
   } else if (props.housingStats != null) {
-    let stats = props.housingStats[symbol]
-    console.log(props)
+    let stats = props.housingStats[symbol];
+    console.log(props);
     statsComponent = (
       <div style={{ margin: '1.5rem' }}>
         <h3>Stats</h3>
@@ -82,61 +82,37 @@ const TicksChart = props => {
           </Col>
         </div>
       </div>
-    )
+    );
   }
 
   return (
     <div>
-      <div className="shadowed-card mb-2r" >
+      <div className="shadowed-card mb-2r">
         <PaymentsLineChartContainer period={scale} symbol={symbol} />
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className="time-scale">
-          <Button
-            color="link"
-            size="sm"
-            className="p-lr"
-            onClick={() => setScale(ONE_DAY_DURATION)}
-            autoFocus={true}
-          >
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="time-scale">
+          <Button color="link" size="sm" className="p-lr" onClick={() => setScale(ONE_DAY_DURATION)} autoFocus={true}>
             1 DAY
           </Button>
-          <Button
-            color="link"
-            size="sm"
-            className="p-lr"
-            onClick={() => setScale(ONE_WEEK_DURATION)}
-          >
+          <Button color="link" size="sm" className="p-lr" onClick={() => setScale(ONE_WEEK_DURATION)}>
             1 WEEK
           </Button>
-          <Button
-            color="link"
-            size="sm"
-            className="p-lr"
-            onClick={() => setScale(ONE_MONTH_DURATION)}
-          >
+          <Button color="link" size="sm" className="p-lr" onClick={() => setScale(ONE_MONTH_DURATION)}>
             1 MONTH
           </Button>
-          <Button
-            color="link"
-            size="sm"
-            className="p-lr"
-            onClick={() => setScale(SIX_MONTHS_DURATION)}
-          >
+          <Button color="link" size="sm" className="p-lr" onClick={() => setScale(SIX_MONTHS_DURATION)}>
             6 MONTHS
           </Button>
-          <Button
-            color="link"
-            size="sm"
-            className="p-lr"
-            onClick={() => setScale(ONE_YEAR_DURATION)}
-          >
+          <Button color="link" size="sm" className="p-lr" onClick={() => setScale(ONE_YEAR_DURATION)}>
             1 YEAR
           </Button>
         </div>
       </div>
-      {statsComponent}
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <TradingDialog />
+        {statsComponent}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default TicksChart
+export default TicksChart;

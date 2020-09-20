@@ -2,10 +2,11 @@ import { Button, Card, CardBody, Col, Row } from 'reactstrap';
 import { Chart, Line } from 'react-chartjs-2';
 import React, { useContext, useEffect, useState } from 'react';
 import { rgbaColor, themeColors } from '../../helpers/utils';
+
 import AppContext from '../../context/Context';
-import TradingDialog from './TradingDialog'
 import CurrentTickPriceContainer from './CurrentTickPriceContainer';
 
+// import TradingDialog from './TradingDialog'
 
 const PaymentsLineChart = (props) => {
   const { ticks, length, fetchTicks, setCurrentTickPrice, sidebar } = props;
@@ -99,21 +100,21 @@ const PaymentsLineChart = (props) => {
     },
   };
   let items = <br />;
-  if (sidebar!=true) {
-    items = <Row className="text-white align-items-center no-gutters">
-      <Col>
-        <Row>
-          <h4 style={{ padding: "0 1rem", color: "black" }}>{props.symbol}</h4>
-          <CurrentTickPriceContainer />
-          {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
-        </Row>
-      </Col>
-      <Button color={'light'} size="sm" className="px-2 sqr-blk-btn" onClick={toggle}>
-        Start Trading
-          </Button>
-      {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
-    </Row>
-  } 
+  // if (sidebar!=true) {
+  //   items = <Row className="text-white align-items-center no-gutters">
+  //     <Col>
+  //       <Row>
+  //         <h4 style={{ padding: "0 1rem", color: "black" }}>{props.symbol}</h4>
+  //         <CurrentTickPriceContainer />
+  //         {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
+  //       </Row>
+  //     </Col>
+  //     <Button color={'light'} size="sm" className="px-2 sqr-blk-btn" onClick={toggle}>
+  //       Start Trading
+  //         </Button>
+  //     {modal ? <TradingDialog toggle={toggle} modal={modal} setModal={setModal} /> : null}
+  //   </Row>
+  // } 
    
   let classname = "rounded-soft bg-gradient";
   if (sidebar==true) {
